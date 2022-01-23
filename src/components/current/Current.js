@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import SvgWave from "./icons/SvgWave";
 import {
     Rates,
@@ -8,31 +8,41 @@ import {
     BodyItem,
 } from "./style/current";
 import { v4 as uuid4 } from "uuid";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Current = () => {
     const [rates, setRates] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const apiURL =
         "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
 
     const fetchRates = async () => {
-        const response = await fetch(apiURL);
-        const data = await response.json();
-        const slicedData = data.slice(0, -1);
+        try {
+            const response = await fetch(apiURL);
+            const data = await response.json();
+            const desiredExchangeRates = data.slice(0, 3);
 
-        setRates(slicedData);
+            setRates(desiredExchangeRates);
+            setIsLoading(true);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     useEffect(() => {
         fetchRates();
-    }, []);
+    }, [isLoading]);
 
-    const listOfCurrency = rates.map((rate) => {
+    const listOfCurrency = rates.map(({ ccy, buy, sale }) => {
+        const fixedBuy = Number(buy).toFixed(2);
+        const fixedSale = Number(sale).toFixed(2);
+
         return (
             <RatesBody key={uuid4()}>
-                <BodyItem>{rate.ccy}</BodyItem>
-                <BodyItem>{rate.buy}</BodyItem>
-                <BodyItem>{rate.sale}</BodyItem>
+                <BodyItem>{ccy}</BodyItem>
+                <BodyItem>{fixedBuy}</BodyItem>
+                <BodyItem>{fixedSale}</BodyItem>
             </RatesBody>
         );
     });

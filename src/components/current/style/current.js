@@ -7,6 +7,7 @@ const Rates = styled.article`
     font-weight: 400;
     color: white;
     background-color: #4a56e2;
+    border-radius: 30px;
     border: 1px solid #000;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -15,6 +16,7 @@ const RatesHead = styled.ul`
     display: flex;
     justify-content: space-between;
     padding: 1.7rem 0 2rem;
+    border-radius: 30px 30px 0 0;
     background-color: #6f78ec;
 `;
 
@@ -41,6 +43,10 @@ const RatesBody = styled.ul`
 const BodyItem = styled(HeadItem)`
     font-size: 1.6rem;
     line-height: 1.25;
+
+    &:nth-child(2) {
+        margin-left: 10px;
+    }
 `;
 
 export { Rates, RatesHead, HeadItem, RatesBody, BodyItem };
