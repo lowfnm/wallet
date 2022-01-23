@@ -1,10 +1,14 @@
 import GlobalStyles from "./style/global";
+import { ThemeProvider } from "styled-components";
+import theme from "./style/theme";
 
 const App = () => {
     return (
-        <>
-            <GlobalStyles />
-        </>
+        <ThemeProvider theme={theme}>
+            <>
+                <GlobalStyles />
+            </>
+        </ThemeProvider>
     );
 };
 

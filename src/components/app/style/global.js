@@ -15,10 +15,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    //font-size: ;
-    //line-height: ;
-    //font-weight: ;
-    //font-family:;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-family: 'Abel', sans-serif;
   }
 
   h1,
