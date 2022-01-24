@@ -1,3 +1,4 @@
+import GlobalStyles from "./style/global";
 import { ThemeProvider } from "styled-components";
 import theme from "./style/theme";
 import Currency from "../currency/Currency";
