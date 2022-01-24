@@ -6,6 +6,7 @@ import {
     HeadItem,
     RatesBody,
     BodyItem,
+    Loader,
 } from "./style/current";
 import { v4 as uuid4 } from "uuid";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -34,6 +35,14 @@ const Current = () => {
         fetchRates();
     }, [isLoading]);
 
+    const loaderToFetch = () => {
+        return (
+            <Loader>
+                <CircularProgress sx={{ color: "white", opacity: 0.8 }} />
+            </Loader>
+        );
+    };
+
     const listOfCurrency = rates.map(({ ccy, buy, sale }) => {
         const fixedBuy = Number(buy).toFixed(2);
         const fixedSale = Number(sale).toFixed(2);
@@ -54,8 +63,8 @@ const Current = () => {
                 <HeadItem>Purchase</HeadItem>
                 <HeadItem>Sale</HeadItem>
             </RatesHead>
-            {listOfCurrency}
-            <SvgWave />
+            {!isLoading ? loaderToFetch() : listOfCurrency}
+            {!isLoading ? "" : <SvgWave />}
         </Rates>
     );
 };

@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Rates = styled.article`
+    margin-top: 3rem;
     max-width: 348px;
-    font-family: "Abel", sans-serif;
+    position: relative;
+    height: 347px;
     font-style: normal;
     font-weight: 400;
     color: white;
@@ -49,4 +52,11 @@ const BodyItem = styled(HeadItem)`
     }
 `;
 
-export { Rates, RatesHead, HeadItem, RatesBody, BodyItem };
+const Loader = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
+export { Rates, RatesHead, HeadItem, RatesBody, BodyItem, Loader };
