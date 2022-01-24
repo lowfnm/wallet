@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import CircularProgress from "@mui/material/CircularProgress";
 
 const Rates = styled.article`
     margin-top: 3rem;
