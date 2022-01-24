@@ -1,11 +1,11 @@
 import GlobalStyles from "./style/global";
-import Current from "../current/Current";
+import Currency from "../currency/Currency";
 
 const App = () => {
     return (
         <>
             <GlobalStyles />
-            <Current />
+            <Currency />
         </>
     );
 };

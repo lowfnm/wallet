@@ -7,11 +7,11 @@ import {
     RatesBody,
     BodyItem,
     Loader,
-} from "./style/current";
+} from "./style/currency";
 import { v4 as uuid4 } from "uuid";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const Current = () => {
+const Currency = () => {
     const [rates, setRates] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -69,4 +69,4 @@ const Current = () => {
     );
 };
 
-export default Current;
+export default Currency;
