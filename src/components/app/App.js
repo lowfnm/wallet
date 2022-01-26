@@ -1,4 +1,6 @@
 import GlobalStyles from "./style/global";
+import { ThemeProvider } from "styled-components";
+import theme from "./style/theme";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "../../pages/login-page/LoginPage";
 import RegistrationPage from "../../pages/registration-page/RegistrationPage";
@@ -6,6 +8,7 @@ import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
 
 const App = () => {
     return (
+       <ThemeProvider theme={theme}>
         <>
             <GlobalStyles />
 
@@ -24,6 +27,7 @@ const App = () => {
                 </Route>
             </Routes>
         </>
+  </ThemeProvider>
     );
 };
 
