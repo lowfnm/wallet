@@ -1,7 +1,9 @@
+import Header from "../../components/header/Header";
+
 const DashBoardPage = () => {
     return (
         <>
-            <h1>You are successful registered</h1>
+            <Header />
         </>
     );
 };

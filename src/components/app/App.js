@@ -8,26 +8,26 @@ import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
 
 const App = () => {
     return (
-       <ThemeProvider theme={theme}>
-        <>
-            <GlobalStyles />
+        <ThemeProvider theme={theme}>
+            <>
+                <GlobalStyles />
 
-            <Routes>
-                <Route path="*" element={<LoginPage />} />
-                <Route path="/login">
-                    <Route index element={<LoginPage />} />
-                </Route>
+                <Routes>
+                    <Route path="*" element={<LoginPage />} />
+                    <Route path="/login">
+                        <Route index element={<LoginPage />} />
+                    </Route>
 
-                <Route path="/register">
-                    <Route index element={<RegistrationPage />} />
-                </Route>
+                    <Route path="/register">
+                        <Route index element={<RegistrationPage />} />
+                    </Route>
 
-                <Route path="/home">
-                    <Route index element={<DashBoardPage />} />
-                </Route>
-            </Routes>
-        </>
-  </ThemeProvider>
+                    <Route path="/home">
+                        <Route index element={<DashBoardPage />} />
+                    </Route>
+                </Routes>
+            </>
+        </ThemeProvider>
     );
 };
 
