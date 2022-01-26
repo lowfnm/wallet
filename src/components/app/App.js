@@ -1,7 +1,8 @@
 import GlobalStyles from "./style/global";
 import { Route, Routes } from "react-router-dom";
-import LoginPage from "../../pages/loginpage/LoginPage";
-import RegistrationPage from "../../pages/registrationpage/RegistrationPage";
+import LoginPage from "../../pages/login-page/LoginPage";
+import RegistrationPage from "../../pages/registration-page/RegistrationPage";
+import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
 
 const App = () => {
     return (
@@ -9,6 +10,7 @@ const App = () => {
             <GlobalStyles />
 
             <Routes>
+                <Route path="*" element={<LoginPage />} />
                 <Route path="/login">
                     <Route index element={<LoginPage />} />
                 </Route>
@@ -17,7 +19,9 @@ const App = () => {
                     <Route index element={<RegistrationPage />} />
                 </Route>
 
-                <Route path="*" element={<LoginPage />} />
+                <Route path="/home">
+                    <Route index element={<DashBoardPage />} />
+                </Route>
             </Routes>
         </>
     );

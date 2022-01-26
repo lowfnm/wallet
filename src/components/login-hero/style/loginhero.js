@@ -7,7 +7,7 @@ const Hero = styled.div`
     height: 100vh;
     overflow: hidden;
     background: #e7eaf2;
-    padding-right: 75px;
+    padding-right: 7.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,7 +35,7 @@ const HeroWrapper = styled.div`
 
 const HeroImage = styled.img`
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
 `;
 
 const HeroText = styled.div`

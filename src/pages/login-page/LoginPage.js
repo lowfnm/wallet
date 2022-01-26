@@ -1,6 +1,5 @@
-import React from "react";
-import LoginForm from "../../components/loginform/LoginForm";
-import LoginHero from "../../components/loginhero/LoginHero";
+import LoginForm from "../../components/login-form/LoginForm";
+import LoginHero from "../../components/login-hero/LoginHero";
 import styled from "styled-components";
 
 const PageContainer = styled.div`

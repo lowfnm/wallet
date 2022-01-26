@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
     //font-size: ;
     //line-height: ;
     //font-weight: ;
-    //font-family:;
+    font-family: "Abel", sans-serif;
   }
 
   h1,
@@ -44,6 +44,7 @@ const GlobalStyles = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
+    cursor: pointer;
   }
 
   button {
