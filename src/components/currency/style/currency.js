@@ -10,7 +10,6 @@ const Rates = styled.article`
     color: white;
     background-color: #4a56e2;
     border-radius: 30px;
-    border: 1px solid #000;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
@@ -47,7 +46,7 @@ const BodyItem = styled(HeadItem)`
     line-height: 1.25;
 
     &:nth-child(2) {
-        margin-left: 10px;
+        margin-left: 1rem;
     }
 `;
 

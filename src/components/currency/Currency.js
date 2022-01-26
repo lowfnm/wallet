@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import SvgWave from "./icons/SvgWave";
 import {
     Rates,
     RatesHead,
@@ -10,6 +9,7 @@ import {
 } from "./style/currency";
 import { v4 as uuid4 } from "uuid";
 import CircularProgress from "@mui/material/CircularProgress";
+import SvgWave from "./icon/SvgWave";
 
 const Currency = () => {
     const [rates, setRates] = useState([]);
