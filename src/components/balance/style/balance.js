@@ -29,4 +29,3 @@ const BalanceTotal = styled.span`
 `;
 
 export { StyledBalance, BalanceBody, BalanceTitle, BalanceTotal };
-
