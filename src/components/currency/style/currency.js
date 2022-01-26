@@ -5,8 +5,6 @@ const Rates = styled.article`
     max-width: 348px;
     position: relative;
     height: 347px;
-    font-style: normal;
-    font-weight: 400;
     color: white;
     background-color: #4a56e2;
     border-radius: 30px;
