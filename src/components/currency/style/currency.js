@@ -14,7 +14,7 @@ const Rates = styled.article`
 const RatesHead = styled.ul`
     display: flex;
     justify-content: space-between;
-    padding: 1.7rem 0 2rem;
+    padding: 1.7rem 3rem 2rem;
     border-radius: 30px 30px 0 0;
     background-color: #6f78ec;
 `;
@@ -22,14 +22,6 @@ const RatesHead = styled.ul`
 const HeadItem = styled.li`
     font-size: 1.8rem;
     line-height: 1.27;
-
-    &:first-child {
-        margin-left: 3rem;
-    }
-
-    &:last-child {
-        margin-right: 3rem;
-    }
 `;
 
 const RatesBody = styled.ul`
@@ -39,12 +31,13 @@ const RatesBody = styled.ul`
     margin-bottom: 1.9rem;
 `;
 
-const BodyItem = styled(HeadItem)`
+const BodyItem = styled.li`
+    padding: 0 3rem;
     font-size: 1.6rem;
     line-height: 1.25;
 
     &:nth-child(2) {
-        margin-left: 1rem;
+        padding-left: 4rem;
     }
 `;
 

@@ -8,7 +8,7 @@ const StyledBalance = styled.section`
 `;
 
 const BalanceBody = styled.div`
-    margin-left: 4rem;
+    padding-left: 4rem;
     padding-top: 0.8rem;
     padding-bottom: 1.3rem;
 `;
