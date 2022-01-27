@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonAdd, Plus } from "./style/buttonAddTransactions";
 
-export const ButtonAddTransactions = ({ setShowModal }) => {
+const ButtonAddTransactions = ({ setShowModal }) => {
     const openModal = () => {
         setShowModal((prev) => !prev);
     };
@@ -11,3 +11,5 @@ export const ButtonAddTransactions = ({ setShowModal }) => {
         </ButtonAdd>
     );
 };
+
+export default ButtonAddTransactions;

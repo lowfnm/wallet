@@ -70,6 +70,7 @@ const Input = styled.input`
         border: none;
     }
 `;
+
 const ModalButton = styled.button`
     font-size: 1.8rem;
     display: block;

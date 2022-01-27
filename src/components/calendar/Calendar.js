@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Data, IconWrap } from "./style/calendar";
@@ -19,4 +19,5 @@ const Calendar = () => {
         </Data>
     );
 };
+
 export default Calendar;

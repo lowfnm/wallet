@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useSpring, animated } from "react-spring";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Calendar from "../calendar/Calendar";
@@ -15,7 +15,7 @@ import {
 } from "./style/modalAddTransaction";
 import { ModalCloseIcon } from "./icon/ModalCloseIcon";
 
-export const ModalAddTransaction = ({ showModal, setShowModal }) => {
+const ModalAddTransaction = ({ showModal, setShowModal }) => {
     const modalRef = useRef();
     const animation = useSpring({
         config: {
@@ -53,7 +53,7 @@ export const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                 <Flex>
                                     <Input big placeholder="Comments"></Input>
                                 </Flex>
-                                <Dropdown></Dropdown>
+                                <Dropdown />
                                 <ModalButton>ADD</ModalButton>
                                 <ModalButton cancel>CANCEL</ModalButton>
                             </ModalContent>
@@ -70,3 +70,5 @@ export const ModalAddTransaction = ({ showModal, setShowModal }) => {
         </>
     );
 };
+
+export default ModalAddTransaction;
