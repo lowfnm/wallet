@@ -12,7 +12,7 @@ const App = () => {
             <>
                 <ButtonAddTransactions showModal={showModal} setShowModal={setShowModal}/>
                 <ModalAddTransaction showModal={showModal} setShowModal={setShowModal}/>
-                <GlobalStyles />
+                <GlobalStyles/>
             </>
         </ThemeProvider>
     );

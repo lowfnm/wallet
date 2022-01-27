@@ -1,25 +1,23 @@
 import styled from "styled-components";
 
-export const Data = styled.div`   
+const Data = styled.div`
     position: relative;
     max-width: 190px;
-    svg{
-      position: absolute;
-      transform: translateY(-50%);
-      top: 25%;
-      right: 5px;
+    width: 100%;
+    input {
+        font-size: 1.8rem;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0.8rem 0 0.8rem 2rem;
+        z-index: 3;
+        position: relative;
+        background-color: transparent;
     }
-    input{
-      font-family: "Abel", sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 18px;
-      width: 100%;
-      border: none;
-      border-bottom: 1px solid #E0E0E0;
-      padding: 10px 0;
-      z-index: 3;
-      position: relative;
-      background-color: transparent;
-    }
-`
+`;
+const IconWrap = styled.div`
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+`;
+export { Data, IconWrap };

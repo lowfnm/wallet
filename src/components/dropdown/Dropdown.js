@@ -2,20 +2,30 @@ import React, { useState } from "react";
 import {
     DropDownContainer,
     DropDownHeader,
-    ArrowDown,
+    ArrowWrap,
     DropDownListContainer,
     DropDownList,
-    ListItem
-} from './style/dropdown'
+    ListItem,
+} from "./style/dropdown";
+import { ArrayDown } from "./icon/ArrayDown";
 
 export default function Dropdown() {
-    const options = ["Main", "Food", "Car","Development","Kids","House","Education","Others"];
+    const options = [
+        "Main",
+        "Food",
+        "Car",
+        "Development",
+        "Kids",
+        "House",
+        "Education",
+        "Others",
+    ];
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const toggling = () => setIsOpen(!isOpen);
 
-    const onOptionClicked = value => () => {
+    const onOptionClicked = (value) => () => {
         setSelectedOption(value);
         setIsOpen(false);
         console.log();
@@ -25,13 +35,18 @@ export default function Dropdown() {
         <DropDownContainer>
             <DropDownHeader onClick={toggling}>
                 {selectedOption || `Select a category`}
-                <ArrowDown/>
+                <ArrowWrap>
+                    <ArrayDown />
+                </ArrowWrap>
             </DropDownHeader>
             {isOpen && (
                 <DropDownListContainer>
                     <DropDownList>
-                        {options.map(option => (
-                            <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
+                        {options.map((option) => (
+                            <ListItem
+                                onClick={onOptionClicked(option)}
+                                key={Math.random()}
+                            >
                                 {option}
                             </ListItem>
                         ))}
