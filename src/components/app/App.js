@@ -9,6 +9,7 @@ import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
+
             <GlobalStyles />
             <Routes>
                 <Route path="*" element={<LoginPage />} />
