@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ErrorMessage, Form, Field, Formik } from "formik";
 import * as Yup from "yup";
 import {
@@ -10,6 +11,11 @@ import {
 } from "./style/loginform";
 import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
+import { signInUser } from "../../store/auth/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { clearState, userSelector } from "../../store/auth/reducers/reducers";
+import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const loginSchema = Yup.object().shape({
     email: Yup.string("Enter e-mail")
@@ -21,16 +27,34 @@ const loginSchema = Yup.object().shape({
         .required("This field is required"),
 });
 
-const handleLogin = () => {};
-
 const LoginForm = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { isSuccess, isError, errorMessage } = useSelector(userSelector);
+
+    const onSubmit = ({ email, password }) => {
+        dispatch(signInUser({ email, password }));
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
+            // dispatch(clearState());
+            navigate("/home");
+        }
+        if (isError) {
+            dispatch(clearState());
+        }
+    }, [isSuccess, isError, dispatch, navigate, errorMessage]);
+
     return (
         <FormContainer>
+            <ToastContainer autoClose={5000} />
             <FormWrapper>
                 <Formik
                     initialValues={{ email: "", password: "" }}
                     validationSchema={loginSchema}
-                    onSubmit={handleLogin}
+                    onSubmit={onSubmit}
                 >
                     {({ values, handleChange, handleBlur, isSubmitting }) => (
                         <Form>
@@ -63,6 +87,7 @@ const LoginForm = () => {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.password}
+                                        maxLength="12"
                                     />
                                 </InputLabel>
                                 <ErrorMessage
