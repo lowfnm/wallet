@@ -1,41 +1,48 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-const NavigationWrapper = styled.div`
-    padding-left: 4px;
+const NavigationWrapper = styled.nav``;
+
+export const LinkElem = styled(NavLink)`
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    &.active > div {
+        background-color: #4d57e6;
+        filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &.active span {
+        font-weight: 700;
+    }
 `;
 
-const NavButton = styled.button`
+const NavText = styled.span`
     margin-left: 2.3rem;
-    align-items: center;
-    display: flex;
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
+    font-family: "Poppins", sans-serif;
     font-size: 1.8rem;
     line-height: 1.5;
-    color: #000000;
-
-    &:hover {
-        font-weight: bold;
-    }
-    &:focus {
-        font-weight: bold;
-    }
+    color: #000;
 `;
 
-const ItemWrapper = styled.div`
+const IconWrapper = styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 1.9rem;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: #6f78ec;
+    border-radius: 2px;
 
-    opacity: 1;
-    &:hover {
-        opacity: 0.8;
-    }
-    &:focus {
-        opacity: 0.8;
+    svg {
+        fill: #fff;
     }
 `;
 
-export { NavigationWrapper, NavButton, ItemWrapper };
+const ItemWrapper = styled.div``;
+
+export { NavigationWrapper, NavText, ItemWrapper, IconWrapper };

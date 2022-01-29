@@ -1,18 +1,38 @@
-import { NavigationWrapper, NavButton, ItemWrapper } from "./style/navigation";
-import SvgHome from "./icon/SvgHome";
-import SvgStatistic from "./icon/SvgStatistic";
+import {
+    NavigationWrapper,
+    NavText,
+    IconWrapper,
+    LinkElem,
+} from "./style/navigation";
+import HomeIcon from "@mui/icons-material/Home";
+import TimelineIcon from "@mui/icons-material/Timeline";
 
 const Navigation = () => {
     return (
         <NavigationWrapper>
-            <ItemWrapper>
-                <SvgHome />
-                <NavButton>Main</NavButton>
-            </ItemWrapper>
-            <ItemWrapper>
-                <SvgStatistic />
-                <NavButton>Statistics</NavButton>
-            </ItemWrapper>
+            <LinkElem to="/home">
+                <IconWrapper>
+                    <HomeIcon
+                        sx={{
+                            width: 18,
+                            height: 18,
+                        }}
+                    />
+                </IconWrapper>
+                <NavText>Main</NavText>
+            </LinkElem>
+
+            <LinkElem to="/diagram">
+                <IconWrapper>
+                    <TimelineIcon
+                        sx={{
+                            width: 18,
+                            height: 18,
+                        }}
+                    />
+                </IconWrapper>
+                <NavText>Statistics</NavText>
+            </LinkElem>
         </NavigationWrapper>
     );
 };
