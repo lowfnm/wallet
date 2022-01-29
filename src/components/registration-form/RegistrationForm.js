@@ -18,7 +18,6 @@ import { signUpUser } from "../../store/auth/actions/actions";
 
 import { useNavigate } from "react-router-dom";
 import { userSelector, clearState } from "../../store/auth/reducers/reducers";
-import { ToastContainer } from "react-toastify";
 
 const registrationSchema = Yup.object({
     email: Yup.string()
@@ -43,31 +42,23 @@ const RegistrationForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { isSuccess, isError, errorMessage } = useSelector(userSelector);
+    const { isSuccess, isError } = useSelector(userSelector);
 
     const onSubmit = ({ username, email, password }) => {
         dispatch(signUpUser({ username, email, password }));
     };
 
-    // useEffect(() => {
-    //     return () => {
-    //         dispatch(clearState());
-    //     };
-    // }, [dispatch]);
-
     useEffect(() => {
         if (isSuccess) {
-            // dispatch(clearState());
             navigate("/home");
         }
         if (isError) {
             dispatch(clearState());
         }
-    }, [isSuccess, isError, dispatch, navigate, errorMessage]);
+    }, [isSuccess, isError, dispatch, navigate]);
 
     return (
         <FormContainer>
-            <ToastContainer autoClose={5000} />
             <FormWrapper>
                 <Formik
                     initialValues={{
@@ -163,9 +154,7 @@ const RegistrationForm = () => {
                                 />
                             </InputWrapper>
 
-                            <FormButton type="submit" disabled={isSubmitting}>
-                                Registration
-                            </FormButton>
+                            <FormButton type="submit">Registration</FormButton>
 
                             <NavLink to="/login">Log in</NavLink>
                         </Form>

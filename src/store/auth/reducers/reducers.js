@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signInUser, signUpUser, singOutUser } from "../actions/actions";
+import { signInUser, signUpUser, signOutUser } from "../actions/actions";
 
 export const userSlice = createSlice({
     name: "user",
@@ -57,11 +57,14 @@ export const userSlice = createSlice({
             state.errorMessage = payload.message;
         },
 
-        [singOutUser.fulfilled]: () => clearState(),
-        [singOutUser.pending]: (state) => {
+        [signOutUser.fulfilled]: (state) => {
+            state.isAuth = false;
+            state.isSuccess = true;
+        },
+        [signOutUser.pending]: (state) => {
             state.isAuth = false;
         },
-        [singOutUser.rejected]: (state, { payload }) => {
+        [signOutUser.rejected]: (state, { payload }) => {
             state.isAuth = false;
             state.isError = true;
             state.errorMessage = payload.message;

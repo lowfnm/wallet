@@ -72,7 +72,7 @@ export const signUpUser = createAsyncThunk(
 );
 
 // Выход пользователя
-export const singOutUser = createAsyncThunk(
+export const signOutUser = createAsyncThunk(
     "user/singOutUser",
     async (_, { rejectWithValue }) => {
         try {
@@ -87,7 +87,7 @@ export const singOutUser = createAsyncThunk(
 
             localStorage.removeItem("token");
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(error);
         }
     }
 );

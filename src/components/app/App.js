@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import LoginPage from "../../pages/login-page/LoginPage";
 import RegistrationPage from "../../pages/registration-page/RegistrationPage";
 import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
     return (
@@ -25,6 +26,7 @@ const App = () => {
                         <Route index element={<DashBoardPage />} />
                     </Route>
                 </Routes>
+                <ToastContainer autoClose={5000} />
             </ThemeProvider>
         </>
     );
