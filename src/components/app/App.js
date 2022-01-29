@@ -1,7 +1,7 @@
 import GlobalStyles from "./style/global";
 import { ThemeProvider } from "styled-components";
 import theme from "./style/theme";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "../../pages/login-page/LoginPage";
 import RegistrationPage from "../../pages/registration-page/RegistrationPage";
 import DashBoardPage, {
@@ -15,6 +15,7 @@ const App = () => {
             <GlobalStyles />
             <Routes>
                 <Route path="/" element={<DashBoardPage />}>
+                    <Route index element={<Navigate to="/home" />} />
                     <Route path="home" element={<Home />} />
                     <Route path="diagram" element={<Diagram />} />
                 </Route>
