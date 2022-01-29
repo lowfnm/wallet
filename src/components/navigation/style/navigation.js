@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-const NavigationWrapper = styled.nav``;
+const Nav = styled.nav``;
 
 export const LinkElem = styled(NavLink)`
     display: flex;
@@ -45,4 +45,4 @@ const IconWrapper = styled.div`
 
 const ItemWrapper = styled.div``;
 
-export { NavigationWrapper, NavText, ItemWrapper, IconWrapper };
+export { Nav, NavText, ItemWrapper, IconWrapper };

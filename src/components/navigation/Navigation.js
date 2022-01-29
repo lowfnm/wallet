@@ -1,5 +1,5 @@
 import {
-    NavigationWrapper,
+    Nav,
     NavText,
     IconWrapper,
     LinkElem,
@@ -9,7 +9,7 @@ import TimelineIcon from "@mui/icons-material/Timeline";
 
 const Navigation = () => {
     return (
-        <NavigationWrapper>
+        <Nav>
             <LinkElem to="/home">
                 <IconWrapper>
                     <HomeIcon
@@ -33,7 +33,7 @@ const Navigation = () => {
                 </IconWrapper>
                 <NavText>Statistics</NavText>
             </LinkElem>
-        </NavigationWrapper>
+        </Nav>
     );
 };
 
