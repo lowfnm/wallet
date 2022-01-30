@@ -1,11 +1,13 @@
 import React from "react";
-import SvgExitIcon from "../../../icon/SvgExitIcon";
 import { LinkWrapper, ExitLink } from "./style/linkWrapperExit";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import { useDispatch } from "react-redux";
+import { signOutUser } from "../../../../store/auth/actions/actions";
+import SvgExitIcon from "../../icon/SvgExitIcon";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -13,6 +15,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const LinkWrapperExit = () => {
     const [open, setOpen] = React.useState(false);
+    const dispatch = useDispatch();
+
+    const logOut = () => {
+        dispatch(signOutUser());
+    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,6 +45,7 @@ const LinkWrapperExit = () => {
                     "& .MuiPaper-root": {
                         padding: "3.5rem",
                         borderRadius: "2rem",
+                        textAlign: "center",
                     },
                 }}
             >
@@ -50,14 +58,7 @@ const LinkWrapperExit = () => {
                 >
                     {"Are you sure to quit?"}
                 </DialogTitle>
-                {/*<DialogContent>*/}
-                {/*    <DialogContentText*/}
-                {/*        id="alert-dialog-slide-description"*/}
-                {/*        sx={{ fontFamily: "Abel", fontSize: "2rem" }}*/}
-                {/*    >*/}
-                {/*        We really want you to stay &#128531;*/}
-                {/*    </DialogContentText>*/}
-                {/*</DialogContent>*/}
+
                 <DialogActions
                     sx={{
                         marginTop: "2.5rem",
@@ -84,10 +85,10 @@ const LinkWrapperExit = () => {
                         No
                     </Button>
                     <Button
-                        onClick={handleClose}
+                        onClick={logOut}
                         sx={{
                             width: "9rem",
-                            marginRight: "1.5rem",
+
                             marginBottom: "1.5rem",
                             fontSize: "1.5rem",
                             backgroundColor: "#24CCA7",

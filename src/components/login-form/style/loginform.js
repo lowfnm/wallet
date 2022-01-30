@@ -23,6 +23,10 @@ const FormContainer = styled.div`
     }
 `;
 
+const LogoWrapper = styled.div`
+    margin-bottom: 5rem;
+`;
+
 const FormWrapper = styled.div`
     margin-left: 9.5rem;
     margin-top: auto;
@@ -117,4 +121,11 @@ const FormButton = styled.button`
     }
 `;
 
-export { FormContainer, FormWrapper, InputWrapper, FormButton, InputLabel };
+export {
+    FormContainer,
+    FormWrapper,
+    InputWrapper,
+    LogoWrapper,
+    FormButton,
+    InputLabel,
+};

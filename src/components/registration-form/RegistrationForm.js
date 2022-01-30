@@ -1,22 +1,22 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-
 import {
     FormContainer,
     FormButton,
     FormWrapper,
     InputWrapper,
     InputLabel,
+    LogoWrapper,
 } from "./style/registrationform";
 import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-
 import PasswordStrengthBar from "./password-strength-bar/PasswordStrengthBar";
-
-const handleRegister = () => {};
+import { signUpUser } from "../../store/auth/actions/actions";
+import Logo from "../logo/Logo";
 
 const registrationSchema = Yup.object({
     email: Yup.string()
@@ -38,6 +38,11 @@ const registrationSchema = Yup.object({
 
 const RegistrationForm = () => {
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+
+    const onSubmit = ({ username, email, password }) => {
+        dispatch(signUpUser({ username, email, password }));
+    };
 
     return (
         <FormContainer>
@@ -50,10 +55,13 @@ const RegistrationForm = () => {
                         username: "",
                     }}
                     validationSchema={registrationSchema}
-                    onSubmit={handleRegister}
+                    onSubmit={onSubmit}
                 >
                     {({ values, handleChange, handleBlur, isSubmitting }) => (
                         <Form>
+                            <LogoWrapper>
+                                <Logo />
+                            </LogoWrapper>
                             <InputWrapper>
                                 <InputLabel>
                                     <MailIcon />
@@ -136,9 +144,7 @@ const RegistrationForm = () => {
                                 />
                             </InputWrapper>
 
-                            <FormButton type="submit" disabled={isSubmitting}>
-                                Registration
-                            </FormButton>
+                            <FormButton type="submit">Registration</FormButton>
 
                             <NavLink to="/login">Log in</NavLink>
                         </Form>

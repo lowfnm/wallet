@@ -7,9 +7,13 @@ import {
     FormWrapper,
     InputWrapper,
     InputLabel,
+    LogoWrapper,
 } from "./style/loginform";
 import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
+import { signInUser } from "../../store/auth/actions/actions";
+import { useDispatch } from "react-redux";
+import Logo from "../logo/Logo";
 
 const loginSchema = Yup.object().shape({
     email: Yup.string("Enter e-mail")
@@ -21,19 +25,26 @@ const loginSchema = Yup.object().shape({
         .required("This field is required"),
 });
 
-const handleLogin = () => {};
-
 const LoginForm = () => {
+    const dispatch = useDispatch();
+
+    const onSubmit = ({ email, password }) => {
+        dispatch(signInUser({ email, password }));
+    };
+
     return (
         <FormContainer>
             <FormWrapper>
                 <Formik
                     initialValues={{ email: "", password: "" }}
                     validationSchema={loginSchema}
-                    onSubmit={handleLogin}
+                    onSubmit={onSubmit}
                 >
                     {({ values, handleChange, handleBlur, isSubmitting }) => (
                         <Form>
+                            <LogoWrapper>
+                                <Logo />
+                            </LogoWrapper>
                             <InputWrapper>
                                 <InputLabel>
                                     <MailIcon />
@@ -63,6 +74,7 @@ const LoginForm = () => {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.password}
+                                        maxLength="12"
                                     />
                                 </InputLabel>
                                 <ErrorMessage
@@ -71,14 +83,9 @@ const LoginForm = () => {
                                     style={{ color: "#FF6596" }}
                                 />
                             </InputWrapper>
-
-                            <FormButton type="submit" disabled={isSubmitting}>
-                                Log in
-                            </FormButton>
+                            <FormButton type="submit">Log in</FormButton>
 
                             <NavLink to="/register">Registration</NavLink>
-
-                            <NavLink to="/home">DashBoard</NavLink>
                         </Form>
                     )}
                 </Formik>
