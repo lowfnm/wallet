@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signInUser, signUpUser, signOutUser } from "../actions/actions";
+import {
+    signInUser,
+    signUpUser,
+    signOutUser,
+    currentUser,
+} from "../actions/actions";
 
 export const userSlice = createSlice({
     name: "user",
     initialState: {
         id: "",
-        balance: "",
+        balance: 0,
         username: "",
         email: "",
         isAuth: false,
@@ -23,6 +28,23 @@ export const userSlice = createSlice({
         },
     },
     extraReducers: {
+        [currentUser.fulfilled]: (state, { payload }) => {
+            state.isAuth = true;
+            state.isSuccess = true;
+            state.email = payload.email;
+            state.username = payload.username;
+            state.id = payload.id;
+            state.balance = payload.balance;
+        },
+        [currentUser.pending]: (state) => {
+            state.isAuth = false;
+        },
+        [currentUser.rejected]: (state, { payload }) => {
+            state.isAuth = false;
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+
         [signInUser.fulfilled]: (state, { payload }) => {
             state.isAuth = true;
             state.isSuccess = true;
@@ -58,6 +80,10 @@ export const userSlice = createSlice({
         },
 
         [signOutUser.fulfilled]: (state) => {
+            state.email = "";
+            state.username = "";
+            state.id = "";
+            state.balance = 0;
             state.isAuth = false;
             state.isSuccess = true;
         },

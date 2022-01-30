@@ -12,7 +12,7 @@ const NavigationWrapper = styled.div`
 
 const NameStatus = styled.span``;
 
-const ExitLink = styled.a`
+const ExitLink = styled.button`
     margin-left: 1rem;
 `;
 

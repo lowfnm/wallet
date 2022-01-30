@@ -1,9 +1,36 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const API_URL = "https://wallet.goit.ua/api";
+
+// Текущий пользователь
+export const currentUser = createAsyncThunk(
+    "user/currentUser",
+    async (_, { rejectWithValue }) => {
+        const token = localStorage.getItem("token");
+
+        if (token === null) {
+            return rejectWithValue(toast.error("Log in"));
+        }
+        try {
+            const response = await axios({
+                method: "get",
+                url: `${API_URL}/users/current`,
+                headers: {
+                    Authorization: token,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            if (error.response.statusCode === 401) {
+                return rejectWithValue(toast.error("Bearer auth failed"));
+            }
+            return rejectWithValue(toast.error("Server error"));
+        }
+    }
+);
 
 // Вход пользователя
 export const signInUser = createAsyncThunk(
@@ -19,6 +46,7 @@ export const signInUser = createAsyncThunk(
                 },
             });
             localStorage.setItem("token", response.data.token);
+
             return response.data;
         } catch (error) {
             if (error.response.statusCode === 400) {

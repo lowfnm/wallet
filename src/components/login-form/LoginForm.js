@@ -13,7 +13,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
 import { signInUser } from "../../store/auth/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { clearState, userSelector } from "../../store/auth/reducers/reducers";
+import { userSelector } from "../../store/auth/reducers/reducers";
 import { useEffect } from "react";
 
 const loginSchema = Yup.object().shape({
@@ -30,20 +30,10 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { isSuccess, isError } = useSelector(userSelector);
-
     const onSubmit = ({ email, password }) => {
         dispatch(signInUser({ email, password }));
+        navigate("/home");
     };
-
-    useEffect(() => {
-        if (isSuccess) {
-            navigate("/home");
-        }
-        if (isError) {
-            dispatch(clearState());
-        }
-    }, [isSuccess, isError, dispatch, navigate]);
 
     return (
         <FormContainer>

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -15,9 +15,6 @@ import LockIcon from "@mui/icons-material/Lock";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PasswordStrengthBar from "./password-strength-bar/PasswordStrengthBar";
 import { signUpUser } from "../../store/auth/actions/actions";
-
-import { useNavigate } from "react-router-dom";
-import { userSelector, clearState } from "../../store/auth/reducers/reducers";
 
 const registrationSchema = Yup.object({
     email: Yup.string()
@@ -40,22 +37,10 @@ const registrationSchema = Yup.object({
 const RegistrationForm = () => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const { isSuccess, isError } = useSelector(userSelector);
 
     const onSubmit = ({ username, email, password }) => {
         dispatch(signUpUser({ username, email, password }));
     };
-
-    useEffect(() => {
-        if (isSuccess) {
-            navigate("/home");
-        }
-        if (isError) {
-            dispatch(clearState());
-        }
-    }, [isSuccess, isError, dispatch, navigate]);
 
     return (
         <FormContainer>
