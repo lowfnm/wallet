@@ -12,8 +12,4 @@ const NavigationWrapper = styled.div`
 
 const NameStatus = styled.span``;
 
-const ExitLink = styled.a`
-    margin-left: 1rem;
-`;
-
-export { NavigationWrapper, NameStatus, ExitLink };
+export { NavigationWrapper, NameStatus };
