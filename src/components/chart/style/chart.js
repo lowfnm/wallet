@@ -11,8 +11,8 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
     position: relative;
-    max-width: 320px;
-    max-height: 320px;
+    width: 320px;
+    height: 320px;
     margin-top: 2rem;
 `;
 

@@ -4,10 +4,9 @@ import theme from "./style/theme";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "../../pages/login-page/LoginPage";
 import RegistrationPage from "../../pages/registration-page/RegistrationPage";
-import DashBoardPage, {
-    Diagram,
-    Home,
-} from "../../pages/dashboard-page/DashBoardPage";
+import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
+import HomeTab from "../home-tab/HomeTab";
+import DiagramTab from "../diagram-tab/DiagramTab";
 
 const App = () => {
     return (
@@ -16,8 +15,8 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<DashBoardPage />}>
                     <Route index element={<Navigate to="/home" />} />
-                    <Route path="home" element={<Home />} />
-                    <Route path="diagram" element={<Diagram />} />
+                    <Route path="home" element={<HomeTab />} />
+                    <Route path="diagram" element={<DiagramTab />} />
                 </Route>
 
                 <Route path="*" element={<LoginPage />} />
