@@ -1,18 +1,13 @@
-import {
-    ExitLink,
-    NameStatus,
-    NavigationWrapper,
-} from "./style/accountOptions";
+import { NameStatus, NavigationWrapper } from "./style/accountOptions";
 import SvgLine from "../../icon/SvgLine";
-import SvgExitIcon from "../../icon/SvgExitIcon";
+import LinkWrapperExit from "./link-wrapper/LinkWrapperExit";
 
 const AccountOptions = () => {
     return (
         <NavigationWrapper>
             <NameStatus>Name</NameStatus>
             <SvgLine />
-            <SvgExitIcon />
-            <ExitLink>Exit</ExitLink>
+            <LinkWrapperExit />
         </NavigationWrapper>
     );
 };
