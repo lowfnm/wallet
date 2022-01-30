@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuid4 } from "uuid";
 import {
     DropDownContainer,
     DropDownHeader,
@@ -45,7 +46,7 @@ export default function Dropdown() {
                         {options.map((option) => (
                             <ListItem
                                 onClick={onOptionClicked(option)}
-                                key={Math.random()}
+                                key={uuid4()}
                             >
                                 {option}
                             </ListItem>

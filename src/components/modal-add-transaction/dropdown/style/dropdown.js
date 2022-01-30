@@ -4,15 +4,15 @@ const DropDownContainer = styled.div`
     font-size: 1.8rem;
     width: 100%;
     max-width: 410px;
-    margin: 0 auto 3.5rem;
+    margin: 3.5rem auto 0rem;
 `;
 
 const DropDownHeader = styled.div`
-    border-bottom: 1px solid #e0e0e0;
-    color: #bdbdbd;
-    margin-bottom: 0.6rem;
     padding: 1rem 2rem;
     position: relative;
+    font-family: inherit;
+    border-bottom: 1px solid #e0e0e0;
+    color: #bdbdbd;
 `;
 
 const ArrowWrap = styled.div`

@@ -1,5 +1,6 @@
 import React from "react";
 import { ButtonAdd } from "./style/buttonAddTransactions";
+import PlusIcon from "./icon/PlusIcon";
 
 const ButtonAddTransactions = ({ setShowModal }) => {
     const openModal = () => {
@@ -7,7 +8,9 @@ const ButtonAddTransactions = ({ setShowModal }) => {
     };
     return (
         <ButtonAdd onClick={openModal}>
+            <PlusIcon />
         </ButtonAdd>
     );
 };
+
 export default ButtonAddTransactions;

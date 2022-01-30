@@ -5,11 +5,14 @@ import Balance from "../../components/balance/Balance";
 import ButtonAddTransactions from "../../components/button-add-transactions/ButtonAddTransactions";
 import ModalAddTransaction from "../../components/modal-add-transaction/ModalAddTransaction";
 
+
 import styled from "styled-components";
 import Navigation from "../../components/navigation/Navigation";
 import { Outlet } from "react-router-dom";
 
 const Container = styled.div`
+    position: relative;
+    height: 100vh;
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 1.5rem;
