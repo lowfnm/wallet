@@ -154,6 +154,7 @@ const HomeTab = () => {
                                         fontFamily: "Abel",
                                         fontSize: "1.8rem",
                                         fontWeight: 400,
+                                        position: "static",
                                     }}
                                 >
                                     {column.label}

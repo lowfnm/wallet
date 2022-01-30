@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Rates = styled.article`
     margin-top: 3rem;
-    max-width: 348px;
+    width: 348px;
     position: relative;
     height: 347px;
     color: white;

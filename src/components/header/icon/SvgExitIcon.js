@@ -1,6 +1,4 @@
-import * as React from "react";
-
-const SvgComponent = (props) => (
+const SvgExitIcon = (props) => (
     <svg
         width={19}
         height={18}
@@ -22,4 +20,4 @@ const SvgComponent = (props) => (
     </svg>
 );
 
-export default SvgComponent;
+export default SvgExitIcon;
