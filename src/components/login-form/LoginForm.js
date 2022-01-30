@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { ErrorMessage, Form, Field, Formik } from "formik";
 import * as Yup from "yup";
 import {
@@ -8,13 +7,13 @@ import {
     FormWrapper,
     InputWrapper,
     InputLabel,
+    LogoWrapper,
 } from "./style/loginform";
 import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
 import { signInUser } from "../../store/auth/actions/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { userSelector } from "../../store/auth/reducers/reducers";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Logo from "../logo/Logo";
 
 const loginSchema = Yup.object().shape({
     email: Yup.string("Enter e-mail")
@@ -28,11 +27,9 @@ const loginSchema = Yup.object().shape({
 
 const LoginForm = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const onSubmit = ({ email, password }) => {
         dispatch(signInUser({ email, password }));
-        navigate("/home");
     };
 
     return (
@@ -45,6 +42,9 @@ const LoginForm = () => {
                 >
                     {({ values, handleChange, handleBlur, isSubmitting }) => (
                         <Form>
+                            <LogoWrapper>
+                                <Logo />
+                            </LogoWrapper>
                             <InputWrapper>
                                 <InputLabel>
                                     <MailIcon />
@@ -83,12 +83,9 @@ const LoginForm = () => {
                                     style={{ color: "#FF6596" }}
                                 />
                             </InputWrapper>
-
                             <FormButton type="submit">Log in</FormButton>
 
                             <NavLink to="/register">Registration</NavLink>
-
-                            <NavLink to="/home">DashBoard</NavLink>
                         </Form>
                     )}
                 </Formik>

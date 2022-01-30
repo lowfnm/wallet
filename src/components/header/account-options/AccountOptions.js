@@ -3,22 +3,19 @@ import {
     NameStatus,
     NavigationWrapper,
 } from "./style/accountOptions";
-import SvgLine from "../../icon/SvgLine";
-import SvgExitIcon from "../../icon/SvgExitIcon";
+import SvgLine from "../icon/SvgLine";
+import SvgExitIcon from "../icon/SvgExitIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../../store/auth/reducers/reducers";
 import { signOutUser } from "../../../store/auth/actions/actions";
 
-import { useNavigate } from "react-router-dom";
-
 const AccountOptions = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { username, isSuccess } = useSelector(userSelector);
+
+    const { username } = useSelector(userSelector);
 
     const logOut = () => {
         dispatch(signOutUser());
-        return navigate("/login");
     };
 
     return (

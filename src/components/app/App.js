@@ -4,13 +4,15 @@ import theme from "./style/theme";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "../../pages/login-page/LoginPage";
 import RegistrationPage from "../../pages/registration-page/RegistrationPage";
-import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RequireAuth from "../../helpers/RequireAuth";
 import { currentUser } from "../../store/auth/actions/actions";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import PublicRoute from "../public-route/PublicRoute";
+import PrivateRoute from "../private-route/PrivateRoute";
+import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
+import HomeTab from "../home-tab/HomeTab";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -23,38 +25,22 @@ const App = () => {
         <>
             <ThemeProvider theme={theme}>
                 <GlobalStyles />
+
                 <Routes>
+                    <Route path="/" element={<PrivateRoute />}>
+                        <Route element={<DashBoardPage />}>
+                            <Route index element={<Navigate to="/home" />} />
+                            <Route path="home" element={<HomeTab />} />
+                        </Route>
+                    </Route>
+
+                    <Route path="login" element={<PublicRoute restricted />}>
+                        <Route index element={<LoginPage />} />
+                    </Route>
+                    <Route path="register" element={<PublicRoute restricted />}>
+                        <Route index element={<RegistrationPage />} />
+                    </Route>
                     <Route path="*" element={<LoginPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegistrationPage />} />
-
-                    <Route path="/home" element={<DashBoardPage />} />
-
-                    <Route
-                        path="/login"
-                        element={
-                            <RequireAuth redirectTo="/home">
-                                <DashBoardPage />
-                            </RequireAuth>
-                        }
-                    />
-
-                    <Route
-                        path="/register"
-                        element={
-                            <RequireAuth redirectTo="/home">
-                                <DashBoardPage />
-                            </RequireAuth>
-                        }
-                    />
-
-                    {/*<Route*/}
-                    {/*    element={*/}
-                    {/*        <RequireAuth redirectTo="/login">*/}
-                    {/*            <LoginPage />*/}
-                    {/*        </RequireAuth>*/}
-                    {/*    }*/}
-                    {/*/>*/}
                 </Routes>
                 <ToastContainer autoClose={5000} />
             </ThemeProvider>

@@ -4,14 +4,13 @@ import { toast } from "react-toastify";
 
 const API_URL = "https://wallet.goit.ua/api";
 
-// Текущий пользователь
 export const currentUser = createAsyncThunk(
     "user/currentUser",
     async (_, { rejectWithValue }) => {
         const token = localStorage.getItem("token");
 
         if (token === null) {
-            return rejectWithValue(toast.error("Log in"));
+            return rejectWithValue();
         }
         try {
             const response = await axios({
@@ -32,7 +31,6 @@ export const currentUser = createAsyncThunk(
     }
 );
 
-// Вход пользователя
 export const signInUser = createAsyncThunk(
     "user/signInUser",
     async ({ email, password }, { rejectWithValue }) => {
@@ -67,7 +65,6 @@ export const signInUser = createAsyncThunk(
     }
 );
 
-// Регистрация пользователя
 export const signUpUser = createAsyncThunk(
     "user/signUpUser",
     async ({ username, email, password }, { rejectWithValue }) => {
@@ -99,7 +96,6 @@ export const signUpUser = createAsyncThunk(
     }
 );
 
-// Выход пользователя
 export const signOutUser = createAsyncThunk(
     "user/singOutUser",
     async (_, { rejectWithValue }) => {

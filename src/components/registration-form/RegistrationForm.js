@@ -9,12 +9,14 @@ import {
     FormWrapper,
     InputWrapper,
     InputLabel,
+    LogoWrapper,
 } from "./style/registrationform";
 import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PasswordStrengthBar from "./password-strength-bar/PasswordStrengthBar";
 import { signUpUser } from "../../store/auth/actions/actions";
+import Logo from "../logo/Logo";
 
 const registrationSchema = Yup.object({
     email: Yup.string()
@@ -57,6 +59,9 @@ const RegistrationForm = () => {
                 >
                     {({ values, handleChange, handleBlur, isSubmitting }) => (
                         <Form>
+                            <LogoWrapper>
+                                <Logo />
+                            </LogoWrapper>
                             <InputWrapper>
                                 <InputLabel>
                                     <MailIcon />

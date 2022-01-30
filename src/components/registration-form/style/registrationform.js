@@ -71,6 +71,10 @@ const FormWrapper = styled.div`
     }
 `;
 
+const LogoWrapper = styled.div`
+    margin-bottom: 5rem;
+`;
+
 const InputLabel = styled.label`
     svg {
         position: absolute;
@@ -116,4 +120,11 @@ const FormButton = styled.button`
     }
 `;
 
-export { FormContainer, FormWrapper, InputWrapper, FormButton, InputLabel };
+export {
+    FormContainer,
+    FormWrapper,
+    InputWrapper,
+    FormButton,
+    LogoWrapper,
+    InputLabel,
+};
