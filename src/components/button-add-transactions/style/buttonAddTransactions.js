@@ -11,5 +11,11 @@ const ButtonAdd = styled.button`
     position: absolute;
     bottom: 40px;
     right: 35px;
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 `;
 export { ButtonAdd };

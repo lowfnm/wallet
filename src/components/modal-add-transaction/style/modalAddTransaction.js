@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Switch from "@mui/material/Switch";
+import plus from "../icon/plus.svg";
+import minus from "../icon/minus.svg";
 
 const ModalWrap = styled.div`
     width: 540px;
-    height: 540px;
     padding: 4rem 6.5rem 6rem;
     box-sizing: border-box;
     border-radius: 20px;
@@ -22,14 +23,12 @@ const Background = styled.div`
     top: 0;
     left: 0;
 `;
-const ModalContent = styled.form`
-    h1 {
-        font-family: "Poppins", sans-serif;
-        font-weight: 400;
-        font-size: 3rem;
-        line-height: 1.5;
-        text-align: center;
-    }
+const ModalTitle = styled.h1`
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 1.5;
+    text-align: center;
 `;
 const ModalClose = styled.div`
     cursor: pointer;
@@ -43,35 +42,32 @@ const Flex = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-const Input = styled.input`
-    font-family: "Abel", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.8rem;
-    max-width: ${(props) => (props.big ? "410px" : "190px")};
-    width: 100%;
-    border: none;
-    margin-bottom: 3.5rem;
-    box-sizing: border-box;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 0.8rem 0;
-    padding-left: ${(props) => (props.big ? "2rem" : 0)};
+const InputWrap = styled.div`
     position: relative;
-    background-color: transparent;
-    z-index: 3;
-    &:focus-visible {
-        //outline: none;
-    }
-    &::placeholder {
-        color: #bdbdbd;
-        text-align: ${(props) => (props.big ? "left" : "center")};
-    }
-    &:focus-visible {
+    input {
+        font-family: inherit;
+        font-size: 1.8rem;
+        max-width: 190px;
+        width: 100%;
         border: none;
+        margin-top: 3.5rem;
+        box-sizing: border-box;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0.8rem 2rem;
+        position: relative;
+        background-color: transparent;
+        z-index: 3;
+        text-align: left;
+    }
+    span {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
     }
 `;
 const ModalButton = styled.button`
     font-size: 1.8rem;
+    font-family: inherit;
     display: block;
     width: 300px;
     height: 50px;
@@ -79,9 +75,34 @@ const ModalButton = styled.button`
     border: ${(props) => (props.cancel ? `1px solid #4A56E2` : "none")};
     color: ${(props) => (props.cancel ? "#4A56E2" : "#fff")};
     border-radius: 20px;
-    margin: ${(props) => (props.cancel ? "2rem" : "0")} auto 0;
+    margin: ${(props) => (props.cancel ? "2rem" : "5rem")} auto 0;
 `;
-
+const SwitcherLabel = styled.span`
+    position: absolute;
+    font-size: 1.6rem;
+    font-family: inherit;
+    top: 50%;
+    left: 97px;
+    transform: translateY(-50%);
+    &:first-child {
+        left: 265px;
+    }
+`;
+const IconCalendarWrap = styled.div`
+    position: absolute;
+    bottom: 4px;
+    right: 20px;
+`;
+const SwitcherWrap = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 3.5rem auto 0;
+    position: relative;
+    label {
+        position: relative;
+        margin: 0;
+    }
+`;
 const Switcher = styled(Switch)(() => ({
     border: `1px solid #E0E0E0`,
     boxSizing: `border-box`,
@@ -91,24 +112,26 @@ const Switcher = styled(Switch)(() => ({
         height: 40,
         overflow: "visible",
     },
-    "& .MuiTypography-root": {
-        fontWeight: 400,
-        fontSize: "1.6rem",
-        fontFamily: '"Abel", sans-serif',
-    },
     "& .MuiSwitch-switchBase": {
         margin: -2,
         padding: 0,
         transform: "translateX(-4px)",
         "&.Mui-checked": {
+            transform: "translateX(44px)",
             "& > .MuiSwitch-thumb": {
                 backgroundColor: "#FF6596",
             },
-            transform: "translateX(44px)",
             "& .MuiSwitch-thumb:before": {
-                backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-                    "#fff"
-                )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+                content: '""',
+                position: "absolute",
+                width: 20,
+                height: 20,
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%,-50%)",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundImage: `url(${minus})`,
             },
             "& + .MuiSwitch-track": {
                 opacity: 0,
@@ -119,32 +142,38 @@ const Switcher = styled(Switch)(() => ({
         backgroundColor: "#24CCA7",
         width: 44,
         height: 44,
+        position: "relative",
         "&:before": {
             content: '""',
             position: "absolute",
-            width: "100%",
-            height: "100%",
-            left: 0,
-            top: 0,
+            width: 20,
+            height: 20,
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-                "#fff"
-            )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
+            backgroundImage: `url(${plus})`,
         },
     },
     "& .MuiSwitch-track": {
         opacity: 0,
+    },
+    "&.MuiFormControlLabel-label": {
+        color: "#FF6596",
     },
 }));
 
 export {
     ModalWrap,
     Background,
-    ModalContent,
+    ModalTitle,
     ModalClose,
     Flex,
-    Input,
+    InputWrap,
     ModalButton,
     Switcher,
+    SwitcherWrap,
+    SwitcherLabel,
+    IconCalendarWrap,
 };
