@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useSpring, animated } from "react-spring";
+
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
+import TextField from "@material-ui/core/TextField";
+import DatePicker from "@material-ui/lab/DatePicker";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -18,14 +23,15 @@ import {
     IconCalendarWrap,
 } from "./style/modalAddTransaction";
 import { ModalCloseIcon } from "./icon/ModalCloseIcon";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "./icon/CalendarIcon";
 
 const ModalAddTransaction = ({ showModal, setShowModal }) => {
     const [checked, setChecked] = useState(false);
-
-    const [startDate, setStartDate] = useState(new Date());
+    const [value, setValue] = React.useState(new Date());
+    const [open, setOpen] = React.useState(false);
+    // const [startDate, setStartDate] = useState(new Date());
 
     const switchHandler = () => {
         setChecked(!checked);
@@ -131,13 +137,83 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                 />
                                             </InputWrap>
                                             <InputWrap>
-                                                <DatePicker
-                                                    selected={startDate}
-                                                    onChange={(date) =>
-                                                        setStartDate(date)
-                                                    }
-                                                    dateFormat="dd.MM.yyyy"
-                                                />
+                                                <LocalizationProvider
+                                                    dateAdapter={AdapterDateFns}
+                                                >
+                                                    <DatePicker
+                                                        open={open}
+                                                        onOpen={() =>
+                                                            setOpen(true)
+                                                        }
+                                                        onClose={() =>
+                                                            setOpen(false)
+                                                        }
+                                                        label=" "
+                                                        value={value}
+                                                        DialogProps={{
+                                                            sx: {
+                                                                fontSize: 40,
+                                                            },
+                                                        }}
+                                                        onChange={(
+                                                            newValue
+                                                        ) => {
+                                                            setValue(newValue);
+                                                        }}
+                                                        renderInput={(
+                                                            params
+                                                        ) => {
+                                                            return (
+                                                                <TextField
+                                                                    {...params}
+                                                                    InputLabelProps={{
+                                                                        shrink: true,
+                                                                    }}
+                                                                    // buttonProps={{
+                                                                    //     style: {
+                                                                    //         fontSize: 40,
+                                                                    //     },
+                                                                    // }}
+                                                                    onClick={(
+                                                                        e
+                                                                    ) =>
+                                                                        setOpen(
+                                                                            true
+                                                                        )
+                                                                    }
+                                                                />
+                                                            );
+                                                        }}
+                                                    />
+                                                    {/*<DatePicker*/}
+                                                    {/*    label="Basic example"*/}
+                                                    {/*    value={value}*/}
+                                                    {/*    onChange={(*/}
+                                                    {/*        newValue*/}
+                                                    {/*    ) => {*/}
+                                                    {/*        setValue(newValue);*/}
+                                                    {/*    }}*/}
+                                                    {/*    renderInput={(*/}
+                                                    {/*        params*/}
+                                                    {/*    ) => (*/}
+                                                    {/*        <TextField*/}
+                                                    {/*            onClick={(e) =>*/}
+                                                    {/*                setOpen(*/}
+                                                    {/*                    true*/}
+                                                    {/*                )*/}
+                                                    {/*            }*/}
+                                                    {/*            {...params}*/}
+                                                    {/*        />*/}
+                                                    {/*    )}*/}
+                                                    {/*/>*/}
+                                                </LocalizationProvider>
+                                                {/*<DatePicker*/}
+                                                {/*    selected={startDate}*/}
+                                                {/*    onChange={(date) =>*/}
+                                                {/*        setStartDate(date)*/}
+                                                {/*    }*/}
+                                                {/*    dateFormat="dd.MM.yyyy"*/}
+                                                {/*/>*/}
                                                 <IconCalendarWrap>
                                                     <CalendarIcon />
                                                 </IconCalendarWrap>

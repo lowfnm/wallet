@@ -17,6 +17,7 @@ const Background = styled.div`
     width: 100%;
     height: 100%;
     position: fixed;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,6 +64,44 @@ const InputWrap = styled.div`
         position: absolute;
         bottom: -20px;
         left: 0;
+    }
+    & .MuiCalendarPicker-root {
+        & .MuiButtonBase-root {
+            font-size: 1.8rem;
+        }
+    }
+    & .MuiInputAdornment-root {
+        margin-left: 0;
+    }
+
+    & .MuiOutlinedInput-notchedOutline {
+        border: none;
+    }
+    & .MuiCalendarPicker-root {
+        width: 190px;
+    }
+    & .MuiInputLabel-root,
+    & .MuiButtonBase-root {
+        display: none;
+    }
+
+    & .MuiTypography-root .MuiTypography-caption {
+        font-size: 1.6rem;
+    }
+    & .css-2iy3mj {
+        min-height: 235px;
+    }
+    .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+        font-family: "Abel", sans-serif;
+        font-size: 1.8rem;
+        height: auto;
+    }
+    .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+        padding-right: 0;
+    }
+
+    .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
+        font-size: 1.6rem;
     }
 `;
 const ModalButton = styled.button`
