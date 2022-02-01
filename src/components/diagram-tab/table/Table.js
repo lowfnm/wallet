@@ -26,16 +26,45 @@ const rows = [
 ];
 
 const DiagramTable = () => {
+    const colors = [
+        "#FED057",
+        "#FFD8D0",
+        "#FD9498",
+        "#C5BAFF",
+        "#6E78E8",
+        "#4A56E2",
+        "#81E1FF",
+        "#24CCA7",
+        "#00AD84",
+    ];
+
     return (
         <TableContainer
             component={Paper}
-            sx={{ marginTop: 2, boxShadow: 0, backgroundColor: "transparent" }}
+            sx={{
+                marginTop: "25px",
+                boxShadow: 0,
+                backgroundColor: "transparent",
+            }}
         >
             <Table sx={{ maxWidth: 350 }} aria-label="simple table">
-                <TableHead>
+                <TableHead
+                    sx={{
+                        backgroundColor: "white",
+                    }}
+                >
                     <TableRow
                         sx={{
+                            "& th:first-of-type": {
+                                borderBottomLeftRadius: "3rem",
+                                borderTopLeftRadius: "3rem",
+                            },
+                            "& th:last-of-type": {
+                                borderBottomRightRadius: "3rem",
+                                borderTopRightRadius: "3rem",
+                            },
                             "& .MuiTableCell-root": {
+                                paddingBottom: "19px",
                                 fontFamily: "Abel, sans-serif",
                                 fontSize: 18,
                                 fontWeight: 400,
@@ -49,35 +78,53 @@ const DiagramTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row, index) => (
                         <TableRow
                             key={uuid4()}
                             sx={{
-                                "&:last-child td, &:last-child th": {
-                                    border: 0,
-                                },
+                                borderBottom: "1px solid #dcdcdf",
+                                boxShadow: "0px 1px 0px rgba(255,255,255, 0.6)",
                             }}
                         >
                             <TableCell
                                 sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+
                                     "&.MuiTableCell-root": {
+                                        paddingTop: 1.2,
+                                        paddingBottom: 1.2,
                                         fontFamily: "Abel, sans-serif",
                                         fontSize: 16,
                                         fontWeight: 400,
                                         lineHeight: 1.25,
-                                        borderBottom: '1px solid "red"',
+                                        borderBottom: 0,
                                     },
                                 }}
                             >
+                                <span
+                                    style={{
+                                        marginRight: "16px",
+                                        width: "24px",
+                                        height: "24px",
+                                        borderRadius: "2px",
+                                        backgroundColor: colors[index],
+                                    }}
+                                >
+                                    &nbsp;
+                                </span>
                                 {row.category}
                             </TableCell>
                             <TableCell
                                 sx={{
                                     "&.MuiTableCell-root": {
+                                        paddingTop: 1.6,
+                                        paddingBottom: 1.6,
                                         fontFamily: "Abel, sans-serif",
                                         fontSize: 16,
                                         fontWeight: 400,
                                         lineHeight: 1.25,
+                                        borderBottom: 0,
                                     },
                                 }}
                                 align="right"
@@ -97,9 +144,8 @@ const DiagramTable = () => {
                                     fontWeight: 400,
                                     lineHeight: 1.25,
                                     color: "#000",
-                                    borderBottom: 0,
                                     paddingBottom: 1.4,
-                                    borderTop: "1px solid #DCDCDF",
+                                    borderBottom: 0,
                                 },
                             }}
                         >
@@ -113,9 +159,8 @@ const DiagramTable = () => {
                                     fontWeight: 400,
                                     lineHeight: 1.25,
                                     color: "#FF6596",
-                                    borderBottom: 0,
                                     paddingBottom: 1.4,
-                                    borderTop: "1px solid #DCDCDF",
+                                    borderBottom: 0,
                                 },
                             }}
                             align="right"

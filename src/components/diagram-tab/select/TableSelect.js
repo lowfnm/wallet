@@ -39,6 +39,7 @@ const TableSelect = () => {
         <>
             <FormControl sx={{ minWidth: 166, height: 50 }}>
                 <InputLabel
+                    label="month"
                     variant={"filled"}
                     sx={{
                         fontFamily: "Abel",
@@ -49,12 +50,14 @@ const TableSelect = () => {
                         },
                         "&.MuiInputLabel-root": {
                             fontSize: 16,
+                            color: "#000000",
                         },
                     }}
                 >
                     Month
                 </InputLabel>
                 <Select
+                    labelId="month"
                     sx={{
                         border: 1,
                         borderColor: "#000",
@@ -108,6 +111,7 @@ const TableSelect = () => {
 
             <FormControl sx={{ marginLeft: 1.9, minWidth: 166, height: 50 }}>
                 <InputLabel
+                    label="year"
                     variant={"filled"}
                     sx={{
                         fontFamily: "Abel",
@@ -118,12 +122,14 @@ const TableSelect = () => {
                         },
                         "&.MuiInputLabel-root": {
                             fontSize: 16,
+                            color: "#000000",
                         },
                     }}
                 >
                     Year
                 </InputLabel>
                 <Select
+                    labelId="year"
                     sx={{
                         border: 1,
                         borderColor: "#000",
