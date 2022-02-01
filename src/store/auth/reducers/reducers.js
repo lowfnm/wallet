@@ -37,7 +37,7 @@ export const userSlice = createSlice({
             state.balance = payload.balance;
         },
         [currentUser.pending]: (state) => {
-            state.isAuth = false;
+            state.isAuth = true;
         },
         [currentUser.rejected]: (state, { payload }) => {
             state.isAuth = false;
