@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const Section = styled.section``;
-
 const Title = styled.h1`
     font-family: "Poppins", sans-serif;
     font-weight: inherit;
@@ -25,4 +23,4 @@ const ExpensesMoney = styled.span`
     line-height: 1.27;
 `;
 
-export { Section, Title, Wrapper, ExpensesMoney };
+export { Title, Wrapper, ExpensesMoney };
