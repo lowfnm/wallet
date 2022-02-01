@@ -128,7 +128,6 @@ const HomeTab = () => {
                     height: 330,
                     overflowY: "scroll",
                     width: 700,
-                    marginLeft: "5rem",
                 }}
             >
                 <Table stickyHeader aria-label="sticky table">

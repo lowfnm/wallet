@@ -8,14 +8,14 @@ const StyledBalance = styled.section`
 `;
 
 const BalanceBody = styled.div`
-    padding-left: 4rem;
-    padding-top: 0.8rem;
-    padding-bottom: 1.3rem;
+    padding: 0.8rem 4rem 1.3rem;
 `;
 
 const BalanceTitle = styled.h2`
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    font-family: "Abel", sans-serif;
+    font-weight: 400;
     line-height: 1.27;
     color: #a6a6a6;
     text-transform: uppercase;

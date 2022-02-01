@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Rates = styled.article`
+const Rates = styled.section`
     margin-top: 3rem;
     width: 348px;
     position: relative;
@@ -8,7 +8,6 @@ const Rates = styled.article`
     color: white;
     background-color: #4a56e2;
     border-radius: 30px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const RatesHead = styled.ul`
