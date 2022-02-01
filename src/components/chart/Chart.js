@@ -1,14 +1,13 @@
 import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { chartData } from "./ChartData";
-import { ExpensesMoney, Title, Wrapper } from "./style/chart";
+import { ExpensesMoney, Wrapper } from "./style/chart";
 
 ChartJS.register(ArcElement, Tooltip);
 
 const Chart = () => {
     return (
         <div>
-            <Title>Statistics</Title>
             <Wrapper>
                 <Doughnut
                     type="doughnut"

@@ -39,24 +39,25 @@ const TableSelect = () => {
         <>
             <FormControl sx={{ minWidth: 166, height: 50 }}>
                 <InputLabel
+                    label="month"
                     variant={"filled"}
                     sx={{
                         fontFamily: "Abel",
                         fontSize: 16,
                         paddingLeft: 2,
-                        paddingTop: 0.7,
                         "&.Mui-focused": {
-                            fontSize: 12,
                             borderRadius: 0,
                         },
                         "&.MuiInputLabel-root": {
-                            fontSize: 12,
+                            fontSize: 16,
+                            color: "#000000",
                         },
                     }}
                 >
                     Month
                 </InputLabel>
                 <Select
+                    labelId="month"
                     sx={{
                         border: 1,
                         borderColor: "#000",
@@ -81,6 +82,9 @@ const TableSelect = () => {
                                 backdropFilter: "blur( 4px )",
                                 boxShadow:
                                     "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                            },
+                            "& .MuiMenuItem-root": {
+                                fontSize: 15,
                             },
                         },
                     }}
@@ -107,24 +111,25 @@ const TableSelect = () => {
 
             <FormControl sx={{ marginLeft: 1.9, minWidth: 166, height: 50 }}>
                 <InputLabel
+                    label="year"
                     variant={"filled"}
                     sx={{
                         fontFamily: "Abel",
                         fontSize: 16,
                         paddingLeft: 2,
-                        paddingTop: 0.7,
                         "&.Mui-focused": {
-                            fontSize: 12,
                             borderRadius: 0,
                         },
                         "&.MuiInputLabel-root": {
-                            fontSize: 12,
+                            fontSize: 16,
+                            color: "#000000",
                         },
                     }}
                 >
                     Year
                 </InputLabel>
                 <Select
+                    labelId="year"
                     sx={{
                         border: 1,
                         borderColor: "#000",
@@ -149,6 +154,9 @@ const TableSelect = () => {
                                 backdropFilter: "blur( 4px )",
                                 boxShadow:
                                     "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                            },
+                            "& .MuiMenuItem-root": {
+                                fontSize: 15,
                             },
                         },
                     }}
