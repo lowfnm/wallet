@@ -44,13 +44,11 @@ const TableSelect = () => {
                         fontFamily: "Abel",
                         fontSize: 16,
                         paddingLeft: 2,
-                        paddingTop: 0.7,
                         "&.Mui-focused": {
-                            fontSize: 12,
                             borderRadius: 0,
                         },
                         "&.MuiInputLabel-root": {
-                            fontSize: 12,
+                            fontSize: 16,
                         },
                     }}
                 >
@@ -82,6 +80,9 @@ const TableSelect = () => {
                                 boxShadow:
                                     "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
                             },
+                            "& .MuiMenuItem-root": {
+                                fontSize: 15,
+                            },
                         },
                     }}
                     IconComponent={ExpandMoreIcon}
@@ -112,13 +113,11 @@ const TableSelect = () => {
                         fontFamily: "Abel",
                         fontSize: 16,
                         paddingLeft: 2,
-                        paddingTop: 0.7,
                         "&.Mui-focused": {
-                            fontSize: 12,
                             borderRadius: 0,
                         },
                         "&.MuiInputLabel-root": {
-                            fontSize: 12,
+                            fontSize: 16,
                         },
                     }}
                 >
@@ -149,6 +148,9 @@ const TableSelect = () => {
                                 backdropFilter: "blur( 4px )",
                                 boxShadow:
                                     "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                            },
+                            "& .MuiMenuItem-root": {
+                                fontSize: 15,
                             },
                         },
                     }}

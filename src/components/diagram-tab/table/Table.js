@@ -40,6 +40,7 @@ const DiagramTable = () => {
                                 fontSize: 18,
                                 fontWeight: 400,
                                 lineHeight: 1.27,
+                                borderBottom: 0,
                             },
                         }}
                     >
@@ -97,6 +98,8 @@ const DiagramTable = () => {
                                     lineHeight: 1.25,
                                     color: "#000",
                                     borderBottom: 0,
+                                    paddingBottom: 1.4,
+                                    borderTop: "1px solid #DCDCDF",
                                 },
                             }}
                         >
@@ -111,6 +114,8 @@ const DiagramTable = () => {
                                     lineHeight: 1.25,
                                     color: "#FF6596",
                                     borderBottom: 0,
+                                    paddingBottom: 1.4,
+                                    borderTop: "1px solid #DCDCDF",
                                 },
                             }}
                             align="right"
@@ -129,6 +134,7 @@ const DiagramTable = () => {
                                     lineHeight: 1.25,
                                     color: "#000",
                                     borderBottom: 0,
+                                    paddingTop: 0,
                                 },
                             }}
                         >
@@ -143,6 +149,7 @@ const DiagramTable = () => {
                                     lineHeight: 1.25,
                                     color: "#24CCA7",
                                     borderBottom: 0,
+                                    paddingTop: 0,
                                 },
                             }}
                             align="right"
