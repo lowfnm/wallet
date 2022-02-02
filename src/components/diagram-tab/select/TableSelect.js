@@ -69,6 +69,16 @@ const TableSelect = () => {
                             fontSize: "3rem",
                             marginRight: 1,
                         },
+
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            border: 0,
+                        },
+
+                        "&.Mui-focused": {
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#6f77ec",
+                            },
+                        },
                     }}
                     MenuProps={{
                         sx: {
@@ -76,8 +86,8 @@ const TableSelect = () => {
                                 marginTop: 0.3,
                                 maxHeight: 200,
                                 borderRadius: 5,
-                                border: 2,
-                                borderColor: "#1976d2",
+                                border: 3,
+                                borderColor: "#6f77ec",
                                 background: "rgba( 255, 255, 255, 0.5 )",
                                 backdropFilter: "blur( 4px )",
                                 boxShadow:
@@ -141,6 +151,15 @@ const TableSelect = () => {
                             fontSize: "3rem",
                             marginRight: 1,
                         },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            border: 0,
+                        },
+
+                        "&.Mui-focused": {
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#6f77ec",
+                            },
+                        },
                     }}
                     MenuProps={{
                         sx: {
@@ -148,8 +167,8 @@ const TableSelect = () => {
                                 marginTop: 0.3,
                                 maxHeight: 200,
                                 borderRadius: 5,
-                                border: 2,
-                                borderColor: "#1976d2",
+                                border: 3,
+                                borderColor: "#6f77ec",
                                 background: "rgba( 255, 255, 255, 0.5 )",
                                 backdropFilter: "blur( 4px )",
                                 boxShadow:
