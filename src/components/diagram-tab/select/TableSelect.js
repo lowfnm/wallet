@@ -5,6 +5,7 @@ import Select from "@mui/material/Select";
 import { v4 as uuid4 } from "uuid";
 import { InputLabel } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { SelectWrapper } from "./style/tableSelect";
 
 let months = [
     "January",
@@ -36,7 +37,7 @@ const TableSelect = () => {
     };
 
     return (
-        <>
+        <SelectWrapper>
             <FormControl sx={{ minWidth: 166, height: 50 }}>
                 <InputLabel
                     label="month"
@@ -199,7 +200,7 @@ const TableSelect = () => {
                     })}
                 </Select>
             </FormControl>
-        </>
+        </SelectWrapper>
     );
 };
 export { TableSelect };
