@@ -142,12 +142,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                     dateAdapter={AdapterDateFns}
                                                 >
                                                     <DatePicker
-                                                        // sx={{
-                                                        //     "& .PrivatePickersSlideTransition-root":
-                                                        //         {
-                                                        //             minHeight: 170,
-                                                        //         },
-                                                        // }}
                                                         open={open}
                                                         onOpen={() =>
                                                             setOpen(true)
@@ -201,35 +195,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                             );
                                                         }}
                                                     />
-                                                    {/*<DatePicker*/}
-                                                    {/*    label="Basic example"*/}
-                                                    {/*    value={value}*/}
-                                                    {/*    onChange={(*/}
-                                                    {/*        newValue*/}
-                                                    {/*    ) => {*/}
-                                                    {/*        setValue(newValue);*/}
-                                                    {/*    }}*/}
-                                                    {/*    renderInput={(*/}
-                                                    {/*        params*/}
-                                                    {/*    ) => (*/}
-                                                    {/*        <TextField*/}
-                                                    {/*            onClick={(e) =>*/}
-                                                    {/*                setOpen(*/}
-                                                    {/*                    true*/}
-                                                    {/*                )*/}
-                                                    {/*            }*/}
-                                                    {/*            {...params}*/}
-                                                    {/*        />*/}
-                                                    {/*    )}*/}
-                                                    {/*/>*/}
                                                 </LocalizationProvider>
-                                                {/*<DatePicker*/}
-                                                {/*    selected={startDate}*/}
-                                                {/*    onChange={(date) =>*/}
-                                                {/*        setStartDate(date)*/}
-                                                {/*    }*/}
-                                                {/*    dateFormat="dd.MM.yyyy"*/}
-                                                {/*/>*/}
                                                 <IconCalendarWrap>
                                                     <CalendarIcon />
                                                 </IconCalendarWrap>

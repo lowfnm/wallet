@@ -4,9 +4,7 @@ const theme = createTheme({
     components: {
         MuiPaper: {
             styleOverrides: {
-                root: {
-                    overflowY: "hidden",
-                },
+                root: {},
             },
         },
         MuiTypography: {
@@ -15,31 +13,18 @@ const theme = createTheme({
             height: "24px",
             fontFamily: '"Abel", sans-serif',
         },
-        PrivatePickersFadeTransitionGroup: {
-            styleOverrides: {
-                root: {
-                    overflowY: "hidden",
-                },
-            },
-        },
         MuiCalendarPicker: {
             styleOverrides: {
                 root: {
-                    maxWidth: 300,
-                    maxHeight: 350,
+                    height: "280px",
                     fontFamily: '"Abel", sans-serif',
-                },
-            },
-        },
-        "PrivatePickersSlideTransition-root": {
-            styleOverrides: {
-                root: {},
-            },
-        },
-        PrivatePickersSlideTransition: {
-            styleOverrides: {
-                root: {
-                    minHeight: 170,
+
+                    "& .css-8v7him": {
+                        paddingLeft: "36px",
+                        paddingRight: "27px",
+                    },
+
+                    "& .MuiCalendarPicker-viewTransitionContainer": {},
                 },
             },
         },
@@ -47,8 +32,6 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     fontSize: "1.2rem",
-                    width: "24px",
-                    height: "24px",
                     fontFamily: '"Abel", sans-serif',
                 },
             },
