@@ -59,9 +59,9 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
             .max(12, "The price must be a maximum of 12 characters")
             .required("This field is required"),
         comments: Yup.string()
-            .min(2, "Comment must be at least 2 characters long")
             .max(30, "The comment must be a maximum of 30 characters")
             .required("This field is required"),
+        date: Yup.string().required("This field is required"),
     });
     return (
         <>
@@ -72,6 +72,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                             <Formik
                                 initialValues={{
                                     price: "",
+                                    date: "",
                                     comments: "",
                                 }}
                                 validationSchema={modalSchema}
@@ -141,6 +142,12 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                     dateAdapter={AdapterDateFns}
                                                 >
                                                     <DatePicker
+                                                        // sx={{
+                                                        //     "& .PrivatePickersSlideTransition-root":
+                                                        //         {
+                                                        //             minHeight: 170,
+                                                        //         },
+                                                        // }}
                                                         open={open}
                                                         onOpen={() =>
                                                             setOpen(true)
@@ -150,11 +157,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                         }
                                                         label=" "
                                                         value={value}
-                                                        DialogProps={{
-                                                            sx: {
-                                                                fontSize: 40,
-                                                            },
-                                                        }}
                                                         onChange={(
                                                             newValue
                                                         ) => {
@@ -164,24 +166,38 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                             params
                                                         ) => {
                                                             return (
-                                                                <TextField
-                                                                    {...params}
-                                                                    InputLabelProps={{
-                                                                        shrink: true,
-                                                                    }}
-                                                                    // buttonProps={{
-                                                                    //     style: {
-                                                                    //         fontSize: 40,
-                                                                    //     },
-                                                                    // }}
-                                                                    onClick={(
-                                                                        e
-                                                                    ) =>
-                                                                        setOpen(
-                                                                            true
-                                                                        )
-                                                                    }
-                                                                />
+                                                                <>
+                                                                    <TextField
+                                                                        name="date"
+                                                                        onChange={
+                                                                            handleChange
+                                                                        }
+                                                                        onBlur={
+                                                                            handleBlur
+                                                                        }
+                                                                        value={
+                                                                            values.date
+                                                                        }
+                                                                        {...params}
+                                                                        InputLabelProps={{
+                                                                            shrink: true,
+                                                                        }}
+                                                                        onClick={(
+                                                                            e
+                                                                        ) =>
+                                                                            setOpen(
+                                                                                true
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                    <ErrorMessage
+                                                                        name="date"
+                                                                        component="span"
+                                                                        style={{
+                                                                            color: "#FF6596",
+                                                                        }}
+                                                                    />
+                                                                </>
                                                             );
                                                         }}
                                                     />

@@ -30,6 +30,13 @@ const ModalTitle = styled.h1`
     font-size: 3rem;
     line-height: 1.5;
     text-align: center;
+
+    //@media (max-width: 768px) {
+    //    font-size: 2rem;
+    //}
+    @media screen and (max-width: 480px) {
+        font-size: 2.4rem;
+    }
 `;
 const ModalClose = styled.div`
     cursor: pointer;
@@ -42,6 +49,9 @@ const ModalClose = styled.div`
 const Flex = styled.div`
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 480px) {
+        flex-direction: column;
+    }
 `;
 const InputWrap = styled.div`
     position: relative;
@@ -59,17 +69,19 @@ const InputWrap = styled.div`
         background-color: transparent;
         z-index: 3;
         text-align: left;
+        @media screen and (max-width: 480px) {
+            max-width: 410px;
+        }
     }
     span {
         position: absolute;
         bottom: -20px;
         left: 0;
     }
-    & .MuiCalendarPicker-root {
-        & .MuiButtonBase-root {
-            font-size: 1.8rem;
-        }
+    & .css-2iy3mj {
+        display: none;
     }
+
     & .MuiInputAdornment-root {
         margin-left: 0;
     }
@@ -77,31 +89,19 @@ const InputWrap = styled.div`
     & .MuiOutlinedInput-notchedOutline {
         border: none;
     }
-    & .MuiCalendarPicker-root {
-        width: 190px;
-    }
     & .MuiInputLabel-root,
     & .MuiButtonBase-root {
         display: none;
     }
 
-    & .MuiTypography-root .MuiTypography-caption {
-        font-size: 1.6rem;
-    }
-    & .css-2iy3mj {
-        min-height: 235px;
-    }
     .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
         font-family: "Abel", sans-serif;
         font-size: 1.8rem;
         height: auto;
     }
+
     .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
         padding-right: 0;
-    }
-
-    .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
-        font-size: 1.6rem;
     }
 `;
 const ModalButton = styled.button`
