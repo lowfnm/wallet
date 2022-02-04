@@ -1,5 +1,5 @@
 import GlobalStyles from "./style/global";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@mui/material";
 import theme from "./style/theme";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "../../pages/login-page/LoginPage";

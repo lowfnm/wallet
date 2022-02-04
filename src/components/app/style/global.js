@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 62.5%;
     box-sizing: border-box;
   }
-
+  
   *,
   *::before,
   *::after {
@@ -59,6 +59,7 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
     height: auto;
   }
+  
 `;
 
 export default GlobalStyles;

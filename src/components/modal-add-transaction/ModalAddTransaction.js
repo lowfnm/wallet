@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useSpring, animated } from "react-spring";
+
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
+import TextField from "@material-ui/core/TextField";
+import DatePicker from "@material-ui/lab/DatePicker";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -18,14 +23,15 @@ import {
     IconCalendarWrap,
 } from "./style/modalAddTransaction";
 import { ModalCloseIcon } from "./icon/ModalCloseIcon";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "./icon/CalendarIcon";
 
 const ModalAddTransaction = ({ showModal, setShowModal }) => {
     const [checked, setChecked] = useState(false);
-
-    const [startDate, setStartDate] = useState(new Date());
+    const [value, setValue] = React.useState(new Date());
+    const [open, setOpen] = React.useState(false);
+    // const [startDate, setStartDate] = useState(new Date());
 
     const switchHandler = () => {
         setChecked(!checked);
@@ -53,9 +59,9 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
             .max(12, "The price must be a maximum of 12 characters")
             .required("This field is required"),
         comments: Yup.string()
-            .min(2, "Comment must be at least 2 characters long")
             .max(30, "The comment must be a maximum of 30 characters")
             .required("This field is required"),
+        date: Yup.string().required("This field is required"),
     });
     return (
         <>
@@ -66,6 +72,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                             <Formik
                                 initialValues={{
                                     price: "",
+                                    date: "",
                                     comments: "",
                                 }}
                                 validationSchema={modalSchema}
@@ -131,13 +138,64 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                 />
                                             </InputWrap>
                                             <InputWrap>
-                                                <DatePicker
-                                                    selected={startDate}
-                                                    onChange={(date) =>
-                                                        setStartDate(date)
-                                                    }
-                                                    dateFormat="dd.MM.yyyy"
-                                                />
+                                                <LocalizationProvider
+                                                    dateAdapter={AdapterDateFns}
+                                                >
+                                                    <DatePicker
+                                                        open={open}
+                                                        onOpen={() =>
+                                                            setOpen(true)
+                                                        }
+                                                        onClose={() =>
+                                                            setOpen(false)
+                                                        }
+                                                        label=" "
+                                                        value={value}
+                                                        onChange={(
+                                                            newValue
+                                                        ) => {
+                                                            setValue(newValue);
+                                                        }}
+                                                        renderInput={(
+                                                            params
+                                                        ) => {
+                                                            return (
+                                                                <>
+                                                                    <TextField
+                                                                        name="date"
+                                                                        onChange={
+                                                                            handleChange
+                                                                        }
+                                                                        onBlur={
+                                                                            handleBlur
+                                                                        }
+                                                                        value={
+                                                                            values.date
+                                                                        }
+                                                                        {...params}
+                                                                        InputLabelProps={{
+                                                                            shrink: true,
+                                                                        }}
+                                                                        onClick={(
+                                                                            e
+                                                                        ) =>
+                                                                            setOpen(
+                                                                                true
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                    <ErrorMessage
+                                                                        name="date"
+                                                                        component="span"
+                                                                        style={{
+                                                                            color: "#FF6596",
+                                                                        }}
+                                                                    />
+                                                                </>
+                                                            );
+                                                        }}
+                                                    />
+                                                </LocalizationProvider>
                                                 <IconCalendarWrap>
                                                     <CalendarIcon />
                                                 </IconCalendarWrap>
