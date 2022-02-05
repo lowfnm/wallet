@@ -1,4 +1,3 @@
-import React from "react";
 import { ButtonAdd } from "./style/buttonAddTransactions";
 import PlusIcon from "./icon/PlusIcon";
 
