@@ -8,7 +8,7 @@ import DatePicker from "@material-ui/lab/DatePicker";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Dropdown from "./dropdown/Dropdown";
+
 import {
     ModalWrap,
     ModalTitle,
@@ -121,17 +121,17 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
         console.log(comment);
     };
 
-    const modalSchema = Yup.object({
-        amount: Yup.string("0.00")
-            .typeError()
-            .min(1, "Name must be at least 1 character")
-            .max(12, "The price must be a maximum of 12 characters")
-            .required("This field is required"),
-        comment: Yup.string()
-            .max(30, "The comment must be a maximum of 30 characters")
-            .required("This field is required"),
-        date: Yup.string().required("This field is required"),
-    });
+    // const modalSchema = Yup.object({
+    //     amount: Yup.string("0.00")
+    //         .typeError()
+    //         .min(1, "Name must be at least 1 character")
+    //         .max(12, "The price must be a maximum of 12 characters")
+    //         .required("This field is required"),
+    //     comment: Yup.string()
+    //         .max(30, "The comment must be a maximum of 30 characters")
+    //         .required("This field is required"),
+    //     date: Yup.string().required("This field is required"),
+    // });
     return (
         <>
             {showModal ? (
