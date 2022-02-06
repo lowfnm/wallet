@@ -56,7 +56,7 @@ const LinkWrapperExit = () => {
                         fontSize: "3rem",
                     }}
                 >
-                    {"Are you sure to quit?"}
+                    Are you sure to quit?
                 </DialogTitle>
 
                 <DialogActions
@@ -88,7 +88,6 @@ const LinkWrapperExit = () => {
                         onClick={logOut}
                         sx={{
                             width: "9rem",
-
                             marginBottom: "1.5rem",
                             fontSize: "1.5rem",
                             backgroundColor: "#24CCA7",
