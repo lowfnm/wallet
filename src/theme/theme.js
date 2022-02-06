@@ -36,6 +36,34 @@ const theme = createTheme({
                 },
             },
         },
+        MuiTableHead: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "white",
+                },
+            },
+        },
+
+        MuiTableContainer: {
+            styleOverrides: {
+                root: {
+                    boxShadow: 0,
+                    backgroundColor: "transparent",
+                },
+            },
+        },
+
+        MuiTableCell: {
+            styleOverrides: {
+                root: {
+                    fontFamily: "Abel, sans-serif",
+                    fontSize: 16,
+                    fontWeight: 400,
+                    lineHeight: 1.27,
+                    borderBottom: 0,
+                },
+            },
+        },
     },
 });
 

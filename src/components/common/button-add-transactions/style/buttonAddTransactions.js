@@ -10,7 +10,7 @@ const ButtonAdd = styled.button`
     border-radius: 100%;
     position: absolute;
     bottom: 40px;
-    right: 35px;
+    right: 0;
     svg {
         position: absolute;
         top: 50%;
