@@ -1,10 +1,6 @@
 import LoginForm from "../../components/login-form/LoginForm";
 import LoginHero from "../../components/login-hero/LoginHero";
-import styled from "styled-components";
-
-const PageContainer = styled.div`
-    display: flex;
-`;
+import { PageContainer } from "./style/loginpage";
 
 const LoginPage = () => {
     return (

@@ -9,6 +9,7 @@ import {
     DashBoardPageContainer,
     Main,
     HeaderWrapper,
+    NavigationWrapper,
 } from "./style/dashboardpage";
 import Container from "../../components/common/container/container";
 
@@ -24,8 +25,10 @@ const DashBoardPage = () => {
                 <Container>
                     <ContentWrapper>
                         <Aside>
-                            <Navigation />
-                            <Balance />
+                            <NavigationWrapper>
+                                <Navigation />
+                                <Balance />
+                            </NavigationWrapper>
                             <Currency />
                         </Aside>
                         <Main>
