@@ -5,15 +5,16 @@ const NavigationWrapper = styled.div`
     align-items: center;
     font-size: 1.8rem;
     color: #bdbdbd;
+
     svg:first-of-type {
-        margin: 0 1.5rem;
+        margin-right: 1.5rem;
     }
 `;
 
-const NameStatus = styled.span``;
-
-const ExitLink = styled.button`
-    margin-left: 1rem;
+const NameStatus = styled.span`
+    margin-right: 1.5rem;
 `;
+
+const ExitLink = styled.button``;
 
 export { NavigationWrapper, NameStatus, ExitLink };

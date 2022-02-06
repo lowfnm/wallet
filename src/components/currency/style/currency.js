@@ -8,6 +8,18 @@ const Rates = styled.section`
     color: white;
     background-color: #4a56e2;
     border-radius: 30px;
+
+    @media (max-width: 1279px) {
+        margin-top: 0;
+        height: 200px;
+    }
+
+    svg {
+        @media (max-width: 1279px) {
+            position: absolute;
+            bottom: 0;
+        }
+    }
 `;
 
 const RatesHead = styled.ul`
@@ -28,6 +40,10 @@ const RatesBody = styled.ul`
     justify-content: space-between;
     margin-top: 2rem;
     margin-bottom: 1.9rem;
+
+    @media (max-width: 1279px) {
+        margin: 1.6rem 0;
+    }
 `;
 
 const BodyItem = styled.li`

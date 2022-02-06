@@ -1,10 +1,6 @@
 import RegistrationForm from "../../components/registration-form/RegistrationForm";
 import RegistrationHero from "../../components/registration-hero/RegistrationHero";
-import styled from "styled-components";
-
-const PageContainer = styled.div`
-    display: flex;
-`;
+import { PageContainer } from "./style/registrationpage";
 
 const RegistrationPage = () => {
     return (

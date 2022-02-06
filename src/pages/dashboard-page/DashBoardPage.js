@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Currency from "../../components/currency/Currency";
 import Balance from "../../components/balance/Balance";
@@ -13,11 +13,18 @@ import {
     DashBoardPageContainer,
     Main,
     HeaderWrapper,
+    NavigationWrapper,
 } from "./style/dashboardpage";
+import { useDispatch } from "react-redux";
+import { currentUser } from "../../store/auth/actions/actions";
 
 const DashBoardPage = () => {
     const [showModal, setShowModal] = useState(false);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(currentUser());
+    }, [dispatch]);
     return (
         <>
             <HeaderWrapper>
@@ -29,8 +36,10 @@ const DashBoardPage = () => {
                 <Container>
                     <ContentWrapper>
                         <Aside>
-                            <Navigation />
-                            <Balance />
+                            <NavigationWrapper>
+                                <Navigation />
+                                <Balance />
+                            </NavigationWrapper>
                             <Currency />
                         </Aside>
                         <Main>

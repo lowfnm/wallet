@@ -24,13 +24,34 @@ const Aside = styled.aside`
         right: 0;
         top: -4.6rem;
         bottom: 0;
-        height: calc(100vh - 8.5rem);
         width: 1px;
+        height: calc(100vh - 9rem);
         background-color: #e7e5f2;
         box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
             1px 0px 0px rgba(255, 255, 255, 0.6);
+
+        @media (max-width: 1279px) {
+            content: none;
+        }
+    }
+
+    @media (max-width: 1279px) {
+        display: flex;
+        justify-content: center;
+        padding-right: 0;
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 1;
     }
 `;
+
+const NavigationWrapper = styled.div`
+    @media (max-width: 1279px) {
+        width: 40%;
+        margin-right: 2rem;
+    }
+`;
+
 const Main = styled.main`
     position: relative;
     z-index: 1;
@@ -41,7 +62,8 @@ const DashBoardPageContainer = styled.div`
     position: relative;
     padding-top: 4.6rem;
     background-color: #e7eaf2;
-    height: calc(100vh - 8.5rem);
+    min-height: calc(100vh - 9rem);
+    overflow: hidden;
 
     &::before {
         content: "";
@@ -74,8 +96,11 @@ const DashBoardPageContainer = styled.div`
 
 const ContentWrapper = styled.div`
     display: flex;
-    height: calc(100vh - 13rem);
     position: relative;
+
+    @media (max-width: 1279px) {
+        flex-direction: column;
+    }
 `;
 
 export {
@@ -85,4 +110,5 @@ export {
     DashBoardPageContainer,
     ContentWrapper,
     HeaderWrapper,
+    NavigationWrapper,
 };

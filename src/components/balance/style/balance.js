@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledBalance = styled.section`
+    min-width: 100%;
     max-width: 350px;
     margin-top: 3rem;
     border-radius: 30px;
@@ -9,6 +10,7 @@ const StyledBalance = styled.section`
 
 const BalanceBody = styled.div`
     padding: 0.8rem 4rem 1.3rem;
+    min-width: 100%;
 `;
 
 const BalanceTitle = styled.h2`

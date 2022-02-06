@@ -1,25 +1,21 @@
 import styled from "styled-components";
-import ellipseBlur from "../icon/ellipse-orange.svg";
 
 const FormContainer = styled.div`
     position: relative;
-    background: #f1f3f8;
+    background-color: #f1f3f8;
     width: 55%;
     height: 100vh;
     display: flex;
 
-    &::after {
-        content: "";
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        width: 618px;
-        height: 547px;
-        background-image: url(${ellipseBlur});
-        background-size: cover;
-        background-repeat: no-repeat;
-        filter: blur(50px);
+    @media (max-width: 1279px) {
+        width: 100%;
+        height: auto;
+        background-color: #e7eaf2;
+    }
+    @media (max-width: 767px) {
+        width: 100%;
+        height: 100vh;
+        background-color: #fff;
     }
 `;
 
@@ -31,6 +27,17 @@ const FormWrapper = styled.div`
     margin-left: 9.5rem;
     margin-top: auto;
     margin-bottom: auto;
+
+    @media (max-width: 1279px) {
+        margin: 0 auto;
+        padding-top: 5rem;
+        padding-bottom: 20rem;
+    }
+
+    @media (max-width: 767px) {
+        display: flex;
+        padding: 0;
+    }
 
     form {
         position: relative;
@@ -44,6 +51,16 @@ const FormWrapper = styled.div`
         padding-top: 4rem;
         padding-bottom: 6rem;
         background-color: #fff;
+
+        @media (max-width: 767px) {
+            width: 100vw;
+            border-radius: 0;
+            padding: 20px;
+
+            div {
+                width: 100%;
+            }
+        }
     }
     input {
         width: 410px;
@@ -53,6 +70,10 @@ const FormWrapper = styled.div`
         border: none;
         border-bottom: 1px solid #e0e0e0;
         padding: 1rem 1rem 1rem 5.5rem;
+
+        @media (max-width: 767px) {
+            width: 100%;
+        }
     }
 
     a {
@@ -72,6 +93,9 @@ const FormWrapper = styled.div`
 
         &:hover {
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        @media (max-width: 767px) {
+            width: 100%;
         }
     }
 `;
@@ -118,6 +142,9 @@ const FormButton = styled.button`
 
     &:hover {
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    @media (max-width: 767px) {
+        width: 100%;
     }
 `;
 
