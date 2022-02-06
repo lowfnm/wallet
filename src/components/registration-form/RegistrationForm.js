@@ -16,7 +16,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PasswordStrengthBar from "./password-strength-bar/PasswordStrengthBar";
 import { signUpUser } from "../../store/auth/actions/actions";
-import Logo from "../logo/Logo";
+import Logo from "../common/logo/Logo";
 
 const registrationSchema = Yup.object({
     email: Yup.string()

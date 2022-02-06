@@ -5,6 +5,7 @@ import Select from "@mui/material/Select";
 import { v4 as uuid4 } from "uuid";
 import { InputLabel } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { SelectWrapper } from "./style/tableSelect";
 
 let months = [
     "January",
@@ -36,27 +37,28 @@ const TableSelect = () => {
     };
 
     return (
-        <>
+        <SelectWrapper>
             <FormControl sx={{ minWidth: 166, height: 50 }}>
                 <InputLabel
+                    label="month"
                     variant={"filled"}
                     sx={{
                         fontFamily: "Abel",
                         fontSize: 16,
                         paddingLeft: 2,
-                        paddingTop: 0.7,
                         "&.Mui-focused": {
-                            fontSize: 12,
                             borderRadius: 0,
                         },
                         "&.MuiInputLabel-root": {
-                            fontSize: 12,
+                            fontSize: 16,
+                            color: "#000000",
                         },
                     }}
                 >
                     Month
                 </InputLabel>
                 <Select
+                    labelId="month"
                     sx={{
                         border: 1,
                         borderColor: "#000",
@@ -68,6 +70,16 @@ const TableSelect = () => {
                             fontSize: "3rem",
                             marginRight: 1,
                         },
+
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            border: 0,
+                        },
+
+                        "&.Mui-focused": {
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#6f77ec",
+                            },
+                        },
                     }}
                     MenuProps={{
                         sx: {
@@ -75,12 +87,15 @@ const TableSelect = () => {
                                 marginTop: 0.3,
                                 maxHeight: 200,
                                 borderRadius: 5,
-                                border: 2,
-                                borderColor: "#1976d2",
+                                border: 3,
+                                borderColor: "#6f77ec",
                                 background: "rgba( 255, 255, 255, 0.5 )",
                                 backdropFilter: "blur( 4px )",
                                 boxShadow:
                                     "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                            },
+                            "& .MuiMenuItem-root": {
+                                fontSize: 15,
                             },
                         },
                     }}
@@ -107,24 +122,25 @@ const TableSelect = () => {
 
             <FormControl sx={{ marginLeft: 1.9, minWidth: 166, height: 50 }}>
                 <InputLabel
+                    label="year"
                     variant={"filled"}
                     sx={{
                         fontFamily: "Abel",
                         fontSize: 16,
                         paddingLeft: 2,
-                        paddingTop: 0.7,
                         "&.Mui-focused": {
-                            fontSize: 12,
                             borderRadius: 0,
                         },
                         "&.MuiInputLabel-root": {
-                            fontSize: 12,
+                            fontSize: 16,
+                            color: "#000000",
                         },
                     }}
                 >
                     Year
                 </InputLabel>
                 <Select
+                    labelId="year"
                     sx={{
                         border: 1,
                         borderColor: "#000",
@@ -136,6 +152,15 @@ const TableSelect = () => {
                             fontSize: "3rem",
                             marginRight: 1,
                         },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            border: 0,
+                        },
+
+                        "&.Mui-focused": {
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#6f77ec",
+                            },
+                        },
                     }}
                     MenuProps={{
                         sx: {
@@ -143,12 +168,15 @@ const TableSelect = () => {
                                 marginTop: 0.3,
                                 maxHeight: 200,
                                 borderRadius: 5,
-                                border: 2,
-                                borderColor: "#1976d2",
+                                border: 3,
+                                borderColor: "#6f77ec",
                                 background: "rgba( 255, 255, 255, 0.5 )",
                                 backdropFilter: "blur( 4px )",
                                 boxShadow:
                                     "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                            },
+                            "& .MuiMenuItem-root": {
+                                fontSize: 15,
                             },
                         },
                     }}
@@ -172,7 +200,7 @@ const TableSelect = () => {
                     })}
                 </Select>
             </FormControl>
-        </>
+        </SelectWrapper>
     );
 };
 export { TableSelect };

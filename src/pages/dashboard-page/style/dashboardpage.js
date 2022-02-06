@@ -5,13 +5,7 @@ import ellipseOrange from "../icon/ellipse-orange.svg";
 const HeaderWrapper = styled.div`
     background-color: #fff;
     position: relative;
-    z-index: 2;
-`;
-
-const Container = styled.div`
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    z-index: 1;
 `;
 
 const Aside = styled.aside`
@@ -104,7 +98,6 @@ const ContentWrapper = styled.div`
 `;
 
 export {
-    Container,
     Aside,
     Main,
     DashBoardPageContainer,

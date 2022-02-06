@@ -13,7 +13,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import LockIcon from "@mui/icons-material/Lock";
 import { signInUser } from "../../store/auth/actions/actions";
 import { useDispatch } from "react-redux";
-import Logo from "../logo/Logo";
+import Logo from "../common/logo/Logo";
 
 const loginSchema = Yup.object().shape({
     email: Yup.string("Enter e-mail")

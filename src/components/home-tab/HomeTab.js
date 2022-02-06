@@ -1,136 +1,42 @@
-import * as React from "react";
-import Paper from "@mui/material/Paper";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import TableHead from "@mui/material/TableHead";
+import { headers, rows } from "./HomeTabData";
+import TablePaginationActions from "./HomeTabPaginationActions";
 import { v4 as uuid4 } from "uuid";
-
-const columns = [
-    {
-        id: "data",
-        label: "Data",
-        minWidth: 170,
-        format: (value) => value.toFixed(2),
-    },
-    {
-        id: "type",
-        label: "Type",
-        minWidth: 100,
-        format: (value) => value.toLocaleString("en-US"),
-    },
-    {
-        id: "category",
-        label: "Category",
-        minWidth: 170,
-        align: "right",
-        format: (value) => value.toLocaleString("en-US"),
-    },
-    {
-        id: "comments",
-        label: "Comments",
-        minWidth: 170,
-        align: "right",
-        format: (value) => value.toLocaleString("en-US"),
-    },
-    {
-        id: "amount",
-        label: "Amount",
-        minWidth: 170,
-        align: "right",
-        format: (value) => value.toFixed(2),
-    },
-    {
-        id: "balance",
-        label: "Balance",
-        minWidth: 170,
-        align: "right",
-        format: (value) => value.toFixed(2),
-    },
-];
-
-const createData = (data, type, category, comments, amount, balance) => {
-    return { data, type, category, comments, amount, balance };
-};
-
-const rows = [
-    createData(
-        "04.01.19",
-        "-",
-        "Other",
-        "A gift for a wife",
-        300.0,
-        "6 900.00"
-    ),
-    createData(
-        "04.01.19",
-        "-",
-        "Other",
-        "A gift for a wife",
-        300.0,
-        "6 900.00"
-    ),
-    createData(
-        "04.01.19",
-        "-",
-        "Other",
-        "A gift for a wife",
-        300.0,
-        "6 900.00"
-    ),
-    createData(
-        "04.01.19",
-        "-",
-        "Other",
-        "A gift for a wife",
-        300.0,
-        "6 900.00"
-    ),
-    createData(
-        "04.01.19",
-        "-",
-        "Other",
-        "A gift for a wife",
-        300.0,
-        "6 900.00"
-    ),
-    createData(
-        "04.01.19",
-        "-",
-        "Other",
-        "A gift for a wife",
-        300.0,
-        "6 900.00"
-    ),
-    createData(
-        "04.01.19",
-        "-",
-        "Other",
-        "A gift for a wife",
-        300.0,
-        "6 900.00"
-    ),
-];
+import ButtonAddTransactions from "../common/button-add-transactions/ButtonAddTransactions";
+import ModalAddTransaction from "../modal-add-transaction/ModalAddTransaction";
 
 const HomeTab = () => {
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(7);
+    const [showModal, setShowModal] = useState(false);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 7));
+        setPage(0);
+    };
+
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
     return (
-        <Paper
-            sx={{
-                overflow: "hidden",
-                boxShadow: 0,
-            }}
-        >
-            <TableContainer
-                sx={{
-                    maxHeight: 440,
-                    height: 330,
-                    overflowY: "scroll",
-                    width: 700,
-                }}
-            >
-                <Table stickyHeader aria-label="sticky table">
+        <>
+            <TableContainer>
+                <Table
+                    sx={{ width: 700, tableLayout: "auto" }}
+                    aria-label="pagination table"
+                >
                     <TableHead>
                         <TableRow
                             sx={{
@@ -142,60 +48,194 @@ const HomeTab = () => {
                                     borderBottomRightRadius: "3rem",
                                     borderTopRightRadius: "3rem",
                                 },
+                                "& .MuiTableCell-root": {
+                                    paddingBottom: "19px",
+                                    fontSize: 18,
+                                    lineHeight: 1.27,
+                                    borderBottom: 0,
+                                },
                             }}
                         >
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={uuid4()}
-                                    align={column.align}
-                                    style={{
-                                        minWidth: "70px",
-                                        fontFamily: "Abel",
-                                        fontSize: "1.8rem",
-                                        fontWeight: 400,
-                                        position: "static",
-                                    }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
+                            {headers.map((head) => {
+                                return (
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            maxWidth: "116px",
+                                        }}
+                                    >
+                                        {head}
+                                    </TableCell>
+                                );
+                            })}
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => {
-                            return (
+                        {(rowsPerPage > 0
+                            ? rows.slice(
+                                  page * rowsPerPage,
+                                  page * rowsPerPage + rowsPerPage
+                              )
+                            : rows
+                        ).map(
+                            ({
+                                date,
+                                type,
+                                category,
+                                comments,
+                                amount,
+                                balance,
+                            }) => (
                                 <TableRow
-                                    hover
-                                    role="checkbox"
-                                    tabIndex={-1}
                                     key={uuid4()}
+                                    sx={{
+                                        borderBottom: "1px solid #dcdcdf",
+                                        boxShadow:
+                                            "0px 1px 0px rgba(255,255,255, 0.6)",
+                                        "&:last-of-type": {
+                                            boxShadow: 0,
+                                        },
+                                        "& .MuiTableCell-root": {},
+                                    }}
                                 >
-                                    {columns.map((column) => {
-                                        const value = row[column.id];
-                                        return (
-                                            <TableCell
-                                                key={uuid4()}
-                                                align={column.align}
-                                                sx={{
-                                                    fontFamily: "Abel",
-                                                    fontSize: "1.6rem",
-                                                    fontWeight: 400,
-                                                }}
-                                            >
-                                                {column.format &&
-                                                typeof value === "number"
-                                                    ? column.format(value)
-                                                    : value}
-                                            </TableCell>
-                                        );
-                                    })}
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            maxWidth: "110px",
+                                        }}
+                                    >
+                                        {date}
+                                    </TableCell>
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            maxWidth: "110px",
+                                        }}
+                                    >
+                                        {type}
+                                    </TableCell>
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            maxWidth: "166px",
+
+                                            "&:hover": {
+                                                textOverflow: "clip",
+                                                whiteSpace: "normal",
+                                                wordBreak: "break-all",
+                                            },
+                                        }}
+                                    >
+                                        {category}
+                                    </TableCell>
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            maxWidth: "166px",
+
+                                            "&:hover": {
+                                                textOverflow: "clip",
+                                                whiteSpace: "normal",
+                                                wordBreak: "break-all",
+                                            },
+                                        }}
+                                    >
+                                        {comments}
+                                    </TableCell>
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            width: "110px",
+                                        }}
+                                    >
+                                        {amount}
+                                    </TableCell>
+                                    <TableCell
+                                        align="center"
+                                        sx={{
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            width: "110px",
+                                        }}
+                                    >
+                                        {balance}
+                                    </TableCell>
                                 </TableRow>
-                            );
-                        })}
+                            )
+                        )}
                     </TableBody>
+
+                    {emptyRows > 0 && (
+                        <TableRow style={{ height: 53 * emptyRows }}>
+                            <TableCell colSpan={6} />
+                        </TableRow>
+                    )}
+
+                    {rows.length <= 7 ? (
+                        ""
+                    ) : (
+                        <TableFooter>
+                            <TableRow>
+                                <TablePagination
+                                    sx={{
+                                        ".MuiTablePagination-displayedRows": {
+                                            fontFamily: "Abel, sans-serif",
+                                            fontSize: 16,
+                                            fontWeight: 400,
+                                            lineHeight: 1.27,
+                                            borderBottom: 0,
+                                        },
+                                        ".MuiSvgIcon-root": {
+                                            fontSize: "3rem",
+                                        },
+                                    }}
+                                    colSpan={4}
+                                    rowsPerPageOptions={[7]}
+                                    count={rows.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    SelectProps={{
+                                        inputProps: {
+                                            "aria-label": "rows per page",
+                                        },
+                                        native: true,
+                                    }}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={
+                                        handleChangeRowsPerPage
+                                    }
+                                    ActionsComponent={TablePaginationActions}
+                                />
+                            </TableRow>
+                        </TableFooter>
+                    )}
                 </Table>
             </TableContainer>
-        </Paper>
+            <ButtonAddTransactions
+                showModal={showModal}
+                setShowModal={setShowModal}
+            />
+            <ModalAddTransaction
+                showModal={showModal}
+                setShowModal={setShowModal}
+            />
+        </>
     );
 };
 

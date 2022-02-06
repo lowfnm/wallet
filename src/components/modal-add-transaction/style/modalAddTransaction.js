@@ -17,18 +17,22 @@ const Background = styled.div`
     width: 100%;
     height: 100%;
     position: fixed;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     top: 0;
     left: 0;
 `;
-const ModalTitle = styled.h1`
+const ModalTitle = styled.h2`
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 3rem;
     line-height: 1.5;
     text-align: center;
+    @media screen and (max-width: 480px) {
+        font-size: 2.4rem;
+    }
 `;
 const ModalClose = styled.div`
     cursor: pointer;
@@ -41,6 +45,9 @@ const ModalClose = styled.div`
 const Flex = styled.div`
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 480px) {
+        flex-direction: column;
+    }
 `;
 const InputWrap = styled.div`
     position: relative;
@@ -58,11 +65,50 @@ const InputWrap = styled.div`
         background-color: transparent;
         z-index: 3;
         text-align: left;
+        @media screen and (max-width: 480px) {
+            max-width: 410px;
+        }
     }
     span {
         position: absolute;
         bottom: -20px;
         left: 0;
+    }
+    & .css-2iy3mj {
+        display: none;
+    }
+
+    & .MuiInputAdornment-root {
+        margin-left: 0;
+    }
+
+    & .MuiOutlinedInput-notchedOutline {
+        border: none;
+    }
+    & .MuiInputLabel-root,
+    & .MuiButtonBase-root {
+        display: none;
+    }
+
+    .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+        font-family: "Abel", sans-serif;
+        font-size: 1.8rem;
+        height: auto;
+    }
+
+    .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+        padding-right: 0;
+    }
+`;
+const SwitcherLabel = styled.span`
+    position: absolute;
+    font-size: 1.6rem;
+    font-family: inherit;
+    top: 50%;
+    left: 97px;
+    transform: translateY(-50%);
+    &:first-child {
+        left: 265px;
     }
 `;
 const ModalButton = styled.button`
@@ -76,16 +122,11 @@ const ModalButton = styled.button`
     color: ${(props) => (props.cancel ? "#4A56E2" : "#fff")};
     border-radius: 20px;
     margin: ${(props) => (props.cancel ? "2rem" : "5rem")} auto 0;
-`;
-const SwitcherLabel = styled.span`
-    position: absolute;
-    font-size: 1.6rem;
-    font-family: inherit;
-    top: 50%;
-    left: 97px;
-    transform: translateY(-50%);
-    &:first-child {
-        left: 265px;
+    &:hover {
+        box-shadow: ${(props) =>
+            props.cancel
+                ? `0px 0px 15px rgba(74, 86, 226, 0.5)`
+                : `0px 0px 20px rgba(36, 204, 167, 0.7)`};
     }
 `;
 const IconCalendarWrap = styled.div`
