@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSpring, animated } from "react-spring";
 
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
@@ -23,16 +23,49 @@ import {
     IconCalendarWrap,
 } from "./style/modalAddTransaction";
 import { ModalCloseIcon } from "./icon/ModalCloseIcon";
-// import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "./icon/CalendarIcon";
+import { useDispatch } from "react-redux";
+import { transactionPost } from "../../store/transaction/actions/actions";
+import {
+    ArrowWrap,
+    DropDownContainer,
+    DropDownHeader,
+    DropDownList,
+    DropDownListContainer,
+    ListItem,
+} from "./dropdown/style/dropdown";
+import { ArrayDown } from "./dropdown/icon/ArrayDown";
+import { v4 as uuid4 } from "uuid";
 
 const ModalAddTransaction = ({ showModal, setShowModal }) => {
+    const options = [
+        "Main",
+        "Food",
+        "Car",
+        "Development",
+        "Kids",
+        "House",
+        "Education",
+        "Others",
+    ];
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const toggling = () => setIsOpen(!isOpen);
+
+    const onOptionClicked = (value) => () => {
+        setSelectedOption(value);
+        setIsOpen(false);
+        console.log(value);
+    };
+
+    // const ISOdate = new Date().toISOString();
+
     const [checked, setChecked] = useState(false);
     const [value, setValue] = React.useState(new Date());
     const [open, setOpen] = React.useState(false);
-    // const [startDate, setStartDate] = useState(new Date());
-
     const switchHandler = () => {
         setChecked(!checked);
     };
@@ -51,14 +84,50 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
             setShowModal(false);
         }
     };
+    const keyPress = useCallback(
+        (e) => {
+            if (e.key === "Escape" && showModal) {
+                setShowModal(false);
+            }
+        },
+        [setShowModal, showModal]
+    );
+    useEffect(() => {
+        document.addEventListener("keydown", keyPress);
+        return () => document.removeEventListener("keydown", keyPress);
+    }, [keyPress]);
+
+    const dispatch = useDispatch();
+    const onSubmit = ({
+        transactionDate,
+        type,
+        amount,
+        categoryId,
+        comment,
+    }) => {
+        dispatch(
+            transactionPost({
+                transactionDate,
+                type,
+                categoryId,
+                amount,
+                comment,
+            })
+        );
+        console.log(transactionDate);
+        console.log(type);
+        console.log(categoryId);
+        console.log(amount);
+        console.log(comment);
+    };
 
     const modalSchema = Yup.object({
-        price: Yup.string()
+        amount: Yup.string("0.00")
             .typeError()
             .min(1, "Name must be at least 1 character")
             .max(12, "The price must be a maximum of 12 characters")
             .required("This field is required"),
-        comments: Yup.string()
+        comment: Yup.string()
             .max(30, "The comment must be a maximum of 30 characters")
             .required("This field is required"),
         date: Yup.string().required("This field is required"),
@@ -71,19 +140,16 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                         <ModalWrap showModal={showModal}>
                             <Formik
                                 initialValues={{
-                                    price: "",
-                                    date: "",
-                                    comments: "",
+                                    transactionDate: "",
+                                    type: "",
+                                    categoryId: "",
+                                    comment: "",
+                                    amount: "",
                                 }}
-                                validationSchema={modalSchema}
-                                onSubmit={modalSchema}
+                                // validationSchema={modalSchema}
+                                onSubmit={onSubmit}
                             >
-                                {({
-                                    values,
-                                    handleChange,
-                                    handleBlur,
-                                    isSubmitting,
-                                }) => (
+                                {({ values, handleChange, handleBlur }) => (
                                     <Form>
                                         <ModalTitle>Add transaction</ModalTitle>
                                         <SwitcherWrap>
@@ -96,7 +162,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                             >
                                                 Expenses
                                             </SwitcherLabel>
-
                                             <SwitcherLabel
                                                 style={{
                                                     color: checked
@@ -106,33 +171,89 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                             >
                                                 Income
                                             </SwitcherLabel>
-
                                             <FormControlLabel
                                                 control={
                                                     <Switcher
                                                         checked={checked}
+                                                        value={
+                                                            checked
+                                                                ? (values.type =
+                                                                      "EXPENSES")
+                                                                : (values.type =
+                                                                      "INCOME")
+                                                        }
                                                         onChange={switchHandler}
                                                     />
                                                 }
                                                 label={" "}
                                             />
                                         </SwitcherWrap>
-                                        <div>{checked ? <Dropdown /> : ""}</div>
+                                        <div>
+                                            {checked ? (
+                                                <>
+                                                    <DropDownContainer>
+                                                        <DropDownHeader
+                                                            onClick={toggling}
+                                                            // value={
+                                                            //     (value.categoryId =
+                                                            //         selectedOption)
+                                                            // }
+                                                        >
+                                                            {selectedOption ||
+                                                                `Select a category`}
+                                                            <ArrowWrap>
+                                                                <ArrayDown />
+                                                            </ArrowWrap>
+                                                        </DropDownHeader>
+                                                        {isOpen && (
+                                                            <DropDownListContainer>
+                                                                <DropDownList>
+                                                                    {options.map(
+                                                                        (
+                                                                            option
+                                                                        ) => (
+                                                                            <ListItem
+                                                                                onClick={onOptionClicked(
+                                                                                    option
+                                                                                )}
+                                                                                value={
+                                                                                    value.categoryId
+                                                                                }
+                                                                                key={uuid4()}
+                                                                            >
+                                                                                {
+                                                                                    option
+                                                                                }
+                                                                            </ListItem>
+                                                                        )
+                                                                    )}
+                                                                </DropDownList>
+                                                            </DropDownListContainer>
+                                                        )}
+                                                    </DropDownContainer>
+                                                    {/*<Dropdown*/}
+                                                    {/*    value={value.categoryId}*/}
+                                                    {/*/>*/}
+                                                </>
+                                            ) : (
+                                                ""
+                                            )}
+                                        </div>
                                         <Flex>
                                             <InputWrap>
                                                 <Field
                                                     style={{
                                                         textAlign: "center",
                                                     }}
-                                                    name="price"
+                                                    name="amount"
                                                     type="number"
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
-                                                    value={values.price}
+                                                    value={values.amount}
                                                     placeholder="O.00"
                                                 />
                                                 <ErrorMessage
-                                                    name="price"
+                                                    name="amount"
                                                     component="span"
                                                     style={{ color: "#FF6596" }}
                                                 />
@@ -142,6 +263,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                     dateAdapter={AdapterDateFns}
                                                 >
                                                     <DatePicker
+                                                        maxDate={new Date()}
                                                         open={open}
                                                         onOpen={() =>
                                                             setOpen(true)
@@ -207,20 +329,22 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                 style={{
                                                     maxWidth: 410,
                                                 }}
-                                                name="comments"
+                                                name="comment"
                                                 type="text"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.comments}
+                                                value={values.comment}
                                                 placeholder="Comments"
                                             />
                                             <ErrorMessage
-                                                name="comments"
+                                                name="comment"
                                                 component="span"
                                                 style={{ color: "#FF6596" }}
                                             />
                                         </InputWrap>
-                                        <ModalButton>ADD</ModalButton>
+                                        <ModalButton type="submit">
+                                            ADD
+                                        </ModalButton>
                                         <ModalButton
                                             cancel
                                             onClick={() =>

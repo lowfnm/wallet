@@ -7,6 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { v4 as uuid4 } from "uuid";
+import ButtonAddTransactions from "../button-add-transactions/ButtonAddTransactions";
+import ModalAddTransaction from "../modal-add-transaction/ModalAddTransaction";
+import { useState } from "react";
 
 const columns = [
     {
@@ -115,87 +118,98 @@ const rows = [
 ];
 
 const HomeTab = () => {
+    const [showModal, setShowModal] = useState(false);
     return (
-        <Paper
-            sx={{
-                overflow: "hidden",
-                boxShadow: 0,
-            }}
-        >
-            <TableContainer
+        <>
+            <Paper
                 sx={{
-                    maxHeight: 440,
-                    height: 330,
-                    overflowY: "scroll",
-                    width: 700,
+                    overflow: "hidden",
+                    boxShadow: 0,
                 }}
             >
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow
-                            sx={{
-                                "& th:first-of-type": {
-                                    borderBottomLeftRadius: "3rem",
-                                    borderTopLeftRadius: "3rem",
-                                },
-                                "& th:last-of-type": {
-                                    borderBottomRightRadius: "3rem",
-                                    borderTopRightRadius: "3rem",
-                                },
-                            }}
-                        >
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={uuid4()}
-                                    align={column.align}
-                                    style={{
-                                        minWidth: "70px",
-                                        fontFamily: "Abel",
-                                        fontSize: "1.8rem",
-                                        fontWeight: 400,
-                                        position: "static",
-                                    }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => {
-                            return (
-                                <TableRow
-                                    hover
-                                    role="checkbox"
-                                    tabIndex={-1}
-                                    key={uuid4()}
-                                >
-                                    {columns.map((column) => {
-                                        const value = row[column.id];
-                                        return (
-                                            <TableCell
-                                                key={uuid4()}
-                                                align={column.align}
-                                                sx={{
-                                                    fontFamily: "Abel",
-                                                    fontSize: "1.6rem",
-                                                    fontWeight: 400,
-                                                }}
-                                            >
-                                                {column.format &&
-                                                typeof value === "number"
-                                                    ? column.format(value)
-                                                    : value}
-                                            </TableCell>
-                                        );
-                                    })}
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Paper>
+                <TableContainer
+                    sx={{
+                        maxHeight: 440,
+                        height: 330,
+                        overflowY: "scroll",
+                        width: 700,
+                    }}
+                >
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow
+                                sx={{
+                                    "& th:first-of-type": {
+                                        borderBottomLeftRadius: "3rem",
+                                        borderTopLeftRadius: "3rem",
+                                    },
+                                    "& th:last-of-type": {
+                                        borderBottomRightRadius: "3rem",
+                                        borderTopRightRadius: "3rem",
+                                    },
+                                }}
+                            >
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={uuid4()}
+                                        align={column.align}
+                                        style={{
+                                            minWidth: "70px",
+                                            fontFamily: "Abel",
+                                            fontSize: "1.8rem",
+                                            fontWeight: 400,
+                                            position: "static",
+                                        }}
+                                    >
+                                        {column.label}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {rows.map((row) => {
+                                return (
+                                    <TableRow
+                                        hover
+                                        role="checkbox"
+                                        tabIndex={-1}
+                                        key={uuid4()}
+                                    >
+                                        {columns.map((column) => {
+                                            const value = row[column.id];
+                                            return (
+                                                <TableCell
+                                                    key={uuid4()}
+                                                    align={column.align}
+                                                    sx={{
+                                                        fontFamily: "Abel",
+                                                        fontSize: "1.6rem",
+                                                        fontWeight: 400,
+                                                    }}
+                                                >
+                                                    {column.format &&
+                                                    typeof value === "number"
+                                                        ? column.format(value)
+                                                        : value}
+                                                </TableCell>
+                                            );
+                                        })}
+                                    </TableRow>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Paper>
+            <ButtonAddTransactions
+                showModal={showModal}
+                setShowModal={setShowModal}
+            />
+            <ModalAddTransaction
+                showModal={showModal}
+                setShowModal={setShowModal}
+            />
+        </>
     );
 };
 

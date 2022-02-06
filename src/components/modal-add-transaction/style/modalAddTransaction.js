@@ -24,16 +24,12 @@ const Background = styled.div`
     top: 0;
     left: 0;
 `;
-const ModalTitle = styled.h1`
+const ModalTitle = styled.h2`
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 3rem;
     line-height: 1.5;
     text-align: center;
-
-    //@media (max-width: 768px) {
-    //    font-size: 2rem;
-    //}
     @media screen and (max-width: 480px) {
         font-size: 2.4rem;
     }
@@ -104,6 +100,17 @@ const InputWrap = styled.div`
         padding-right: 0;
     }
 `;
+const SwitcherLabel = styled.span`
+    position: absolute;
+    font-size: 1.6rem;
+    font-family: inherit;
+    top: 50%;
+    left: 97px;
+    transform: translateY(-50%);
+    &:first-child {
+        left: 265px;
+    }
+`;
 const ModalButton = styled.button`
     font-size: 1.8rem;
     font-family: inherit;
@@ -115,16 +122,11 @@ const ModalButton = styled.button`
     color: ${(props) => (props.cancel ? "#4A56E2" : "#fff")};
     border-radius: 20px;
     margin: ${(props) => (props.cancel ? "2rem" : "5rem")} auto 0;
-`;
-const SwitcherLabel = styled.span`
-    position: absolute;
-    font-size: 1.6rem;
-    font-family: inherit;
-    top: 50%;
-    left: 97px;
-    transform: translateY(-50%);
-    &:first-child {
-        left: 265px;
+    &:hover {
+        box-shadow: ${(props) =>
+            props.cancel
+                ? `0px 0px 15px rgba(74, 86, 226, 0.5)`
+                : `0px 0px 20px rgba(36, 204, 167, 0.7)`};
     }
 `;
 const IconCalendarWrap = styled.div`

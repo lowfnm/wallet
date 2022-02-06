@@ -5,7 +5,7 @@ import ellipseOrange from "../icon/ellipse-orange.svg";
 const HeaderWrapper = styled.div`
     background-color: #fff;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 `;
 
 const Container = styled.div`
