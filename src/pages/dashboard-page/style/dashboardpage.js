@@ -8,12 +8,6 @@ const HeaderWrapper = styled.div`
     z-index: 1;
 `;
 
-const Container = styled.div`
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-`;
-
 const Aside = styled.aside`
     padding-right: 3rem;
     position: relative;
@@ -27,8 +21,8 @@ const Aside = styled.aside`
         height: calc(100vh - 8.5rem);
         width: 1px;
         background-color: #e7e5f2;
-        box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
-            1px 0px 0px rgba(255, 255, 255, 0.6);
+        box-shadow: -1px 0 0 rgba(0, 0, 0, 0.05),
+            1px 0 0 rgba(255, 255, 255, 0.6);
     }
 `;
 const Main = styled.main`
@@ -78,11 +72,4 @@ const ContentWrapper = styled.div`
     position: relative;
 `;
 
-export {
-    Container,
-    Aside,
-    Main,
-    DashBoardPageContainer,
-    ContentWrapper,
-    HeaderWrapper,
-};
+export { Aside, Main, DashBoardPageContainer, ContentWrapper, HeaderWrapper };

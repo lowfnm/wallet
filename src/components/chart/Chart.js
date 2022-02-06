@@ -7,19 +7,17 @@ ChartJS.register(ArcElement, Tooltip);
 
 const Chart = () => {
     return (
-        <div>
-            <Wrapper>
-                <Doughnut
-                    type="doughnut"
-                    options={{
-                        cutout: 110,
-                        borderColor: "transparent",
-                    }}
-                    data={chartData}
-                />
-                <ExpensesMoney>₴ 24 000.00</ExpensesMoney>
-            </Wrapper>
-        </div>
+        <Wrapper>
+            <Doughnut
+                type="doughnut"
+                options={{
+                    cutout: 110,
+                    borderColor: "transparent",
+                }}
+                data={chartData}
+            />
+            <ExpensesMoney>₴ 24 000.00</ExpensesMoney>
+        </Wrapper>
     );
 };
 

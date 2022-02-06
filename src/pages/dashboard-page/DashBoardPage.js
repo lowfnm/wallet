@@ -5,12 +5,12 @@ import Navigation from "../../components/navigation/Navigation";
 import { Outlet } from "react-router-dom";
 import {
     Aside,
-    Container,
     ContentWrapper,
     DashBoardPageContainer,
     Main,
     HeaderWrapper,
 } from "./style/dashboardpage";
+import Container from "../../components/common/container/container";
 
 const DashBoardPage = () => {
     return (

@@ -1,5 +1,5 @@
 import { LogoWrapper, LogoTitle } from "./style/logo";
-import SvgLogo from "../header/icon/SvgLogo";
+import SvgLogo from "../../header/icon/SvgLogo";
 
 const Logo = () => {
     return (

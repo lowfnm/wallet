@@ -1,6 +1,6 @@
 import { Container, Heading } from "./style/header";
 import AccountOptions from "./account-options/AccountOptions";
-import Logo from "../logo/Logo";
+import Logo from "../common/logo/Logo";
 
 const Header = () => {
     return (
