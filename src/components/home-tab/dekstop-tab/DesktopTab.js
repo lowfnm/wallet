@@ -3,7 +3,7 @@ import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { headers, transactions } from "../HomeTabData";
+import { headers } from "../HomeTabData";
 import TableCell from "@mui/material/TableCell";
 import { v4 as uuid4 } from "uuid";
 import TableBody from "@mui/material/TableBody";
@@ -11,10 +11,14 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TablePaginationActions from "./DestopTabPaginationActions";
 import WithoutTransactions from "../../common/without-transactions/WithoutTransactions";
+import { transactionSelector } from "../../../store/transaction/reducers/reducers";
+import { useSelector } from "react-redux";
 
 const DesktopTab = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+
+    const { transactions } = useSelector(transactionSelector);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -34,7 +38,15 @@ const DesktopTab = () => {
         <>
             {transactions.length > 0 ? (
                 <TableContainer>
-                    <Table sx={{ width: 700 }} aria-label="pagination table">
+                    <Table
+                        sx={{
+                            width: 700,
+                            "@media (max-width: 1279px)": {
+                                width: "100%",
+                            },
+                        }}
+                        aria-label="pagination table"
+                    >
                         <TableHead>
                             <TableRow
                                 sx={{
@@ -79,12 +91,12 @@ const DesktopTab = () => {
                                 : transactions
                             ).map(
                                 ({
-                                    date,
+                                    transactionDate,
                                     type,
-                                    category,
-                                    comments,
+                                    categoryId,
                                     amount,
-                                    balance,
+                                    comment,
+                                    balanceAfter,
                                 }) => (
                                     <TableRow
                                         key={uuid4()}
@@ -104,7 +116,7 @@ const DesktopTab = () => {
                                                 overflowWrap: "break-word",
                                             }}
                                         >
-                                            {date}
+                                            {transactionDate}
                                         </TableCell>
                                         <TableCell
                                             align="center"
@@ -122,7 +134,7 @@ const DesktopTab = () => {
                                                 overflowWrap: "break-word",
                                             }}
                                         >
-                                            {category}
+                                            {categoryId}
                                         </TableCell>
                                         <TableCell
                                             align="center"
@@ -131,7 +143,7 @@ const DesktopTab = () => {
                                                 overflowWrap: "break-word",
                                             }}
                                         >
-                                            {comments}
+                                            {comment}
                                         </TableCell>
                                         <TableCell
                                             align="center"
@@ -149,7 +161,7 @@ const DesktopTab = () => {
                                                 overflowWrap: "break-word",
                                             }}
                                         >
-                                            {balance}
+                                            {balanceAfter}
                                         </TableCell>
                                     </TableRow>
                                 )

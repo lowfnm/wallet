@@ -19,7 +19,7 @@ const OperationTypeLine = styled.div`
     bottom: 0;
     left: 0;
     width: 7px;
-    height: 275px;
+    height: 100%;
     background-color: #ff6596;
 `;
 

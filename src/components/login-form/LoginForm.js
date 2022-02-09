@@ -40,7 +40,7 @@ const LoginForm = () => {
                     validationSchema={loginSchema}
                     onSubmit={onSubmit}
                 >
-                    {({ values, handleChange, handleBlur, isSubmitting }) => (
+                    {({ values, handleChange, handleBlur }) => (
                         <Form>
                             <LogoWrapper>
                                 <Logo />

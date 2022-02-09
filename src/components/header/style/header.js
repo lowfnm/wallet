@@ -5,6 +5,11 @@ const Heading = styled.header`
     margin: 0 auto;
     padding: 2rem 0;
     height: 9rem;
+
+    @media (max-width: 767px) {
+        height: 6rem;
+        padding: 1rem 0;
+    }
 `;
 
 const Container = styled.div`

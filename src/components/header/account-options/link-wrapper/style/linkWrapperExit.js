@@ -5,6 +5,12 @@ const LinkWrapper = styled.a`
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+
+    @media (max-width: 767px) {
+        span {
+            display: none;
+        }
+    }
 `;
 
 const ExitLink = styled.span``;

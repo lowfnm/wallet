@@ -1,6 +1,6 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { headers, transactions } from "../HomeTabData";
+import { headers } from "../HomeTabData";
 import {
     OperationItem,
     OperationList,
@@ -8,8 +8,12 @@ import {
 } from "./style/mobiletab";
 import { v4 as uuid4 } from "uuid";
 import WithoutTransactions from "../../common/without-transactions/WithoutTransactions";
+import { useSelector } from "react-redux";
+import { transactionSelector } from "../../../store/transaction/reducers/reducers";
 
 const MobileTab = () => {
+    const { transactions } = useSelector(transactionSelector);
+
     return (
         <>
             {transactions.length > 0 ? (

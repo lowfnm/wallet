@@ -117,6 +117,7 @@ const InputWrap = styled.div`
         font-family: "Abel", sans-serif;
         font-size: 1.8rem;
         height: auto;
+        cursor: pointer;
     }
 
     .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
@@ -240,6 +241,19 @@ const Switcher = styled(Switch)(() => ({
     },
 }));
 
+const CategoryDropWrap = styled.div`
+    margin-top: 3.5rem;
+    max-width: 410px;
+    width: 100%;
+    position: relative;
+`;
+
+const ArrowWrap = styled.div`
+    cursor: pointer;
+    position: absolute;
+    bottom: 14px;
+    right: 7px;
+`;
 export {
     ModalWrap,
     Background,
@@ -253,4 +267,6 @@ export {
     SwitcherLabel,
     IconCalendarWrap,
     SwitcherLabelWrap,
+    CategoryDropWrap,
+    ArrowWrap,
 };

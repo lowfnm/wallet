@@ -18,5 +18,11 @@ const ButtonAdd = styled.button`
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    @media (max-width: 767px) {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
 `;
 export { ButtonAdd };

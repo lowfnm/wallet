@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { transactionPost } from "../actions/actions";
+import {
+    transactionGet,
+    transactionGetCategories,
+    transactionPost,
+} from "../actions/actions";
 
 export const transactionSlice = createSlice({
     name: "transaction",
@@ -15,6 +19,8 @@ export const transactionSlice = createSlice({
         isSuccess: false,
         isError: false,
         errorMessage: "",
+        categoriesArray: [],
+        transactions: [],
     },
     reducers: {
         clearState: (state) => {
@@ -24,6 +30,7 @@ export const transactionSlice = createSlice({
             return state;
         },
     },
+
     extraReducers: {
         [transactionPost.fulfilled]: (state, { payload }) => {
             state.isSuccess = true;
@@ -34,10 +41,30 @@ export const transactionSlice = createSlice({
             state.comment = payload.comment;
             state.amount = payload.amount;
             state.id = payload.id;
-            state.balance = payload.balance;
+            state.balanceAfter = payload.balanceAfter;
         },
         [transactionPost.pending]: (state) => {},
         [transactionPost.rejected]: (state, { payload }) => {
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+
+        [transactionGet.fulfilled]: (state, { payload }) => {
+            state.isSuccess = true;
+            state.transactions = [...payload];
+        },
+        [transactionGet.pending]: (state) => {},
+        [transactionGet.rejected]: (state, { payload }) => {
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+
+        [transactionGetCategories.fulfilled]: (state, { payload }) => {
+            state.isSuccess = true;
+            state.categoriesArray = [...payload];
+        },
+        [transactionGetCategories.pending]: (state) => {},
+        [transactionGetCategories.rejected]: (state, { payload }) => {
             state.isError = true;
             state.errorMessage = payload.message;
         },
@@ -45,4 +72,4 @@ export const transactionSlice = createSlice({
 });
 
 export const { clearState } = transactionSlice.actions;
-export const userSelector = (state) => state.user;
+export const transactionSelector = (state) => state.transaction;

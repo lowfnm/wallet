@@ -19,7 +19,8 @@ const Rates = styled.section`
     }
     @media (max-width: 767px) {
         margin: 0 auto;
-        max-width: 280px;
+        width: 100%;
+        max-width: 320px;
     }
 `;
 
@@ -54,6 +55,10 @@ const BodyItem = styled.li`
 
     &:nth-child(2) {
         padding-left: 4rem;
+    }
+
+    @media (max-width: 767px) {
+        padding: 0 2rem;
     }
 `;
 

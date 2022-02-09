@@ -16,7 +16,13 @@ const DiagramTable = () => {
                 marginTop: "25px",
             }}
         >
-            <Table sx={{ width: 350 }} aria-label="simple table">
+            <Table
+                sx={{
+                    width: 350,
+                    "@media (max-width: 767px)": { width: "100%" },
+                }}
+                aria-label="simple table"
+            >
                 <TableHead>
                     <TableRow
                         sx={{

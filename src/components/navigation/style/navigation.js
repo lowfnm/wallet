@@ -12,11 +12,13 @@ export const LinkElem = styled(NavLink)`
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+
+    width: fit-content;
+
     &:last-child {
         display: none;
     }
-    &.active {
-    }
+
     &.active > div {
         background-color: #4d57e6;
         filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));

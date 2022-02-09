@@ -120,7 +120,17 @@ const TableSelect = () => {
                 </Select>
             </FormControl>
 
-            <FormControl sx={{ marginLeft: 1.9, minWidth: 166, height: 50 }}>
+            <FormControl
+                sx={{
+                    marginLeft: 1.9,
+                    minWidth: 166,
+                    height: 50,
+                    "@media (max-width: 767px)": {
+                        marginLeft: 0,
+                        marginTop: "2rem",
+                    },
+                }}
+            >
                 <InputLabel
                     label="year"
                     variant={"filled"}
