@@ -7,16 +7,20 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableHead from "@mui/material/TableHead";
-import { headers, rows } from "./HomeTabData";
+import { headers } from "./HomeTabData";
 import TablePaginationActions from "./HomeTabPaginationActions";
 import { v4 as uuid4 } from "uuid";
 import ButtonAddTransactions from "../common/button-add-transactions/ButtonAddTransactions";
 import ModalAddTransaction from "../modal-add-transaction/ModalAddTransaction";
+import { useSelector } from "react-redux";
+import { transactionSelector } from "../../store/transaction/reducers/reducers";
 
 const HomeTab = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(7);
     const [showModal, setShowModal] = useState(false);
+
+    const { transactions } = useSelector(transactionSelector);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -28,7 +32,9 @@ const HomeTab = () => {
     };
 
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+        page > 0
+            ? Math.max(0, (1 + page) * rowsPerPage - transactions.length)
+            : 0;
 
     return (
         <>
@@ -59,6 +65,7 @@ const HomeTab = () => {
                             {headers.map((head) => {
                                 return (
                                     <TableCell
+                                        key={uuid4()}
                                         align="center"
                                         sx={{
                                             maxWidth: "116px",
@@ -70,21 +77,22 @@ const HomeTab = () => {
                             })}
                         </TableRow>
                     </TableHead>
+
                     <TableBody>
                         {(rowsPerPage > 0
-                            ? rows.slice(
+                            ? transactions.slice(
                                   page * rowsPerPage,
                                   page * rowsPerPage + rowsPerPage
                               )
-                            : rows
+                            : transactions
                         ).map(
                             ({
-                                date,
+                                transactionDate,
                                 type,
-                                category,
-                                comments,
+                                categoryId,
                                 amount,
-                                balance,
+                                comment,
+                                balanceAfter,
                             }) => (
                                 <TableRow
                                     key={uuid4()}
@@ -107,7 +115,7 @@ const HomeTab = () => {
                                             maxWidth: "110px",
                                         }}
                                     >
-                                        {date}
+                                        {transactionDate}
                                     </TableCell>
                                     <TableCell
                                         align="center"
@@ -135,7 +143,7 @@ const HomeTab = () => {
                                             },
                                         }}
                                     >
-                                        {category}
+                                        {categoryId}
                                     </TableCell>
                                     <TableCell
                                         align="center"
@@ -152,7 +160,7 @@ const HomeTab = () => {
                                             },
                                         }}
                                     >
-                                        {comments}
+                                        {comment}
                                     </TableCell>
                                     <TableCell
                                         align="center"
@@ -174,7 +182,7 @@ const HomeTab = () => {
                                             width: "110px",
                                         }}
                                     >
-                                        {balance}
+                                        {balanceAfter}
                                     </TableCell>
                                 </TableRow>
                             )
@@ -187,7 +195,7 @@ const HomeTab = () => {
                         </TableRow>
                     )}
 
-                    {rows.length <= 7 ? (
+                    {transactions.length <= 7 ? (
                         ""
                     ) : (
                         <TableFooter>
@@ -207,7 +215,7 @@ const HomeTab = () => {
                                     }}
                                     colSpan={4}
                                     rowsPerPageOptions={[7]}
-                                    count={rows.length}
+                                    count={transactions.length}
                                     rowsPerPage={rowsPerPage}
                                     page={page}
                                     SelectProps={{

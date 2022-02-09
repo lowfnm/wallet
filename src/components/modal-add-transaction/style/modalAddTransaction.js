@@ -94,6 +94,7 @@ const InputWrap = styled.div`
         font-family: "Abel", sans-serif;
         font-size: 1.8rem;
         height: auto;
+      cursor: pointer;
     }
 
     .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {

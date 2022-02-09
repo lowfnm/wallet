@@ -3,19 +3,74 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const API_URL = "https://wallet.goit.ua/api";
+const token = localStorage.getItem("token");
+
+// Получаем категории
+export const transactionGetCategories = createAsyncThunk(
+    "user/transactionGetCategories",
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios({
+                method: "get",
+                url: `${API_URL}/transaction-categories`,
+                headers: {
+                    Authorization: token,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            if (error.response.statusCode === 400) {
+                return rejectWithValue(toast.error("Validation error"));
+            }
+            if (error.response.status === 401) {
+                return rejectWithValue(
+                    toast.error("Bearer authorization failed")
+                );
+            }
+
+            return rejectWithValue(toast.error("Server error"));
+        }
+    }
+);
+
+export const transactionGet = createAsyncThunk(
+    "user/transactionGet",
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios({
+                method: "get",
+                url: `${API_URL}/transactions`,
+                headers: {
+                    Authorization: token,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            if (error.response.statusCode === 400) {
+                return rejectWithValue(toast.error("Validation error"));
+            }
+            if (error.response.status === 401) {
+                return rejectWithValue(
+                    toast.error("Bearer authorization failed")
+                );
+            }
+
+            return rejectWithValue(toast.error("Server error"));
+        }
+    }
+);
 
 export const transactionPost = createAsyncThunk(
-    "user/transaction",
-    async ({ amount, comment }, { rejectWithValue }) => {
-        const token = localStorage.getItem("token");
+    "user/transactionPost",
+    async ({ values }, { rejectWithValue }) => {
         try {
             const response = await axios({
                 method: "post",
                 url: `${API_URL}/transactions`,
-                data: {
-                    amount,
-                    comment,
-                },
+                data: values,
+
                 headers: {
                     Authorization: token,
                 },

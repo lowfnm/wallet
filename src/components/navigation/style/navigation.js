@@ -7,6 +7,7 @@ export const LinkElem = styled(NavLink)`
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    width: fit-content;
 
     &.active > div {
         background-color: #4d57e6;

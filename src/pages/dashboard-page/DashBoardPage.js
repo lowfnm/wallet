@@ -12,8 +12,24 @@ import {
     NavigationWrapper,
 } from "./style/dashboardpage";
 import Container from "../../components/common/container/container";
+import { useEffect } from "react";
+import {
+    transactionGet,
+    transactionGetCategories,
+} from "../../store/transaction/actions/actions";
+import { useDispatch } from "react-redux";
 
 const DashBoardPage = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(transactionGet());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(transactionGetCategories());
+    }, [dispatch]);
+
     return (
         <>
             <HeaderWrapper>

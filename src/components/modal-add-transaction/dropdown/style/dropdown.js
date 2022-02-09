@@ -13,6 +13,7 @@ const DropDownHeader = styled.div`
     font-family: inherit;
     border-bottom: 1px solid #e0e0e0;
     color: #bdbdbd;
+  cursor: pointer;
 `;
 
 const ArrowWrap = styled.div`
