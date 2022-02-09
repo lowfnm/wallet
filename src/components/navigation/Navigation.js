@@ -1,11 +1,7 @@
-import {
-    Nav,
-    NavText,
-    IconWrapper,
-    LinkElem,
-} from "./style/navigation";
+import { Nav, NavText, IconWrapper, LinkElem } from "./style/navigation";
 import HomeIcon from "@mui/icons-material/Home";
 import TimelineIcon from "@mui/icons-material/Timeline";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 const Navigation = () => {
     return (
@@ -32,6 +28,16 @@ const Navigation = () => {
                     />
                 </IconWrapper>
                 <NavText>Statistics</NavText>
+            </LinkElem>
+            <LinkElem to="/currency">
+                <IconWrapper>
+                    <AttachMoneyIcon
+                        sx={{
+                            width: 18,
+                            height: 18,
+                        }}
+                    />
+                </IconWrapper>
             </LinkElem>
         </Nav>
     );

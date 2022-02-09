@@ -12,13 +12,14 @@ const Rates = styled.section`
     @media (max-width: 1279px) {
         margin-top: 0;
         height: 200px;
-    }
-
-    svg {
-        @media (max-width: 1279px) {
+        svg {
             position: absolute;
             bottom: 0;
         }
+    }
+    @media (max-width: 767px) {
+        margin: 0 auto;
+        max-width: 280px;
     }
 `;
 

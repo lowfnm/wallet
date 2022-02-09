@@ -8,7 +8,7 @@ import DatePicker from "@material-ui/lab/DatePicker";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Dropdown from "./dropdown/Dropdown";
+
 import {
     ModalWrap,
     ModalTitle,
@@ -20,49 +20,17 @@ import {
     Switcher,
     SwitcherWrap,
     SwitcherLabel,
+    SwitcherLabelWrap,
     IconCalendarWrap,
 } from "./style/modalAddTransaction";
 import { ModalCloseIcon } from "./icon/ModalCloseIcon";
-
+import { CategoryDrop } from "./categoryDrop/CategoryDrop";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "./icon/CalendarIcon";
 import { useDispatch } from "react-redux";
 import { transactionPost } from "../../store/transaction/actions/actions";
-import {
-    ArrowWrap,
-    DropDownContainer,
-    DropDownHeader,
-    DropDownList,
-    DropDownListContainer,
-    ListItem,
-} from "./dropdown/style/dropdown";
-import { ArrayDown } from "./dropdown/icon/ArrayDown";
-import { v4 as uuid4 } from "uuid";
 
 const ModalAddTransaction = ({ showModal, setShowModal }) => {
-    const options = [
-        "Main",
-        "Food",
-        "Car",
-        "Development",
-        "Kids",
-        "House",
-        "Education",
-        "Others",
-    ];
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(null);
-
-    const toggling = () => setIsOpen(!isOpen);
-
-    const onOptionClicked = (value) => () => {
-        setSelectedOption(value);
-        setIsOpen(false);
-        console.log(value);
-    };
-
-    // const ISOdate = new Date().toISOString();
-
     const [checked, setChecked] = useState(false);
     const [value, setValue] = React.useState(new Date());
     const [open, setOpen] = React.useState(false);
@@ -153,24 +121,26 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                     <Form>
                                         <ModalTitle>Add transaction</ModalTitle>
                                         <SwitcherWrap>
-                                            <SwitcherLabel
-                                                style={{
-                                                    color: checked
-                                                        ? "#FF6596"
-                                                        : "#e0e0e0",
-                                                }}
-                                            >
-                                                Expenses
-                                            </SwitcherLabel>
-                                            <SwitcherLabel
-                                                style={{
-                                                    color: checked
-                                                        ? "#e0e0e0"
-                                                        : "#24cca7",
-                                                }}
-                                            >
-                                                Income
-                                            </SwitcherLabel>
+                                            <SwitcherLabelWrap>
+                                                <SwitcherLabel
+                                                    style={{
+                                                        color: checked
+                                                            ? "#FF6596"
+                                                            : "#e0e0e0",
+                                                    }}
+                                                >
+                                                    Expenses
+                                                </SwitcherLabel>
+                                                <SwitcherLabel
+                                                    style={{
+                                                        color: checked
+                                                            ? "#e0e0e0"
+                                                            : "#24cca7",
+                                                    }}
+                                                >
+                                                    Income
+                                                </SwitcherLabel>
+                                            </SwitcherLabelWrap>
                                             <FormControlLabel
                                                 control={
                                                     <Switcher
@@ -189,55 +159,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                             />
                                         </SwitcherWrap>
                                         <div>
-                                            {checked ? (
-                                                <>
-                                                    <DropDownContainer>
-                                                        <DropDownHeader
-                                                            onClick={toggling}
-                                                            // value={
-                                                            //     (value.categoryId =
-                                                            //         selectedOption)
-                                                            // }
-                                                        >
-                                                            {selectedOption ||
-                                                                `Select a category`}
-                                                            <ArrowWrap>
-                                                                <ArrayDown />
-                                                            </ArrowWrap>
-                                                        </DropDownHeader>
-                                                        {isOpen && (
-                                                            <DropDownListContainer>
-                                                                <DropDownList>
-                                                                    {options.map(
-                                                                        (
-                                                                            option
-                                                                        ) => (
-                                                                            <ListItem
-                                                                                onClick={onOptionClicked(
-                                                                                    option
-                                                                                )}
-                                                                                value={
-                                                                                    value.categoryId
-                                                                                }
-                                                                                key={uuid4()}
-                                                                            >
-                                                                                {
-                                                                                    option
-                                                                                }
-                                                                            </ListItem>
-                                                                        )
-                                                                    )}
-                                                                </DropDownList>
-                                                            </DropDownListContainer>
-                                                        )}
-                                                    </DropDownContainer>
-                                                    {/*<Dropdown*/}
-                                                    {/*    value={value.categoryId}*/}
-                                                    {/*/>*/}
-                                                </>
-                                            ) : (
-                                                ""
-                                            )}
+                                            {checked ? <CategoryDrop /> : ""}
                                         </div>
                                         <Flex>
                                             <InputWrap>

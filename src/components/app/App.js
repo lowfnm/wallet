@@ -14,6 +14,7 @@ import PrivateRoute from "../../routes/private-route/PrivateRoute";
 import DashBoardPage from "../../pages/dashboard-page/DashBoardPage";
 import HomeTab from "../home-tab/HomeTab";
 import DiagramTab from "../diagram-tab/DiagramTab";
+import Currency from "../currency/Currency";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const App = () => {
                         <Route index element={<Navigate to="/home" />} />
                         <Route path="home" element={<HomeTab />} />
                         <Route path="diagram" element={<DiagramTab />} />
+                        <Route path="currency" element={<Currency />} />
                     </Route>
                 </Route>
 
