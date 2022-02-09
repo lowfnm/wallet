@@ -114,7 +114,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                     comment: "",
                                     amount: "",
                                 }}
-                                // validationSchema={modalSchema}
+                                validationSchema={modalSchema}
                                 onSubmit={onSubmit}
                             >
                                 {({ values, handleChange, handleBlur }) => (
