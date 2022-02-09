@@ -64,6 +64,7 @@ const Main = styled.main`
     position: relative;
     z-index: 1;
     padding-left: 3rem;
+
     @media (max-width: 767px) {
         padding-left: 0;
     }
