@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
 const StyledBalance = styled.section`
-    min-width: 100%;
+    width: 100%;
     max-width: 350px;
     margin-top: 3rem;
     border-radius: 30px;
     background-color: #fff;
+    @media (max-width: 767px) {
+        max-width: 280px;
+        margin: 0 auto;
+        width: 100%;
+        height: 80px;
+    }
 `;
 
 const BalanceBody = styled.div`

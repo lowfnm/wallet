@@ -6,12 +6,14 @@ const HeaderWrapper = styled.div`
     background-color: #fff;
     position: relative;
     z-index: 1;
+    @media screen and (max-width: 767px) {
+        z-index: 2;
+    }
 `;
 
 const Aside = styled.aside`
     padding-right: 3rem;
     position: relative;
-
     &::after {
         content: "";
         position: absolute;
@@ -37,12 +39,24 @@ const Aside = styled.aside`
         position: relative;
         z-index: 1;
     }
+    @media (max-width: 767px) {
+        & > section:last-child {
+            display: none;
+        }
+        & > div {
+            width: 100%;
+        }
+    }
 `;
 
 const NavigationWrapper = styled.div`
     @media (max-width: 1279px) {
         width: 40%;
         margin-right: 2rem;
+    }
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-right: 0;
     }
 `;
 
@@ -51,7 +65,7 @@ const Main = styled.main`
     z-index: 1;
     padding-left: 3rem;
 
-    @media screen and (max-width: 767px) {
+    @media (max-width: 767px) {
         padding-left: 0;
     }
 `;

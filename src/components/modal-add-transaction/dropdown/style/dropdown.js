@@ -18,8 +18,8 @@ const DropDownHeader = styled.div`
 const ArrowWrap = styled.div`
     cursor: pointer;
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 14px;
+    right: 7px;
 `;
 const DropDownListContainer = styled.div`
     position: relative;
