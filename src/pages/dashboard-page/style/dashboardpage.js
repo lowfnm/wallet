@@ -50,6 +50,10 @@ const Main = styled.main`
     position: relative;
     z-index: 1;
     padding-left: 3rem;
+
+    @media screen and (max-width: 767px) {
+        padding-left: 0;
+    }
 `;
 
 const DashBoardPageContainer = styled.div`
