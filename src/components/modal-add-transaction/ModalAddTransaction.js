@@ -19,6 +19,9 @@ import {
     SwitcherWrap,
     SwitcherLabel,
     IconCalendarWrap,
+    CategoryDropWrap,
+    ArrowWrap,
+    SwitcherLabelWrap,
 } from "./style/modalAddTransaction";
 import { ModalCloseIcon } from "./icon/ModalCloseIcon";
 import "react-datepicker/dist/react-datepicker.css";
@@ -28,13 +31,11 @@ import {
     transactionGet,
     transactionPost,
 } from "../../store/transaction/actions/actions";
-import { ArrowWrap } from "./dropdown/style/dropdown";
-import { ArrayDown } from "./dropdown/icon/ArrayDown";
+import { ArrayDown } from "./icon/ArrayDown";
 import { v4 as uuid4 } from "uuid";
 import moment from "moment";
 import { transactionSelector } from "../../store/transaction/reducers/reducers";
 import { makeStyles } from "@mui/styles";
-import { CategoryDropWrap } from "./categoryDrop/style/categoryDrop";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -155,24 +156,26 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                             <form onSubmit={formik.handleSubmit}>
                                 <ModalTitle>Add transaction</ModalTitle>
                                 <SwitcherWrap>
-                                    <SwitcherLabel
-                                        style={{
-                                            color: checked
-                                                ? "#FF6596"
-                                                : "#e0e0e0",
-                                        }}
-                                    >
-                                        Expenses
-                                    </SwitcherLabel>
-                                    <SwitcherLabel
-                                        style={{
-                                            color: checked
-                                                ? "#e0e0e0"
-                                                : "#24cca7",
-                                        }}
-                                    >
-                                        Income
-                                    </SwitcherLabel>
+                                    <SwitcherLabelWrap>
+                                        <SwitcherLabel
+                                            style={{
+                                                color: checked
+                                                    ? "#FF6596"
+                                                    : "#e0e0e0",
+                                            }}
+                                        >
+                                            Expenses
+                                        </SwitcherLabel>
+                                        <SwitcherLabel
+                                            style={{
+                                                color: checked
+                                                    ? "#e0e0e0"
+                                                    : "#24cca7",
+                                            }}
+                                        >
+                                            Income
+                                        </SwitcherLabel>
+                                    </SwitcherLabelWrap>
                                     <FormControlLabel
                                         control={
                                             <Switcher

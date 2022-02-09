@@ -2,7 +2,7 @@ const createData = (category, amount) => {
     return { category, amount };
 };
 
-const rows = [
+const categories = [
     createData("Main expenses", 8700.0),
     createData("Products", 3800.74),
     createData("Car", 1500.0),
@@ -26,4 +26,4 @@ const spanColors = [
     "#00AD84",
 ];
 
-export { rows, spanColors };
+export { categories, spanColors };

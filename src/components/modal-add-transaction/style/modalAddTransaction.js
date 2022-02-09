@@ -11,6 +11,17 @@ const ModalWrap = styled.div`
     position: relative;
     background: white;
     z-index: 2;
+    @media screen and (max-width: 767px) {
+        width: 100vw;
+        height: 100vh;
+        overflow-y: hidden;
+        border-radius: 0;
+        text-align: center;
+        padding: 4rem 2rem 4rem;
+        position: relative;
+        top: 50px;
+        left: 0;
+    }
 `;
 const Background = styled.div`
     background: rgba(0, 0, 0, 0.25);
@@ -23,6 +34,11 @@ const Background = styled.div`
     align-items: center;
     top: 0;
     left: 0;
+    @media screen and (max-width: 767px) {
+        height: max-content;
+        background: rgba(255, 255, 255, 1);
+        overflow-y: hidden;
+    }
 `;
 const ModalTitle = styled.h2`
     font-family: "Poppins", sans-serif;
@@ -30,7 +46,7 @@ const ModalTitle = styled.h2`
     font-size: 3rem;
     line-height: 1.5;
     text-align: center;
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 767px) {
         font-size: 2.4rem;
     }
 `;
@@ -45,7 +61,7 @@ const ModalClose = styled.div`
 const Flex = styled.div`
     display: flex;
     justify-content: space-between;
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 767px) {
         flex-direction: column;
     }
 `;
@@ -61,12 +77,16 @@ const InputWrap = styled.div`
         box-sizing: border-box;
         border-bottom: 1px solid #e0e0e0;
         padding: 0.8rem 2rem;
+        &::placeholder {
+            color: #bdbdbd;
+        }
         position: relative;
         background-color: transparent;
         z-index: 3;
         text-align: left;
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 767px) {
             max-width: 410px;
+            text-align: left !important;
         }
     }
     span {
@@ -77,7 +97,10 @@ const InputWrap = styled.div`
     & .css-2iy3mj {
         display: none;
     }
-
+    & .MuiFormControl-root {
+        max-width: 410px;
+        width: 100%;
+    }
     & .MuiInputAdornment-root {
         margin-left: 0;
     }
@@ -94,22 +117,27 @@ const InputWrap = styled.div`
         font-family: "Abel", sans-serif;
         font-size: 1.8rem;
         height: auto;
-      cursor: pointer;
+        cursor: pointer;
     }
 
     .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
         padding-right: 0;
     }
 `;
+const SwitcherLabelWrap = styled.div`
+    top: 50%;
+    left: 50%;
+    position: absolute;
+`;
 const SwitcherLabel = styled.span`
     position: absolute;
     font-size: 1.6rem;
     font-family: inherit;
     top: 50%;
-    left: 97px;
+    left: -110px;
     transform: translateY(-50%);
     &:first-child {
-        left: 265px;
+        left: 60px;
     }
 `;
 const ModalButton = styled.button`
@@ -134,6 +162,13 @@ const IconCalendarWrap = styled.div`
     position: absolute;
     bottom: 4px;
     right: 20px;
+    @media screen and (max-width: 767px) {
+        bottom: 0;
+        right: 20vw;
+    }
+    @media screen and (max-width: 430px) {
+        right: 0vw;
+    }
 `;
 const SwitcherWrap = styled.div`
     display: flex;
@@ -206,6 +241,19 @@ const Switcher = styled(Switch)(() => ({
     },
 }));
 
+const CategoryDropWrap = styled.div`
+    margin-top: 3.5rem;
+    max-width: 410px;
+    width: 100%;
+    position: relative;
+`;
+
+const ArrowWrap = styled.div`
+    cursor: pointer;
+    position: absolute;
+    bottom: 14px;
+    right: 7px;
+`;
 export {
     ModalWrap,
     Background,
@@ -218,4 +266,7 @@ export {
     SwitcherWrap,
     SwitcherLabel,
     IconCalendarWrap,
+    SwitcherLabelWrap,
+    CategoryDropWrap,
+    ArrowWrap,
 };

@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableFooter from "@mui/material/TableFooter";
 import { v4 as uuid4 } from "uuid";
-import { rows, spanColors } from "./TableData";
+import { categories, spanColors } from "./TableData";
 
 const DiagramTable = () => {
     return (
@@ -16,7 +16,13 @@ const DiagramTable = () => {
                 marginTop: "25px",
             }}
         >
-            <Table sx={{ width: 350 }} aria-label="simple table">
+            <Table
+                sx={{
+                    width: 350,
+                    "@media (max-width: 767px)": { width: "100%" },
+                }}
+                aria-label="simple table"
+            >
                 <TableHead>
                     <TableRow
                         sx={{
@@ -40,7 +46,7 @@ const DiagramTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row, index) => (
+                    {categories.map((category, index) => (
                         <TableRow
                             key={uuid4()}
                             sx={{
@@ -70,7 +76,7 @@ const DiagramTable = () => {
                                 >
                                     &nbsp;
                                 </span>
-                                {row.category}
+                                {category.category}
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -81,7 +87,7 @@ const DiagramTable = () => {
                                 }}
                                 align="right"
                             >
-                                {row.amount}
+                                {category.amount}
                             </TableCell>
                         </TableRow>
                     ))}

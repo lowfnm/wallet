@@ -12,13 +12,15 @@ const Rates = styled.section`
     @media (max-width: 1279px) {
         margin-top: 0;
         height: 200px;
-    }
-
-    svg {
-        @media (max-width: 1279px) {
+        svg {
             position: absolute;
             bottom: 0;
         }
+    }
+    @media (max-width: 767px) {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 320px;
     }
 `;
 
@@ -53,6 +55,10 @@ const BodyItem = styled.li`
 
     &:nth-child(2) {
         padding-left: 4rem;
+    }
+
+    @media (max-width: 767px) {
+        padding: 0 2rem;
     }
 `;
 

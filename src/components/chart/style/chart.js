@@ -5,6 +5,12 @@ const Wrapper = styled.div`
     width: 320px;
     height: 320px;
     margin-top: 2rem;
+
+    @media (max-width: 767px) {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+    }
 `;
 
 const ExpensesMoney = styled.span`

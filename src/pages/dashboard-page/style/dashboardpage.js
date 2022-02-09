@@ -6,12 +6,17 @@ const HeaderWrapper = styled.div`
     background-color: #fff;
     position: relative;
     z-index: 1;
+
+    @media screen and (max-width: 767px) {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+    }
 `;
 
 const Aside = styled.aside`
     padding-right: 3rem;
     position: relative;
-
     &::after {
         content: "";
         position: absolute;
@@ -37,6 +42,14 @@ const Aside = styled.aside`
         position: relative;
         z-index: 1;
     }
+    @media (max-width: 767px) {
+        & > section:last-child {
+            display: none;
+        }
+        & > div {
+            width: 100%;
+        }
+    }
 `;
 
 const NavigationWrapper = styled.div`
@@ -44,12 +57,20 @@ const NavigationWrapper = styled.div`
         width: 40%;
         margin-right: 2rem;
     }
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-right: 0;
+    }
 `;
 
 const Main = styled.main`
     position: relative;
     z-index: 1;
     padding-left: 3rem;
+
+    @media (max-width: 1279px) {
+        padding-left: 0;
+    }
 `;
 
 const DashBoardPageContainer = styled.div`
@@ -58,6 +79,10 @@ const DashBoardPageContainer = styled.div`
     background-color: #e7eaf2;
     min-height: calc(100vh - 9rem);
     overflow: hidden;
+
+    @media (max-width: 767px) {
+        padding-top: 1.5rem;
+    }
 
     &::before {
         content: "";
@@ -71,6 +96,10 @@ const DashBoardPageContainer = styled.div`
         background-size: 618px 547px;
         background-repeat: no-repeat;
         filter: blur(50px);
+
+        @media (max-width: 767px) {
+            content: none;
+        }
     }
 
     &::after {
@@ -85,6 +114,10 @@ const DashBoardPageContainer = styled.div`
         background-size: 618px 547px;
         background-repeat: no-repeat;
         filter: blur(50px);
+
+        @media (max-width: 767px) {
+            content: none;
+        }
     }
 `;
 
