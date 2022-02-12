@@ -102,3 +102,31 @@ export const transactionPost = createAsyncThunk(
         }
     }
 );
+
+export const transactionSummary = createAsyncThunk(
+    "user/transactionSummary",
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios({
+                method: "get",
+                url: `${API_URL}/transactions-summary`,
+                headers: {
+                    Authorization: token,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            if (error.response.statusCode === 400) {
+                return rejectWithValue(toast.error("Validation error"));
+            }
+            if (error.response.status === 401) {
+                return rejectWithValue(
+                    toast.error("Bearer authorization failed")
+                );
+            }
+
+            return rejectWithValue(toast.error("Server error"));
+        }
+    }
+);

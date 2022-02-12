@@ -3,6 +3,7 @@ import {
     transactionGet,
     transactionGetCategories,
     transactionPost,
+    transactionSummary,
 } from "../actions/actions";
 
 export const transactionSlice = createSlice({
@@ -21,6 +22,13 @@ export const transactionSlice = createSlice({
         errorMessage: "",
         categoriesArray: [],
         transactions: [],
+        summary: {
+            categoriesSummary: [],
+            incomeSummary: 0,
+            expenseSummary: 0,
+            year: 0,
+            month: 0,
+        },
     },
     reducers: {
         clearState: (state) => {
@@ -65,6 +73,18 @@ export const transactionSlice = createSlice({
         },
         [transactionGetCategories.pending]: (state) => {},
         [transactionGetCategories.rejected]: (state, { payload }) => {
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+        [transactionSummary.fulfilled]: (state, { payload }) => {
+            state.categoriesSummary = [...payload.categoriesSummary];
+            state.expenseSummary = payload.expenseSummary;
+            state.incomeSummary = payload.incomeSummary;
+            state.year = payload.year;
+            state.month = payload.month;
+        },
+        [transactionSummary.pending]: (state) => {},
+        [transactionSummary.rejected]: (state, { payload }) => {
             state.isError = true;
             state.errorMessage = payload.message;
         },
