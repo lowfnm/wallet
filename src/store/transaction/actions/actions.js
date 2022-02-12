@@ -3,13 +3,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const API_URL = "https://wallet.goit.ua/api";
-const token = localStorage.getItem("token");
 
 // Получаем категории
 export const transactionGetCategories = createAsyncThunk(
     "user/transactionGetCategories",
     async (_, { rejectWithValue }) => {
         try {
+            const token = localStorage.getItem("token");
             const response = await axios({
                 method: "get",
                 url: `${API_URL}/transaction-categories`,
@@ -38,6 +38,7 @@ export const transactionGet = createAsyncThunk(
     "user/transactionGet",
     async (_, { rejectWithValue }) => {
         try {
+            const token = localStorage.getItem("token");
             const response = await axios({
                 method: "get",
                 url: `${API_URL}/transactions`,
@@ -66,6 +67,7 @@ export const transactionPost = createAsyncThunk(
     "user/transactionPost",
     async ({ values }, { rejectWithValue }) => {
         try {
+            const token = localStorage.getItem("token");
             const response = await axios({
                 method: "post",
                 url: `${API_URL}/transactions`,
@@ -98,6 +100,41 @@ export const transactionPost = createAsyncThunk(
                     )
                 );
             }
+            return rejectWithValue(toast.error("Server error"));
+        }
+    }
+);
+
+export const transactionDelete = createAsyncThunk(
+    "user/transactionDelete",
+    async (id, { rejectWithValue }) => {
+        try {
+            const token = localStorage.getItem("token");
+            await axios({
+                method: "delete",
+                url: `${API_URL}/transactions/${id}`,
+                headers: {
+                    Authorization: token,
+                },
+            });
+        } catch (error) {
+            if (error.response.statusCode === 400) {
+                return rejectWithValue(toast.error("Validation error"));
+            }
+            if (error.response.status === 401) {
+                return rejectWithValue(
+                    toast.error("Bearer authorization failed")
+                );
+            }
+            if (error.response.status === 403) {
+                return rejectWithValue(
+                    toast.error("User does not owns transaction")
+                );
+            }
+            if (error.response.status === 404) {
+                return rejectWithValue(toast.error("Transaction not found"));
+            }
+
             return rejectWithValue(toast.error("Server error"));
         }
     }

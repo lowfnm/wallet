@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+    transactionDelete,
     transactionGet,
     transactionGetCategories,
     transactionPost,
@@ -29,6 +30,11 @@ export const transactionSlice = createSlice({
 
             return state;
         },
+        // removeTransaction: (state, action) => {
+        //     state.transactions = state.transactions.filter(
+        //         (transaction) => transaction.id !== action.payload
+        //     );
+        // },
     },
 
     extraReducers: {
@@ -68,8 +74,18 @@ export const transactionSlice = createSlice({
             state.isError = true;
             state.errorMessage = payload.message;
         },
+
+        [transactionDelete.fulfilled]: (state, { payload }) => {
+            state.isSuccess = true;
+            state.transactions = state.transactions.id === "";
+        },
+        [transactionDelete.pending]: (state) => {},
+        [transactionDelete.rejected]: (state, { payload }) => {
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
     },
 });
 
-export const { clearState } = transactionSlice.actions;
+export const { clearState, removeTransaction } = transactionSlice.actions;
 export const transactionSelector = (state) => state.transaction;
