@@ -10,6 +10,7 @@ const StyledBalance = styled.section`
         max-width: 350px;
         margin: 0 auto;
         width: 100%;
+        display: none;
     }
 `;
 

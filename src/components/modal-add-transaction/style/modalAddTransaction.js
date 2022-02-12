@@ -57,6 +57,9 @@ const ModalClose = styled.div`
     height: 16px;
     top: 20px;
     right: 20px;
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
 `;
 const Flex = styled.div`
     display: flex;
@@ -67,6 +70,9 @@ const Flex = styled.div`
 `;
 const InputWrap = styled.div`
     position: relative;
+    max-width: 410px;
+    width: 100%;
+    margin: 0 auto;
     input {
         font-family: inherit;
         font-size: 1.8rem;
@@ -77,13 +83,13 @@ const InputWrap = styled.div`
         box-sizing: border-box;
         border-bottom: 1px solid #e0e0e0;
         padding: 0.8rem 2rem;
-        &::placeholder {
-            color: #bdbdbd;
-        }
         position: relative;
         background-color: transparent;
         z-index: 3;
         text-align: left;
+        &::placeholder {
+            color: #bdbdbd;
+        }
         @media screen and (max-width: 767px) {
             max-width: 410px;
             text-align: left !important;
@@ -144,7 +150,8 @@ const ModalButton = styled.button`
     font-size: 1.8rem;
     font-family: inherit;
     display: block;
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
     height: 50px;
     background: ${(props) => (props.cancel ? "#fff" : "#24CCA7")};
     border: ${(props) => (props.cancel ? `1px solid #4A56E2` : "none")};
@@ -162,13 +169,14 @@ const IconCalendarWrap = styled.div`
     position: absolute;
     bottom: 4px;
     right: 20px;
-    @media screen and (max-width: 767px) {
-        bottom: 0;
-        right: 20vw;
-    }
-    @media screen and (max-width: 430px) {
-        right: 0vw;
-    }
+
+    //@media screen and (max-width: 767px) {
+    //    bottom: 0;
+    //    right: 10%;
+    //}
+    //@media screen and (max-width: 430px) {
+    //    right: 0vw;
+    //}
 `;
 const SwitcherWrap = styled.div`
     display: flex;
@@ -246,6 +254,9 @@ const CategoryDropWrap = styled.div`
     max-width: 410px;
     width: 100%;
     position: relative;
+    @media screen and (max-width: 767px) {
+        margin: 3.5rem auto 0;
+    }
 `;
 
 const ArrowWrap = styled.div`

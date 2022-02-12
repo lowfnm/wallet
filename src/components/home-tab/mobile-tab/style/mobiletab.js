@@ -21,5 +21,13 @@ const OperationTypeLine = styled.div`
     width: 7px;
     height: 100%;
 `;
+const BalanceWrap = styled.div`
+    @media (max-width: 767px) {
+        margin: -3rem auto 3rem;
+        & > section {
+            display: block;
+        }
+    }
+`;
 
-export { OperationList, OperationItem, OperationTypeLine };
+export { OperationList, OperationItem, OperationTypeLine, BalanceWrap };

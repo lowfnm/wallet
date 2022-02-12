@@ -43,6 +43,7 @@ const Aside = styled.aside`
         z-index: 1;
     }
     @media (max-width: 767px) {
+        margin-bottom: 3.3rem;
         & > section:last-child {
             display: none;
         }

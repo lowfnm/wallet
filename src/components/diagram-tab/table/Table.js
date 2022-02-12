@@ -1,5 +1,5 @@
 import { v4 as uuid4 } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { transactionSelector } from "../../../store/transaction/reducers/reducers";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
