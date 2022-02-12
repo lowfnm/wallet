@@ -1,20 +1,20 @@
-import React from "react";
-import { LinkWrapper, ExitLink } from "./style/linkWrapperExit";
+import { useState, forwardRef } from "react";
+import { useDispatch } from "react-redux";
+import { LinkWrapper, ExitLink } from "./style/logOut";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
-import { useDispatch } from "react-redux";
-import { signOutUser } from "../../../../store/auth/actions/actions";
-import SvgExitIcon from "../../icon/SvgExitIcon";
+import { signOutUser } from "../../../store/auth/actions/actions";
+import SvgExitIcon from "../icon/SvgExitIcon";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const LinkWrapperExit = () => {
-    const [open, setOpen] = React.useState(false);
+const LogOut = () => {
+    const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
 
     const logOut = () => {
@@ -29,7 +29,7 @@ const LinkWrapperExit = () => {
         setOpen(false);
     };
     return (
-        <div>
+        <>
             <LinkWrapper onClick={handleClickOpen}>
                 <SvgExitIcon />
                 <ExitLink>Exit</ExitLink>
@@ -46,6 +46,14 @@ const LinkWrapperExit = () => {
                         padding: "3.5rem",
                         borderRadius: "2rem",
                         textAlign: "center",
+                        "@media (max-width: 425px)": {
+                            justifyContent: "center",
+                            margin: 0,
+                            width: "100%",
+                            height: "100%",
+                            borderRadius: 0,
+                            maxHeight: "100%",
+                        },
                     },
                 }}
             >
@@ -103,8 +111,8 @@ const LinkWrapperExit = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </>
     );
 };
 
-export default LinkWrapperExit;
+export default LogOut;

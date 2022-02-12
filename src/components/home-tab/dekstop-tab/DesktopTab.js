@@ -18,7 +18,17 @@ const DesktopTab = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    const { transactions } = useSelector(transactionSelector);
+    const { transactions, categoriesArray } = useSelector(transactionSelector);
+
+    const tableData = transactions.map((item) => {
+        const category = categoriesArray.find(
+            ({ id }) => id === item.categoryId
+        );
+        if (!category) {
+            return item;
+        }
+        return { ...item, category: category.name };
+    });
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -84,16 +94,16 @@ const DesktopTab = () => {
                         </TableHead>
                         <TableBody>
                             {(rowsPerPage > 0
-                                ? transactions.slice(
+                                ? tableData.slice(
                                       page * rowsPerPage,
                                       page * rowsPerPage + rowsPerPage
                                   )
-                                : transactions
+                                : tableData
                             ).map(
                                 ({
                                     transactionDate,
                                     type,
-                                    categoryId,
+                                    category,
                                     amount,
                                     comment,
                                     balanceAfter,
@@ -112,8 +122,7 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
-                                                maxWidth: "110px",
-                                                overflowWrap: "break-word",
+                                                minWidth: "110px",
                                             }}
                                         >
                                             {transactionDate}
@@ -121,25 +130,25 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
-                                                maxWidth: "110px",
+                                                minWidth: "60px",
                                                 overflowWrap: "break-word",
                                             }}
                                         >
-                                            {type}
+                                            {type === "EXPENSE" ? "-" : "+"}
                                         </TableCell>
                                         <TableCell
                                             align="center"
                                             sx={{
-                                                maxWidth: "166px",
+                                                minWidth: "170px",
                                                 overflowWrap: "break-word",
                                             }}
                                         >
-                                            {categoryId}
+                                            {category}
                                         </TableCell>
                                         <TableCell
                                             align="center"
                                             sx={{
-                                                maxWidth: "166px",
+                                                minWidth: "130px",
                                                 overflowWrap: "break-word",
                                             }}
                                         >
@@ -148,16 +157,28 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
-                                                width: "110px",
+                                                minWidth: "100px",
                                                 overflowWrap: "break-word",
                                             }}
                                         >
-                                            {amount}
+                                            {type === "EXPENSE" ? (
+                                                <span
+                                                    style={{ color: "#FF6596" }}
+                                                >
+                                                    {Math.abs(amount)}
+                                                </span>
+                                            ) : (
+                                                <span
+                                                    style={{ color: "#24CCA7" }}
+                                                >
+                                                    {amount}
+                                                </span>
+                                            )}
                                         </TableCell>
                                         <TableCell
                                             align="center"
                                             sx={{
-                                                width: "110px",
+                                                minWidth: "100px",
                                                 overflowWrap: "break-word",
                                             }}
                                         >
@@ -168,7 +189,7 @@ const DesktopTab = () => {
                             )}
 
                             {emptyRows > 0 && (
-                                <TableRow style={{ height: 53 * emptyRows }}>
+                                <TableRow style={{ height: 85 * emptyRows }}>
                                     <TableCell colSpan={6} />
                                 </TableRow>
                             )}

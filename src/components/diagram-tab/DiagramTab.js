@@ -1,4 +1,4 @@
-import Chart from "../chart/Chart";
+import Chart from "./chart/Chart";
 import { TableSelect } from "./select/TableSelect";
 import DiagramTable from "./table/Table";
 import { Title, DiagramSection, TableSection } from "./style/diagramtab";
