@@ -3,13 +3,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const API_URL = "https://wallet.goit.ua/api";
-const token = localStorage.getItem("token");
 
 // Получаем категории
 export const transactionGetCategories = createAsyncThunk(
     "user/transactionGetCategories",
     async (_, { rejectWithValue }) => {
         try {
+            const token = localStorage.getItem("token");
             const response = await axios({
                 method: "get",
                 url: `${API_URL}/transaction-categories`,
@@ -38,6 +38,7 @@ export const transactionGet = createAsyncThunk(
     "user/transactionGet",
     async (_, { rejectWithValue }) => {
         try {
+            const token = localStorage.getItem("token");
             const response = await axios({
                 method: "get",
                 url: `${API_URL}/transactions`,
@@ -66,6 +67,7 @@ export const transactionPost = createAsyncThunk(
     "user/transactionPost",
     async ({ values }, { rejectWithValue }) => {
         try {
+            const token = localStorage.getItem("token");
             const response = await axios({
                 method: "post",
                 url: `${API_URL}/transactions`,
@@ -107,6 +109,7 @@ export const transactionSummary = createAsyncThunk(
     "user/transactionSummary",
     async (_, { rejectWithValue }) => {
         try {
+            const token = localStorage.getItem("token");
             const response = await axios({
                 method: "get",
                 url: `${API_URL}/transactions-summary`,
@@ -125,7 +128,6 @@ export const transactionSummary = createAsyncThunk(
                     toast.error("Bearer authorization failed")
                 );
             }
-
             return rejectWithValue(toast.error("Server error"));
         }
     }
