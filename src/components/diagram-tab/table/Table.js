@@ -1,4 +1,6 @@
-import * as React from "react";
+import { v4 as uuid4 } from "uuid";
+import { useDispatch, useSelector } from "react-redux";
+import { transactionSelector } from "../../../store/transaction/reducers/reducers";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,10 +8,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableFooter from "@mui/material/TableFooter";
-import { v4 as uuid4 } from "uuid";
-import { categories, spanColors } from "./TableData";
+import colorsArr from "../data/colorsArr";
 
 const DiagramTable = () => {
+    const { categoriesSummary, incomeSummary, expenseSummary } =
+        useSelector(transactionSelector);
+
+    const expenseMoney = Math.abs(expenseSummary);
+    const expenseCategories = categoriesSummary.slice(1);
+
     return (
         <TableContainer
             sx={{
@@ -46,7 +53,7 @@ const DiagramTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {categories.map((category, index) => (
+                    {expenseCategories.map(({ name, total }, index) => (
                         <TableRow
                             key={uuid4()}
                             sx={{
@@ -71,12 +78,12 @@ const DiagramTable = () => {
                                         width: "24px",
                                         height: "24px",
                                         borderRadius: "2px",
-                                        backgroundColor: spanColors[index],
+                                        backgroundColor: colorsArr[index],
                                     }}
                                 >
                                     &nbsp;
                                 </span>
-                                {category.category}
+                                {name}
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -87,7 +94,7 @@ const DiagramTable = () => {
                                 }}
                                 align="right"
                             >
-                                {category.amount}
+                                {Math.abs(total)}
                             </TableCell>
                         </TableRow>
                     ))}
@@ -113,7 +120,7 @@ const DiagramTable = () => {
                             }}
                             align="right"
                         >
-                            22 549.24
+                            {expenseMoney || 0}
                         </TableCell>
                     </TableRow>
 
@@ -137,7 +144,7 @@ const DiagramTable = () => {
                             }}
                             align="right"
                         >
-                            27 350.00
+                            {incomeSummary || 0}
                         </TableCell>
                     </TableRow>
                 </TableFooter>

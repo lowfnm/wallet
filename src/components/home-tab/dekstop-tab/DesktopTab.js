@@ -165,7 +165,7 @@ const DesktopTab = () => {
                                                 <span
                                                     style={{ color: "#FF6596" }}
                                                 >
-                                                    {amount}
+                                                    {Math.abs(amount)}
                                                 </span>
                                             ) : (
                                                 <span
@@ -189,7 +189,7 @@ const DesktopTab = () => {
                             )}
 
                             {emptyRows > 0 && (
-                                <TableRow style={{ height: 53 * emptyRows }}>
+                                <TableRow style={{ height: 85 * emptyRows }}>
                                     <TableCell colSpan={6} />
                                 </TableRow>
                             )}

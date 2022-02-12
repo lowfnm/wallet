@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import {
     transactionGet,
     transactionGetCategories,
+    transactionSummary,
 } from "../../store/transaction/actions/actions";
 
 const HomeTab = () => {
@@ -24,6 +25,10 @@ const HomeTab = () => {
 
     useEffect(() => {
         dispatch(transactionGetCategories());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(transactionSummary());
     }, [dispatch]);
 
     return (

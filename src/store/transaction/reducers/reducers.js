@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    transactionDelete,
     transactionGet,
     transactionGetCategories,
     transactionPost,
+    transactionSummary,
 } from "../actions/actions";
 
 export const transactionSlice = createSlice({
@@ -22,6 +22,13 @@ export const transactionSlice = createSlice({
         errorMessage: "",
         categoriesArray: [],
         transactions: [],
+        summary: {
+            categoriesSummary: [],
+            incomeSummary: 0,
+            expenseSummary: 0,
+            year: 0,
+            month: 0,
+        },
     },
     reducers: {
         clearState: (state) => {
@@ -30,11 +37,6 @@ export const transactionSlice = createSlice({
 
             return state;
         },
-        // removeTransaction: (state, action) => {
-        //     state.transactions = state.transactions.filter(
-        //         (transaction) => transaction.id !== action.payload
-        //     );
-        // },
     },
 
     extraReducers: {
@@ -74,18 +76,20 @@ export const transactionSlice = createSlice({
             state.isError = true;
             state.errorMessage = payload.message;
         },
-
-        [transactionDelete.fulfilled]: (state, { payload }) => {
-            state.isSuccess = true;
-            state.transactions = state.transactions.id === "";
+        [transactionSummary.fulfilled]: (state, { payload }) => {
+            state.categoriesSummary = [...payload.categoriesSummary];
+            state.expenseSummary = payload.expenseSummary;
+            state.incomeSummary = payload.incomeSummary;
+            state.year = payload.year;
+            state.month = payload.month;
         },
-        [transactionDelete.pending]: (state) => {},
-        [transactionDelete.rejected]: (state, { payload }) => {
+        [transactionSummary.pending]: (state) => {},
+        [transactionSummary.rejected]: (state, { payload }) => {
             state.isError = true;
             state.errorMessage = payload.message;
         },
     },
 });
 
-export const { clearState, removeTransaction } = transactionSlice.actions;
+export const { clearState } = transactionSlice.actions;
 export const transactionSelector = (state) => state.transaction;

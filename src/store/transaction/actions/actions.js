@@ -105,18 +105,20 @@ export const transactionPost = createAsyncThunk(
     }
 );
 
-export const transactionDelete = createAsyncThunk(
-    "user/transactionDelete",
-    async (id, { rejectWithValue }) => {
+export const transactionSummary = createAsyncThunk(
+    "user/transactionSummary",
+    async (_, { rejectWithValue }) => {
         try {
             const token = localStorage.getItem("token");
-            await axios({
-                method: "delete",
-                url: `${API_URL}/transactions/${id}`,
+            const response = await axios({
+                method: "get",
+                url: `${API_URL}/transactions-summary`,
                 headers: {
                     Authorization: token,
                 },
             });
+
+            return response.data;
         } catch (error) {
             if (error.response.statusCode === 400) {
                 return rejectWithValue(toast.error("Validation error"));
@@ -126,15 +128,6 @@ export const transactionDelete = createAsyncThunk(
                     toast.error("Bearer authorization failed")
                 );
             }
-            if (error.response.status === 403) {
-                return rejectWithValue(
-                    toast.error("User does not owns transaction")
-                );
-            }
-            if (error.response.status === 404) {
-                return rejectWithValue(toast.error("Transaction not found"));
-            }
-
             return rejectWithValue(toast.error("Server error"));
         }
     }
