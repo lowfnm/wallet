@@ -20,7 +20,6 @@ const OperationTypeLine = styled.div`
     left: 0;
     width: 7px;
     height: 100%;
-    background-color: #ff6596;
 `;
 
 export { OperationList, OperationItem, OperationTypeLine };
