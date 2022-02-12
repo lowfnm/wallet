@@ -5,7 +5,9 @@ import {
     OperationItem,
     OperationList,
     OperationTypeLine,
+    BalanceWrap,
 } from "./style/mobiletab";
+import Balance from "../../balance/Balance";
 import { v4 as uuid4 } from "uuid";
 import WithoutTransactions from "../../common/without-transactions/WithoutTransactions";
 import { useSelector } from "react-redux";
@@ -16,6 +18,9 @@ const MobileTab = () => {
 
     return (
         <>
+            <BalanceWrap>
+                <Balance />
+            </BalanceWrap>
             {transactions.length > 0 ? (
                 transactions.map((operation) => {
                     return (

@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 const API_URL = "https://wallet.goit.ua/api";
 const token = localStorage.getItem("token");
 
