@@ -15,7 +15,10 @@ const DiagramTable = () => {
         useSelector(transactionSelector);
 
     const expenseMoney = Math.abs(expenseSummary);
-    const expenseCategories = categoriesSummary.slice(1);
+
+    const expenseCategories = categoriesSummary.filter((item) => {
+        return item.type === "EXPENSE";
+    });
 
     return (
         <TableContainer

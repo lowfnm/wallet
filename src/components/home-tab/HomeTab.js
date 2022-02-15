@@ -39,16 +39,25 @@ const HomeTab = () => {
     return (
         <>
             {isMobile ? (
-                <MobileTab />
+                <>
+                    <MobileTab />
+                    <ButtonAddTransactions
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                    />
+                </>
             ) : isSuccess ? (
-                <DesktopTab />
+                <>
+                    <DesktopTab />
+                    <ButtonAddTransactions
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                    />
+                </>
             ) : (
                 <Spinner />
             )}
-            <ButtonAddTransactions
-                showModal={showModal}
-                setShowModal={setShowModal}
-            />
+
             <ModalAddTransaction
                 showModal={showModal}
                 setShowModal={setShowModal}

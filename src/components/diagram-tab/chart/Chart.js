@@ -12,10 +12,15 @@ const Chart = () => {
         useSelector(transactionSelector);
 
     const categoriesLabel = categoriesSummary
-        .slice(1)
+        .filter((item) => {
+            return item.type === "EXPENSE";
+        })
         .map((category) => category.name);
+
     const categoriesData = categoriesSummary
-        .slice(1)
+        .filter((item) => {
+            return item.type === "EXPENSE";
+        })
         .map((category) => Math.abs(category.total));
 
     const expenseMoney = Math.abs(expenseSummary);

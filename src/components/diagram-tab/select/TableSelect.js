@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -6,6 +6,8 @@ import { v4 as uuid4 } from "uuid";
 import { InputLabel } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { SelectWrapper } from "./style/tableSelect";
+import { transactionSummaryPeriod } from "../../../store/transaction/actions/actions";
+import { useDispatch } from "react-redux";
 
 let months = [
     "January",
@@ -22,11 +24,12 @@ let months = [
     "December",
 ];
 
-let years = ["1921", "1922"];
+let years = ["2020", "2021", "2022"];
 
 const TableSelect = () => {
-    const [month, setMonth] = useState("");
-    const [year, setYear] = useState("");
+    const [month, setMonth] = useState(new Date().getMonth() + 1);
+    const [year, setYear] = useState(new Date().getFullYear());
+    const dispatch = useDispatch();
 
     const handleChangeYear = (event) => {
         setYear(event.target.value);
@@ -36,27 +39,21 @@ const TableSelect = () => {
         setMonth(event.target.value);
     };
 
+    async function updateTransactionForPeriod() {
+        try {
+            await dispatch(transactionSummaryPeriod({ month, year })).unwrap();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        updateTransactionForPeriod();
+    }, [month, year, updateTransactionForPeriod]);
+
     return (
         <SelectWrapper>
             <FormControl sx={{ minWidth: 166, height: 50 }}>
-                <InputLabel
-                    label="month"
-                    variant={"filled"}
-                    sx={{
-                        fontFamily: "Abel",
-                        fontSize: 16,
-                        paddingLeft: 2,
-                        "&.Mui-focused": {
-                            borderRadius: 0,
-                        },
-                        "&.MuiInputLabel-root": {
-                            fontSize: 16,
-                            color: "#000000",
-                        },
-                    }}
-                >
-                    Month
-                </InputLabel>
                 <Select
                     labelId="month"
                     sx={{
@@ -111,7 +108,7 @@ const TableSelect = () => {
                                     fontSize: 10,
                                 }}
                                 key={uuid4()}
-                                value={id}
+                                value={id + 1}
                             >
                                 {month}
                             </MenuItem>
@@ -131,24 +128,6 @@ const TableSelect = () => {
                     },
                 }}
             >
-                <InputLabel
-                    label="year"
-                    variant={"filled"}
-                    sx={{
-                        fontFamily: "Abel",
-                        fontSize: 16,
-                        paddingLeft: 2,
-                        "&.Mui-focused": {
-                            borderRadius: 0,
-                        },
-                        "&.MuiInputLabel-root": {
-                            fontSize: 16,
-                            color: "#000000",
-                        },
-                    }}
-                >
-                    Year
-                </InputLabel>
                 <Select
                     labelId="year"
                     sx={{
@@ -202,7 +181,7 @@ const TableSelect = () => {
                                     fontSize: 10,
                                 }}
                                 key={uuid4()}
-                                value={id}
+                                value={year}
                             >
                                 {year}
                             </MenuItem>

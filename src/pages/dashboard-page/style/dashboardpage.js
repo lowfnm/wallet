@@ -71,6 +71,11 @@ const Main = styled.main`
 
     @media (max-width: 1279px) {
         padding-left: 0;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    @media (max-width: 767px) {
+        width: 100%;
     }
 `;
 
@@ -83,6 +88,7 @@ const DashBoardPageContainer = styled.div`
 
     @media (max-width: 767px) {
         padding-top: 1.5rem;
+        min-height: calc(100vh - 6rem);
     }
 
     &::before {
