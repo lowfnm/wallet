@@ -139,7 +139,6 @@ const FormButton = styled.button`
     padding: 1.3rem 1rem;
     border-radius: 20px;
     transition: box-shadow 0.2s ease-out;
-
     &:hover {
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }

@@ -159,7 +159,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
         if (modalRef.current === e.target) {
             setShowModal(false);
             formik.resetForm();
-
             if (checked) {
                 setChecked(!checked);
             }
