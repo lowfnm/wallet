@@ -3,7 +3,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { v4 as uuid4 } from "uuid";
-import { InputLabel } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { SelectWrapper } from "./style/tableSelect";
 import { transactionSummaryPeriod } from "../../../store/transaction/actions/actions";

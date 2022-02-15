@@ -3,7 +3,7 @@ import { transactionSelector } from "../../../store/transaction/reducers/reducer
 import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { ExpensesMoney, Wrapper } from "./style/chart";
-import colorsArr from "../data/colorsArr";
+import colorsArr from "../colorsArr";
 
 ChartJS.register(ArcElement, Tooltip);
 
