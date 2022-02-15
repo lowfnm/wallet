@@ -46,7 +46,7 @@ const DesktopTab = () => {
 
     return (
         <>
-            {transactions.length > 0 ? (
+            {tableData.length > 0 ? (
                 <TableContainer>
                     <Table
                         sx={{
@@ -189,13 +189,13 @@ const DesktopTab = () => {
                             )}
 
                             {emptyRows > 0 && (
-                                <TableRow style={{ height: 85 * emptyRows }}>
+                                <TableRow style={{ height: 53.5 * emptyRows }}>
                                     <TableCell colSpan={6} />
                                 </TableRow>
                             )}
                         </TableBody>
 
-                        {transactions.length <= 5 ? null : (
+                        {tableData.length <= 5 ? null : (
                             <TableFooter>
                                 <TableRow>
                                     <TablePagination
@@ -215,7 +215,7 @@ const DesktopTab = () => {
                                         }}
                                         colSpan={4}
                                         rowsPerPageOptions={[5]}
-                                        count={transactions.length}
+                                        count={tableData.length}
                                         rowsPerPage={rowsPerPage}
                                         page={page}
                                         SelectProps={{

@@ -131,3 +131,31 @@ export const transactionSummary = createAsyncThunk(
         }
     }
 );
+
+export const transactionSummaryPeriod = createAsyncThunk(
+    "user/transactionSummaryPeriod",
+    async ({ month, year }, { rejectWithValue }) => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios({
+                method: "get",
+                url: `${API_URL}/transactions-summary?month=${month}&year=${year}`,
+                headers: {
+                    Authorization: token,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            if (error.response.statusCode === 400) {
+                return rejectWithValue(toast.error("Validation error"));
+            }
+            if (error.response.status === 401) {
+                return rejectWithValue(
+                    toast.error("Bearer authorization failed")
+                );
+            }
+            return rejectWithValue(toast.error("Server error"));
+        }
+    }
+);

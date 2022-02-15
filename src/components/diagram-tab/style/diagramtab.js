@@ -5,6 +5,10 @@ const Title = styled.h1`
     font-weight: inherit;
     font-size: 3rem;
     line-height: 1.5;
+
+    @media (max-width: 1279px) {
+        display: none;
+    }
 `;
 
 const DiagramSection = styled.section`
