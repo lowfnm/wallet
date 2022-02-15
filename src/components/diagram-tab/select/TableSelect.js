@@ -38,17 +38,9 @@ const TableSelect = () => {
         setMonth(event.target.value);
     };
 
-    async function updateTransactionForPeriod() {
-        try {
-            await dispatch(transactionSummaryPeriod({ month, year })).unwrap();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     useEffect(() => {
-        updateTransactionForPeriod();
-    }, [month, year, updateTransactionForPeriod]);
+        dispatch(transactionSummaryPeriod({ month, year }));
+    }, [month, year, dispatch]);
 
     return (
         <SelectWrapper>
