@@ -33,11 +33,12 @@ const BalanceTitle = styled.h2`
     text-transform: uppercase;
 `;
 
-const BalanceTotal = styled.span`
+const BalanceTotal = styled.div`
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-size: 3rem;
     line-height: 1.5;
+    overflow-x: auto;
 `;
 
 export { StyledBalance, BalanceBody, BalanceTitle, BalanceTotal };

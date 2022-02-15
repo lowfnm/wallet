@@ -21,6 +21,26 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Abel', sans-serif;
   }
 
+  ::-webkit-scrollbar {
+    width: 5px;
+
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #6f78ec;
+    border-radius: 7px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
   h1,
   h2,
   h3,

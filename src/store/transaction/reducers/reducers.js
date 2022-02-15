@@ -4,6 +4,7 @@ import {
     transactionGetCategories,
     transactionPost,
     transactionSummary,
+    transactionSummaryPeriod,
 } from "../actions/actions";
 
 export const transactionSlice = createSlice({
@@ -76,6 +77,7 @@ export const transactionSlice = createSlice({
             state.isError = true;
             state.errorMessage = payload.message;
         },
+
         [transactionSummary.fulfilled]: (state, { payload }) => {
             state.categoriesSummary = [...payload.categoriesSummary];
             state.expenseSummary = payload.expenseSummary;
@@ -85,6 +87,19 @@ export const transactionSlice = createSlice({
         },
         [transactionSummary.pending]: (state) => {},
         [transactionSummary.rejected]: (state, { payload }) => {
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+
+        [transactionSummaryPeriod.fulfilled]: (state, { payload }) => {
+            state.categoriesSummary = [...payload.categoriesSummary];
+            state.expenseSummary = payload.expenseSummary;
+            state.incomeSummary = payload.incomeSummary;
+            state.year = payload.year;
+            state.month = payload.month;
+        },
+        [transactionSummaryPeriod.pending]: (state) => {},
+        [transactionSummaryPeriod.rejected]: (state, { payload }) => {
             state.isError = true;
             state.errorMessage = payload.message;
         },

@@ -8,16 +8,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableFooter from "@mui/material/TableFooter";
-import colorsArr from "../data/colorsArr";
+
 import Spinner from "../../spinner/Spinner";
+
+import colorsArr from "../colorsArr";
 
 const DiagramTable = () => {
     const { categoriesSummary, incomeSummary, expenseSummary } =
         useSelector(transactionSelector);
 
     const expenseMoney = Math.abs(expenseSummary);
-    const expenseCategories = categoriesSummary.slice(1);
     const { isSuccess } = useSelector(transactionSelector);
+    const expenseCategories = categoriesSummary.filter((item) => {
+        return item.type === "EXPENSE";
+    });
 
     return (
         <>
