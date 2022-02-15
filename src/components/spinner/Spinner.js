@@ -1,15 +1,10 @@
-import { Oval } from "react-loader-spinner";
 import { SpinnerWrap } from "./style/spinner";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Spinner = () => {
     return (
         <SpinnerWrap>
-            <Oval
-                heigth={200}
-                width={200}
-                color="#24CCA7"
-                ariaLabel="loading"
-            />
+            <CircularProgress sx={{ color: "#24CCA7", opacity: 0.8 }} />
         </SpinnerWrap>
     );
 };

@@ -5,10 +5,9 @@ import {
     HeadItem,
     RatesBody,
     BodyItem,
-    Loader,
 } from "./style/currency";
 import { v4 as uuid4 } from "uuid";
-import CircularProgress from "@mui/material/CircularProgress";
+import Spinner from "../spinner/Spinner";
 import SvgWave from "./icon/SvgWave";
 
 const Currency = () => {
@@ -36,11 +35,7 @@ const Currency = () => {
     }, [isLoading]);
 
     const loaderToFetch = () => {
-        return (
-            <Loader>
-                <CircularProgress sx={{ color: "white", opacity: 0.8 }} />
-            </Loader>
-        );
+        return <Spinner />;
     };
 
     const listOfCurrency = rates.map(({ ccy, buy, sale }) => {

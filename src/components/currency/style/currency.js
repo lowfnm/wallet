@@ -8,7 +8,6 @@ const Rates = styled.section`
     color: white;
     background-color: #4a56e2;
     border-radius: 30px;
-
     @media (max-width: 1279px) {
         margin-top: 0;
         height: 200px;
@@ -21,6 +20,10 @@ const Rates = styled.section`
         margin: 0 auto;
         width: 100%;
         max-width: 320px;
+        //svg {
+        //    top: 0;
+        //    bottom: auto;
+        //}
     }
 `;
 
@@ -62,11 +65,4 @@ const BodyItem = styled.li`
     }
 `;
 
-const Loader = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
-
-export { Rates, RatesHead, HeadItem, RatesBody, BodyItem, Loader };
+export { Rates, RatesHead, HeadItem, RatesBody, BodyItem };

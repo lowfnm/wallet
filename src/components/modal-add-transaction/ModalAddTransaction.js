@@ -118,18 +118,22 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
             if (checked) {
                 values.amount = -Math.abs(values.amount);
             }
+            if (!checked) {
+                setChecked(checked);
+            }
 
             dispatch(transactionPost({ values }));
             dispatch(transactionGet());
             dispatch(currentUser());
-            console.log(values);
 
+            setChecked(!checked);
+            setCategory("");
             setShowModal(false);
             formik.resetForm();
         },
     });
 
-    const switchHandler = (value) => {
+    const switchHandler = () => {
         setChecked(!checked);
 
         if (!checked) {
@@ -142,15 +146,29 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
         formik.setFieldValue("transactionDate", value.toString());
     };
 
-    const onCloseHandler = () => {
-        setShowModal(false);
+    const onCloseModal = () => {
+        setShowModal((prev) => !prev);
         formik.resetForm();
+        if (checked) {
+            setChecked(!checked);
+        }
+        setCategory("");
+    };
+
+    const onCloseHandler = (e) => {
+        if (modalRef.current === e.target) {
+            setShowModal(false);
+            formik.resetForm();
+            if (checked) {
+                setChecked(!checked);
+            }
+        }
     };
 
     return (
         <>
             {showModal ? (
-                <Background ref={modalRef}>
+                <Background ref={modalRef} onClick={onCloseHandler}>
                     <animated.div style={animation}>
                         <ModalWrap showModal={showModal}>
                             <form onSubmit={formik.handleSubmit}>
@@ -252,6 +270,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                                 },
                                                             "& .MuiList-root": {
                                                                 padding: 0,
+                                                                height: 350,
                                                             },
                                                             "& .MuiMenuItem-root":
                                                                 {
@@ -364,6 +383,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                     formik.values
                                                         .transactionDate
                                                 }
+                                                readOnly={true}
                                                 onOpen={() => setOpen(true)}
                                                 onClose={() => setOpen(false)}
                                                 onChange={onChangeDate}
@@ -422,14 +442,14 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                     ) : null}
                                 </InputWrap>
                                 <ModalButton type="submit">ADD</ModalButton>
-                                <ModalButton cancel onClick={onCloseHandler}>
+                                <ModalButton cancel onClick={onCloseModal}>
                                     CANCEL
                                 </ModalButton>
                             </form>
 
                             <ModalClose
                                 aria-label="Close modal"
-                                onClick={onCloseHandler}
+                                onClick={onCloseModal}
                             >
                                 <ModalCloseIcon />
                             </ModalClose>

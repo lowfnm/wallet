@@ -5,6 +5,7 @@ const Nav = styled.nav`
     @media (max-width: 767px) {
         display: flex;
         justify-content: center;
+        margin-bottom: 1.3rem;
     }
 `;
 
@@ -12,7 +13,6 @@ export const LinkElem = styled(NavLink)`
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-
     width: fit-content;
 
     &:last-child {
@@ -31,7 +31,7 @@ export const LinkElem = styled(NavLink)`
         font-weight: 700;
     }
     @media (max-width: 767px) {
-        margin-bottom: 1.3rem;
+        margin-bottom: 0;
         &:last-child {
             display: block;
         }

@@ -3,6 +3,23 @@ import Switch from "@mui/material/Switch";
 import plus from "../icon/plus.svg";
 import minus from "../icon/minus.svg";
 
+const Background = styled.div`
+    background: rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    @media screen and (max-width: 767px) {
+        height: 100%;
+        background: rgba(255, 255, 255, 1);
+        overflow-y: hidden;
+    }
+`;
 const ModalWrap = styled.div`
     width: 540px;
     padding: 4rem 6.5rem 6rem;
@@ -10,7 +27,7 @@ const ModalWrap = styled.div`
     border-radius: 20px;
     position: relative;
     background: white;
-    z-index: 2;
+    z-index: 3;
     @media screen and (max-width: 767px) {
         width: 100vw;
         height: 100vh;
@@ -21,23 +38,6 @@ const ModalWrap = styled.div`
         position: relative;
         top: 50px;
         left: 0;
-    }
-`;
-const Background = styled.div`
-    background: rgba(0, 0, 0, 0.25);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    @media screen and (max-width: 767px) {
-        height: max-content;
-        background: rgba(255, 255, 255, 1);
-        overflow-y: hidden;
     }
 `;
 const ModalTitle = styled.h2`
@@ -57,6 +57,7 @@ const ModalClose = styled.div`
     height: 16px;
     top: 20px;
     right: 20px;
+
     @media screen and (max-width: 767px) {
         display: none;
     }
@@ -153,7 +154,8 @@ const ModalButton = styled.button`
     max-width: 300px;
     width: 100%;
     height: 50px;
-    background: ${(props) => (props.cancel ? "#fff" : "#24CCA7")};
+    letter-spacing: 0.1rem;
+    background: ${(props) => (props.cancel ? "#fff" : `#24CCA7`)};
     border: ${(props) => (props.cancel ? `1px solid #4A56E2` : "none")};
     color: ${(props) => (props.cancel ? "#4A56E2" : "#fff")};
     border-radius: 20px;
@@ -169,14 +171,6 @@ const IconCalendarWrap = styled.div`
     position: absolute;
     bottom: 4px;
     right: 20px;
-
-    //@media screen and (max-width: 767px) {
-    //    bottom: 0;
-    //    right: 10%;
-    //}
-    //@media screen and (max-width: 430px) {
-    //    right: 0vw;
-    //}
 `;
 const SwitcherWrap = styled.div`
     display: flex;

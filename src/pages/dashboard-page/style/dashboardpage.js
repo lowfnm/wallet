@@ -65,12 +65,14 @@ const NavigationWrapper = styled.div`
 `;
 
 const Main = styled.main`
+    width: 100%;
     position: relative;
     z-index: 1;
     padding-left: 3rem;
 
     @media (max-width: 1279px) {
         padding-left: 0;
+        min-height: calc(100vh - 16rem);
     }
 `;
 

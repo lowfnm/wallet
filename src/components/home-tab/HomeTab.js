@@ -38,10 +38,12 @@ const HomeTab = () => {
 
     return (
         <>
-            {isMobile ? (
-                <MobileTab />
-            ) : isSuccess ? (
-                <DesktopTab />
+            {isSuccess ? (
+                isMobile ? (
+                    <MobileTab />
+                ) : (
+                    <DesktopTab />
+                )
             ) : (
                 <Spinner />
             )}
