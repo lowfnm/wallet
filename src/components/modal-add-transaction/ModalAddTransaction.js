@@ -355,6 +355,8 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                             }}
                                             name="amount"
                                             type="number"
+                                            min={0}
+                                            step={1}
                                             value={formik.values.amount}
                                             onChange={formik.handleChange}
                                             placeholder="0.00"
@@ -376,6 +378,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                         >
                                             <DatePicker
                                                 maxDate={new Date()}
+                                                minDate={new Date("01.01.2010")}
                                                 open={open}
                                                 inputFormat="dd.MM.yyyy"
                                                 mask={"__.__.____"}
