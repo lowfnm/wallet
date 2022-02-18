@@ -20,10 +20,6 @@ const Rates = styled.section`
         margin: 0 auto;
         width: 100%;
         max-width: 320px;
-        //svg {
-        //    top: 0;
-        //    bottom: auto;
-        //}
     }
 `;
 
@@ -33,6 +29,10 @@ const RatesHead = styled.ul`
     padding: 1.7rem 3rem 2rem;
     border-radius: 30px 30px 0 0;
     background-color: #6f78ec;
+`;
+const RatesContent = styled.ul`
+    position: relative;
+    min-height: calc(100% - 6rem);
 `;
 
 const HeadItem = styled.li`
@@ -45,6 +45,8 @@ const RatesBody = styled.ul`
     justify-content: space-between;
     margin-top: 2rem;
     margin-bottom: 1.9rem;
+    min-height: (100%-6rem);
+    position: relative;
 
     @media (max-width: 1279px) {
         margin: 1.6rem 0;
@@ -65,4 +67,4 @@ const BodyItem = styled.li`
     }
 `;
 
-export { Rates, RatesHead, HeadItem, RatesBody, BodyItem };
+export { Rates, RatesHead, HeadItem, RatesBody, BodyItem, RatesContent };

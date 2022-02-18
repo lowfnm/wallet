@@ -32,6 +32,9 @@ export const LinkElem = styled(NavLink)`
     }
     @media (max-width: 767px) {
         margin-bottom: 0;
+        &:not(:last-child) {
+            margin-right: 36px;
+        }
         &:last-child {
             display: block;
         }
@@ -64,9 +67,6 @@ const IconWrapper = styled.div`
     @media (max-width: 767px) {
         width: 38px;
         height: 38px;
-        &:not(:last-child) {
-            margin-right: 36px;
-        }
         svg {
             width: 26px;
             height: 26px;
