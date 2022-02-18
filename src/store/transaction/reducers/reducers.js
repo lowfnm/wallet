@@ -31,14 +31,6 @@ export const transactionSlice = createSlice({
             month: 0,
         },
     },
-    reducers: {
-        clearState: (state) => {
-            state.isError = false;
-            state.isSuccess = false;
-
-            return state;
-        },
-    },
 
     extraReducers: {
         [transactionPost.fulfilled]: (state, { payload }) => {
@@ -52,7 +44,7 @@ export const transactionSlice = createSlice({
             state.id = payload.id;
             state.balanceAfter = payload.balanceAfter;
         },
-        [transactionPost.pending]: (state) => {},
+
         [transactionPost.rejected]: (state, { payload }) => {
             state.isError = true;
             state.errorMessage = payload.message;
@@ -62,7 +54,7 @@ export const transactionSlice = createSlice({
             state.isSuccess = true;
             state.transactions = [...payload];
         },
-        [transactionGet.pending]: (state) => {},
+
         [transactionGet.rejected]: (state, { payload }) => {
             state.isError = true;
             state.errorMessage = payload.message;
@@ -106,5 +98,4 @@ export const transactionSlice = createSlice({
     },
 });
 
-export const { clearState } = transactionSlice.actions;
 export const transactionSelector = (state) => state.transaction;

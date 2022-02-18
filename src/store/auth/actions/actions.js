@@ -10,7 +10,7 @@ export const currentUser = createAsyncThunk(
         const token = localStorage.getItem("token");
 
         if (token === null) {
-            return rejectWithValue(toast.error("Log in"));
+            return rejectWithValue(toast());
         }
         try {
             const response = await axios({
