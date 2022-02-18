@@ -24,7 +24,6 @@ import {
     SwitcherLabelWrap,
 } from "./style/modalAddTransaction";
 import { ModalCloseIcon } from "./icon/ModalCloseIcon";
-import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "./icon/CalendarIcon";
 import { useDispatch, useSelector } from "react-redux";
 import {
