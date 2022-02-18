@@ -10,7 +10,7 @@ import TableBody from "@mui/material/TableBody";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TablePaginationActions from "./DestopTabPaginationActions";
-import WithoutTransactions from "../../common/without-transactions/WithoutTransactions";
+import WithoutOperations from "../../common/without-operations/WithoutOperations";
 import { transactionSelector } from "../../../store/transaction/reducers/reducers";
 import { useSelector } from "react-redux";
 
@@ -20,7 +20,11 @@ const DesktopTab = () => {
 
     const { transactions, categoriesArray } = useSelector(transactionSelector);
 
-    const tableData = transactions.map((item) => {
+    const monthSortData = [...transactions].sort(
+        (a, b) => new Date(a.transactionDate) - new Date(b.transactionDate)
+    );
+
+    const tableData = monthSortData.map((item) => {
         const category = categoriesArray.find(
             ({ id }) => id === item.categoryId
         );
@@ -238,7 +242,7 @@ const DesktopTab = () => {
                     </Table>
                 </TableContainer>
             ) : (
-                <WithoutTransactions />
+                <WithoutOperations title="No transactions" />
             )}
         </>
     );
