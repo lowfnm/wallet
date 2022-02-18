@@ -5,6 +5,7 @@ import {
     HeadItem,
     RatesBody,
     BodyItem,
+    RatesContent,
 } from "./style/currency";
 import { v4 as uuid4 } from "uuid";
 import Spinner from "../common/spinner/Spinner";
@@ -54,8 +55,10 @@ const Currency = () => {
                 <HeadItem>Purchase</HeadItem>
                 <HeadItem>Sale</HeadItem>
             </RatesHead>
-            {!isLoading ? <Spinner /> : listOfCurrency}
-            {!isLoading ? "" : <SvgWave />}
+            <RatesContent>
+                {!isLoading ? <Spinner /> : listOfCurrency}
+                {!isLoading ? "" : <SvgWave />}
+            </RatesContent>
         </Rates>
     );
 };

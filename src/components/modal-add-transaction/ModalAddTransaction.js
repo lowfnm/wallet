@@ -66,7 +66,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
 
     const handleChange = (event, categoryId) => {
         setCategory(event.target.value);
-
         formik.setFieldValue("categoryId", categoryId.props.categoryId);
     };
 
@@ -134,7 +133,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
 
     const switchHandler = () => {
         setChecked(!checked);
-
         if (!checked) {
             formik.setFieldValue("categoryId", "");
         }
@@ -220,6 +218,9 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                     margin: "0 auto",
                                                 }}
                                             >
+                                                {/*<SelectCategory*/}
+                                                {/*    onChange={handleChange}*/}
+                                                {/*/>*/}
                                                 <Select
                                                     value={category}
                                                     name="categoryId"
@@ -354,6 +355,8 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                             }}
                                             name="amount"
                                             type="number"
+                                            min={0}
+                                            step={1}
                                             value={formik.values.amount}
                                             onChange={formik.handleChange}
                                             placeholder="0.00"
@@ -375,6 +378,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                         >
                                             <DatePicker
                                                 maxDate={new Date()}
+                                                minDate={new Date("01.01.2010")}
                                                 open={open}
                                                 inputFormat="dd.MM.yyyy"
                                                 mask={"__.__.____"}
