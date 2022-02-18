@@ -67,7 +67,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
 
     const handleChange = (event, categoryId) => {
         setCategory(event.target.value);
-
         formik.setFieldValue("categoryId", categoryId.props.categoryId);
     };
 
@@ -135,7 +134,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
 
     const switchHandler = () => {
         setChecked(!checked);
-
         if (!checked) {
             formik.setFieldValue("categoryId", "");
         }
@@ -221,6 +219,9 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                     margin: "0 auto",
                                                 }}
                                             >
+                                                {/*<SelectCategory*/}
+                                                {/*    onChange={handleChange}*/}
+                                                {/*/>*/}
                                                 <Select
                                                     value={category}
                                                     name="categoryId"

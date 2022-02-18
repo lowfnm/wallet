@@ -5,6 +5,7 @@ import {
     HeadItem,
     RatesBody,
     BodyItem,
+    RatesContent,
 } from "./style/currency";
 import { v4 as uuid4 } from "uuid";
 import Spinner from "../spinner/Spinner";
@@ -17,26 +18,22 @@ const Currency = () => {
     const apiURL =
         "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
 
-    const fetchRates = async () => {
-        try {
-            const response = await fetch(apiURL);
-            const data = await response.json();
-            const desiredExchangeRates = data.slice(0, 3);
-
-            setRates(desiredExchangeRates);
-            setIsLoading(true);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     useEffect(() => {
-        fetchRates();
-    }, [isLoading]);
+        const fetchRates = async () => {
+            try {
+                const response = await fetch(apiURL);
+                const data = await response.json();
+                const desiredExchangeRates = data.slice(0, 3);
 
-    const loaderToFetch = () => {
-        return <Spinner />;
-    };
+                setRates(desiredExchangeRates);
+                setIsLoading(true);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchRates();
+    }, []);
 
     const listOfCurrency = rates.map(({ ccy, buy, sale }) => {
         const fixedBuy = Number(buy).toFixed(2);
@@ -58,8 +55,10 @@ const Currency = () => {
                 <HeadItem>Purchase</HeadItem>
                 <HeadItem>Sale</HeadItem>
             </RatesHead>
-            {!isLoading ? loaderToFetch() : listOfCurrency}
-            {!isLoading ? "" : <SvgWave />}
+            <RatesContent>
+                {!isLoading ? <Spinner /> : listOfCurrency}
+                {!isLoading ? "" : <SvgWave />}
+            </RatesContent>
         </Rates>
     );
 };
