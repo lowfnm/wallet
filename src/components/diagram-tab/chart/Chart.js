@@ -4,6 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { ExpensesMoney, Wrapper } from "./style/chart";
 import colorsArr from "../colorsArr";
+import WithoutOperations from "../../common/without-operations/WithoutOperations";
 
 ChartJS.register(ArcElement, Tooltip);
 
@@ -27,23 +28,31 @@ const Chart = () => {
 
     return (
         <Wrapper>
-            <Doughnut
-                type="doughnut"
-                options={{
-                    cutout: 110,
-                    borderColor: "transparent",
-                }}
-                data={{
-                    labels: categoriesLabel,
-                    datasets: [
-                        {
-                            data: categoriesData,
-                            backgroundColor: colorsArr,
-                        },
-                    ],
-                }}
-            />
-            <ExpensesMoney>₴ {expenseMoney}</ExpensesMoney>
+            <>
+                {categoriesData < 1 ? (
+                    <WithoutOperations />
+                ) : (
+                    <>
+                        <Doughnut
+                            type="doughnut"
+                            options={{
+                                cutout: 110,
+                                borderColor: "transparent",
+                            }}
+                            data={{
+                                labels: categoriesLabel,
+                                datasets: [
+                                    {
+                                        data: categoriesData,
+                                        backgroundColor: colorsArr,
+                                    },
+                                ],
+                            }}
+                        />
+                        <ExpensesMoney>₴ {expenseMoney}</ExpensesMoney>
+                    </>
+                )}
+            </>
         </Wrapper>
     );
 };

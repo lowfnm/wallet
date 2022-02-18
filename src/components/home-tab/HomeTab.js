@@ -5,7 +5,7 @@ import MobileTab from "./mobile-tab/MobileTab";
 import ButtonAddTransactions from "../common/button-add-transactions/ButtonAddTransactions";
 import ModalAddTransaction from "../modal-add-transaction/ModalAddTransaction";
 import { useMediaQuery } from "react-responsive";
-import Spinner from "../spinner/Spinner";
+import Spinner from "../common/spinner/Spinner";
 import { transactionSelector } from "../../store/transaction/reducers/reducers";
 
 import { useDispatch } from "react-redux";
@@ -36,17 +36,13 @@ const HomeTab = () => {
         dispatch(transactionSummary());
     }, [dispatch]);
 
+    const Tabs = () => {
+        return <>{isMobile ? <MobileTab /> : <DesktopTab />}</>;
+    };
+
     return (
         <>
-            {isSuccess ? (
-                isMobile ? (
-                    <MobileTab />
-                ) : (
-                    <DesktopTab />
-                )
-            ) : (
-                <Spinner />
-            )}
+            {isSuccess ? <Tabs /> : <Spinner />}
             <ButtonAddTransactions
                 showModal={showModal}
                 setShowModal={setShowModal}

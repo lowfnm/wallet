@@ -8,7 +8,7 @@ import {
     RatesContent,
 } from "./style/currency";
 import { v4 as uuid4 } from "uuid";
-import Spinner from "../spinner/Spinner";
+import Spinner from "../common/spinner/Spinner";
 import SvgWave from "./icon/SvgWave";
 
 const Currency = () => {

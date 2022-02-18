@@ -8,14 +8,20 @@ import {
 } from "./style/mobiletab";
 import Balance from "../../balance/Balance";
 import { v4 as uuid4 } from "uuid";
-import WithoutTransactions from "../../common/without-transactions/WithoutTransactions";
+import WithoutOperations from "../../common/without-operations/WithoutOperations";
 import { useSelector } from "react-redux";
 import { transactionSelector } from "../../../store/transaction/reducers/reducers";
 
 const MobileTab = () => {
     const { transactions, categoriesArray } = useSelector(transactionSelector);
 
-    const tableData = transactions.map((item) => {
+    const monthSortData = transactions
+        .slice()
+        .sort(
+            (a, b) => new Date(a.transactionDate) - new Date(b.transactionDate)
+        );
+
+    const tableData = monthSortData.map((item) => {
         const category = categoriesArray.find(
             ({ id }) => id === item.categoryId
         );
@@ -125,7 +131,7 @@ const MobileTab = () => {
                                                             color: "#FF6596",
                                                         }}
                                                     >
-                                                        {amount}
+                                                        {Math.abs(amount)}
                                                     </span>
                                                 ) : (
                                                     <span
@@ -187,7 +193,7 @@ const MobileTab = () => {
                     }
                 )
             ) : (
-                <WithoutTransactions />
+                <WithoutOperations />
             )}
         </>
     );

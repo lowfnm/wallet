@@ -24,31 +24,29 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <>
-            <ThemeProvider theme={theme}>
-                <GlobalStyles />
+        <ThemeProvider theme={theme}>
+            <GlobalStyles />
 
-                <Routes>
-                    <Route path="/" element={<PrivateRoute />}>
-                        <Route element={<DashBoardPage />}>
-                            <Route index element={<Navigate to="/home" />} />
-                            <Route path="home" element={<HomeTab />} />
-                            <Route path="diagram" element={<DiagramTab />} />
-                            <Route path="currency" element={<Currency />} />
-                        </Route>
+            <Routes>
+                <Route path="/" element={<PrivateRoute />}>
+                    <Route element={<DashBoardPage />}>
+                        <Route index element={<Navigate to="/home" />} />
+                        <Route path="home" element={<HomeTab />} />
+                        <Route path="diagram" element={<DiagramTab />} />
+                        <Route path="currency" element={<Currency />} />
                     </Route>
+                </Route>
 
-                    <Route path="login" element={<PublicRoute restricted />}>
-                        <Route index element={<LoginPage />} />
-                    </Route>
-                    <Route path="register" element={<PublicRoute restricted />}>
-                        <Route index element={<RegistrationPage />} />
-                    </Route>
-                    <Route path="*" element={<LoginPage />} />
-                </Routes>
-                <ToastContainer autoClose={5000} />
-            </ThemeProvider>
-        </>
+                <Route path="login" element={<PublicRoute restricted />}>
+                    <Route index element={<LoginPage />} />
+                </Route>
+                <Route path="register" element={<PublicRoute restricted />}>
+                    <Route index element={<RegistrationPage />} />
+                </Route>
+                <Route path="*" element={<LoginPage />} />
+            </Routes>
+            <ToastContainer autoClose={5000} />
+        </ThemeProvider>
     );
 };
 

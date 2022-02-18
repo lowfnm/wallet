@@ -1,19 +1,17 @@
 import { v4 as uuid4 } from "uuid";
 import { useSelector } from "react-redux";
 import { transactionSelector } from "../../../store/transaction/reducers/reducers";
-import Table from "@mui/material/Table";
+import DiagramTab from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableFooter from "@mui/material/TableFooter";
-
-import Spinner from "../../spinner/Spinner";
-
+import Spinner from "../../common/spinner/Spinner";
 import colorsArr from "../colorsArr";
 
-const DiagramTable = () => {
+const Table = () => {
     const { categoriesSummary, incomeSummary, expenseSummary } =
         useSelector(transactionSelector);
 
@@ -31,7 +29,7 @@ const DiagramTable = () => {
                         marginTop: "25px",
                     }}
                 >
-                    <Table
+                    <DiagramTab
                         sx={{
                             width: 350,
                             "@media (max-width: 767px)": { width: "100%" },
@@ -158,7 +156,7 @@ const DiagramTable = () => {
                                 </TableCell>
                             </TableRow>
                         </TableFooter>
-                    </Table>
+                    </DiagramTab>
                 </TableContainer>
             ) : (
                 <Spinner />
@@ -167,4 +165,4 @@ const DiagramTable = () => {
     );
 };
 
-export default DiagramTable;
+export default Table;
