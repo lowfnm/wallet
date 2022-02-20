@@ -112,7 +112,7 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
             categoryId: "063f1132-ba5d-42b4-951d-44011ca46262",
         },
         validationSchema: modalSchema,
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             if (checked) {
                 values.amount = -Math.abs(values.amount);
             }
@@ -120,9 +120,13 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                 setChecked(checked);
             }
 
-            dispatch(transactionPost({ values }));
-            dispatch(transactionGet());
-            dispatch(currentUser());
+            try {
+                await dispatch(transactionPost({ values }));
+                await dispatch(transactionGet());
+                await dispatch(currentUser());
+            } catch (e) {
+                console.log(e);
+            }
 
             setChecked(!checked);
             setCategory("");
@@ -218,9 +222,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                     margin: "0 auto",
                                                 }}
                                             >
-                                                {/*<SelectCategory*/}
-                                                {/*    onChange={handleChange}*/}
-                                                {/*/>*/}
                                                 <Select
                                                     value={category}
                                                     name="categoryId"
@@ -404,13 +405,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                                                                     )
                                                                 }
                                                             />
-                                                            {/*<ErrorMessage*/}
-                                                            {/*    name="date"*/}
-                                                            {/*    component="span"*/}
-                                                            {/*    style={{*/}
-                                                            {/*        color: "#FF6596",*/}
-                                                            {/*    }}*/}
-                                                            {/*/>*/}
                                                         </>
                                                     );
                                                 }}
