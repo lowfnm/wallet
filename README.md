@@ -10,8 +10,8 @@ help you find out in what period and what you spent your finances on.
 -   Expenses chart
 -   Expenses rate
 
-    ![App Image](https://imgur.com/Q4Gf550)
-
+    ![Imgur](https://imgur.com/xoxQK6Q.jpg)
+  
 ## Scripts
 
 Inside the newly created project, you can run some built-in commands:
@@ -32,7 +32,7 @@ The build is minified and the filenames include the hashes.
 
 Your app is ready to be deployed.
 
-##TEAM
+## TEAM
 - Team Lead - [Artem Melinevskiy](https://github.com/platinozhe)
 - Scrum Master - [Anton Storozhenko](https://github.com/iamstorozhenko)
 - Software Engineer - [Ihor Serhiienko](https://github.com/ISergienko)
