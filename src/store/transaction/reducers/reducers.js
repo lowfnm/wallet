@@ -71,20 +71,19 @@ export const transactionSlice = createSlice({
         },
 
         [transactionSummary.fulfilled]: (state, { payload }) => {
-            state.categoriesSummary = [...payload.categoriesSummary];
+            state.categoriesSummary = [payload.categoriesSummary];
             state.expenseSummary = payload.expenseSummary;
             state.incomeSummary = payload.incomeSummary;
             state.year = payload.year;
             state.month = payload.month;
         },
-        [transactionSummary.pending]: (state) => {},
         [transactionSummary.rejected]: (state, { payload }) => {
             state.isError = true;
             state.errorMessage = payload.message;
         },
 
         [transactionSummaryPeriod.fulfilled]: (state, { payload }) => {
-            state.categoriesSummary = [...payload.categoriesSummary];
+            state.categoriesSummary = payload.categoriesSummary;
             state.expenseSummary = payload.expenseSummary;
             state.incomeSummary = payload.incomeSummary;
             state.year = payload.year;

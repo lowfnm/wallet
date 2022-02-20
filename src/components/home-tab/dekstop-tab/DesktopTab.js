@@ -44,9 +44,7 @@ const DesktopTab = () => {
     };
 
     const emptyRows =
-        page > 0
-            ? Math.max(0, (1 + page) * rowsPerPage - transactions.length)
-            : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - tableData.length) : 0;
 
     return (
         <>
@@ -126,6 +124,7 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
+                                                maxWidth: "160px",
                                                 minWidth: "110px",
                                             }}
                                         >
@@ -134,6 +133,7 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
+                                                maxWidth: "160px",
                                                 minWidth: "60px",
                                                 overflowWrap: "break-word",
                                             }}
@@ -143,6 +143,7 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
+                                                maxWidth: "160px",
                                                 minWidth: "170px",
                                                 overflowWrap: "break-word",
                                             }}
@@ -152,6 +153,7 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
+                                                maxWidth: "160px",
                                                 minWidth: "130px",
                                                 overflowWrap: "break-word",
                                             }}
@@ -161,6 +163,7 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
+                                                maxWidth: "160px",
                                                 minWidth: "100px",
                                                 overflowWrap: "break-word",
                                             }}
@@ -182,6 +185,7 @@ const DesktopTab = () => {
                                         <TableCell
                                             align="center"
                                             sx={{
+                                                maxWidth: "160px",
                                                 minWidth: "100px",
                                                 overflowWrap: "break-word",
                                             }}
