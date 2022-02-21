@@ -20,21 +20,18 @@ const HomeTab = () => {
     const isMobile = useMediaQuery({
         query: "(max-width: 767px)",
     });
-    const { isSuccess } = useSelector(transactionSelector);
+    const { isSuccess, isAuth } = useSelector(transactionSelector);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(transactionGet());
-    }, [dispatch]);
+         if(!isAuth) {
+            dispatch(transactionGet());
+            dispatch(transactionGetCategories());
+            dispatch(transactionSummary());
+         }
 
-    useEffect(() => {
-        dispatch(transactionGetCategories());
-    }, [dispatch]);
-
-    useEffect(() => {
-        dispatch(transactionSummary());
-    }, [dispatch]);
+    }, [dispatch,isAuth]);
 
     const Tabs = () => {
         return <>{isMobile ? <MobileTab /> : <DesktopTab />}</>;
