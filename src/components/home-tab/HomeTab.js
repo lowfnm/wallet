@@ -14,24 +14,25 @@ import {
     transactionGetCategories,
     transactionSummary,
 } from "../../store/transaction/actions/actions";
+import {userSelector} from "../../store/auth/reducers/reducers";
 
 const HomeTab = () => {
     const [showModal, setShowModal] = useState(false);
     const isMobile = useMediaQuery({
         query: "(max-width: 767px)",
     });
-    const { isSuccess, isAuth } = useSelector(transactionSelector);
+    const { isSuccess } = useSelector(transactionSelector);
+    const { isAuth } = useSelector(userSelector)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-         if(!isAuth) {
+         if(isAuth) {
             dispatch(transactionGet());
             dispatch(transactionGetCategories());
             dispatch(transactionSummary());
          }
-
-    }, [dispatch,isAuth]);
+    }, [dispatch, isAuth]);
 
     const Tabs = () => {
         return <>{isMobile ? <MobileTab /> : <DesktopTab />}</>;
