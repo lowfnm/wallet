@@ -7,29 +7,35 @@ import {
     transactionSummaryPeriod,
 } from "../actions/actions";
 
+const initialState = {
+    id: "",
+    transactionDate: "",
+    type: "",
+    categoryId: "",
+    userId: "",
+    comment: "",
+    amount: 0,
+    balanceAfter: 0,
+    isSuccess: false,
+    isError: false,
+    errorMessage: "",
+    categoriesArray: [],
+    transactions: [],
+    summary: {
+        categoriesSummary: [],
+        incomeSummary: 0,
+        expenseSummary: 0,
+        year: 0,
+        month: 0,
+    },
+};
+
 export const transactionSlice = createSlice({
     name: "transaction",
-    initialState: {
-        id: "",
-        transactionDate: "",
-        type: "",
-        categoryId: "",
-        userId: "",
-        comment: "",
-        amount: 0,
-        balanceAfter: 0,
-        isSuccess: false,
-        isError: false,
-        errorMessage: "",
-        categoriesArray: [],
-        transactions: [],
-        summary: {
-            categoriesSummary: [],
-            incomeSummary: 0,
-            expenseSummary: 0,
-            year: 0,
-            month: 0,
-        },
+    initialState,
+
+    reducers: {
+        clearTransactions: ( ) => initialState
     },
 
     extraReducers: {
@@ -97,4 +103,5 @@ export const transactionSlice = createSlice({
     },
 });
 
+export const { clearTransactions } = transactionSlice.actions;
 export const transactionSelector = (state) => state.transaction;

@@ -116,9 +116,6 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
             if (checked) {
                 values.amount = -Math.abs(values.amount);
             }
-            if (!checked) {
-                setChecked(checked);
-            }
 
             try {
                 await dispatch(transactionPost({ values }));
@@ -128,7 +125,11 @@ const ModalAddTransaction = ({ showModal, setShowModal }) => {
                 console.log(e);
             }
 
-            setChecked(!checked);
+            setChecked(checked);
+
+            if (checked) {
+                setChecked(!checked);
+            }
             setCategory("");
             setShowModal(false);
             formik.resetForm();
