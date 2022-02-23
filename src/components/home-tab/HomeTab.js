@@ -25,8 +25,8 @@ const HomeTab = () => {
     const { isAuth } = useSelector(userSelector)
 
     const dispatch = useDispatch();
-
     useEffect(() => {
+
          if(isAuth) {
             dispatch(transactionGet());
             dispatch(transactionGetCategories());

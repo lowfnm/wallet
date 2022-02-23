@@ -8,6 +8,7 @@ import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 import { signOutUser } from "../../../store/auth/actions/actions";
 import SvgExitIcon from "../icon/SvgExitIcon";
+import {clearTransactions} from "../../../store/transaction/reducers/reducers";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -19,6 +20,7 @@ const LogOut = () => {
 
     const logOut = () => {
         dispatch(signOutUser());
+        dispatch(clearTransactions());
     };
 
     const handleClickOpen = () => {
